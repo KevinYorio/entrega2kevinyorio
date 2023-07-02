@@ -9,54 +9,98 @@
     <link rel="stylesheet" type="text/css" href="../styles/estilo.css"> <!--linkeo de estilos-->
     <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
 </head>
-<body>
-    <div class="contenedor-header">
+<body class="fondoalumnos">
+    <div class="contenedor-header-alumnos">
         <header>
-            <h1>ATIX <span class="txtRojo">Haedo</span></h1>
+            <div class="logo">
+                <img class="logo" src="../img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
+            </div>
             <nav id="nav">
-                <a onclick="window.location.href = `../pages/sobrenosotros.html`">Sobre nosotross</a>
-                <a onclick="window.location.href = `../pages/clases.html`">Clases</a>
-                <a onclick="window.location.href = `../pages/estetica.html`">Estetica</a>
-                <a onclick="window.location.href = `../pages/contacto.html`">Contacto</a>
-                <a onclick="window.location.href = `../index.html`">Home</a>
+                <a onclick="window.location.href = `../pages/sobrenosotros.html`">SOBRE NOSOTROS</a>
+                <a onclick="window.location.href = `../pages/clases.html`">CLASES</a>
+                <a onclick="window.location.href = `../pages/estetica.html`">ESTETICA</a>
+                <a onclick="window.location.href = `../pages/contacto.html`">CONTACTO</a>
+                <a href="https://api.whatsapp.com/send?phone=5491166739161">ANOTATE</a>
+                <a onclick="window.location.href = `../index.html`">HOME</a>
             </nav>
-            <div class="redes">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+            <div class="redes-sociales2">
+                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
             </div>
             <!-- Icono del menu responsive -->
             <div id="icono-nav" class="nav-responsive" onclick="mostrarOcultarMenu()">
                 <i class="fa-solid fa-bars"></i>
-            </div>                
+            </div>                               
         </header>
     </div>
     <main>
         <section id="nosotros" class="nosotros">
-            <div class="fila-nosotros">
-                <p>Si aun no sos alumno, mediante este link podes anotarte ya mismo a tus clases favoritas</p>
-                <a class="fila-nosotros" href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank">
-                    <button>Anotate</button>
-                </a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="card" style="width: 18rem;">
+                    <img src="../img/f3.jpg" class="card-img-top" alt="Anotarse">
+                    <div class="card-body">
+                        <h5 class="card-title">ANOTATE</h5>
+                        <p class="card-text">Si aún no sos alumno, mediante este link podés anotarte ya mismo a tus clases favoritas</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="https://api.whatsapp.com/send?phone=5491166739161" class="card-link">Anotate aquí!</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem;">
+                    <img src="../img/f2.jpg" class="card-img-top" alt="Crearcuenta">
+                    <div class="card-body">
+                        <h5 class="card-title">Crear cuenta</h5>
+                        <p class="card-text">Una vez que seas alumno, desde acá podés crearte tu cuenta para poder ver el estado de la misma y actualizar tu plan cuando quieras</p>
+                    </div>
+                    <div class="card-body">
+                        <button onclick="window.location.href = 'crearcuenta.html'" class="card-link">Crear cuenta</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="card-de-pago">
+                    <div class="card-body">
+                        <h5 class="card-title">Actualiza tu plan</h5>
+                        <p class="card-text">Desde aquí mismo podés pasar al chat para que tu plan quede al día</p>
+                        <a href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank" class="card-link">Pagar</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-4"></div>
+                <div class="col-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../img/f6.jpg" class="card-img-top" alt="clases">
+                        <div class="card-body">
+                            <p class="card-text">Reserva desde hoy tus clases favoritas!</p>
+                            <button onclick="window.location.href = 'clases.html'" class="card-link">Reservar clases</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="card">
+                        Consultas por <span class="txtRojo">WhatsApp</span>
+                        <a href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank"><i class="whatsapp"></i></a>
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="fila-nosotros">
-                <p>Una vez que seas alumno desde aca podes crearte tu cuenta para poder ver el estado de la misma y actualizar tu plan cuando quieras</p>
-                    <button onclick="window.location.href = `crearcuenta.html`">Crear cuenta</button>
-            </div>
-            <div class="fila-nosotros">
-                <p>Tenes que pagar el mes? </p>
-                <a class="fila-nosotros" href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank">
-                    <button>Actualizar plan</button>
-                </a>
-            </div>
-            <div class="fila-nosotros">
-                <button onclick="window.location.href = `clases.html`">Reservar clases</button>
-            </div>
-            Consultas por <span class="txtRojo">WhatsApp</span>
-                    <a class="fila-nosotros" href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank">
-                        <button>Realizar Consulta</button>
-                    </a>
-        </section>
+            </section>
     </main>
     <footer>
         <div class="info">

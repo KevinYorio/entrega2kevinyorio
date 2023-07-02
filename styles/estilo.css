@@ -1,8 +1,5 @@
     @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap');
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: 'Myriad Condensed Bold Italic', sans-serif;
 }
 
@@ -73,7 +70,7 @@ body{
 .nav-responsive{
     display: none;
     font-size: 25px;
- }
+}
  /* *********** */
 /* SECCIÓN INICIO */
 /* *********** */
@@ -137,6 +134,12 @@ body{
     color: #797e8e;
     margin: 0 20px;
 }
+.fondoalumnos{
+    background: #1D976C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 /* *********** */
 /* SECCION NOSOTROS */
 /* *********** */
@@ -213,6 +216,100 @@ body{
     cursor: pointer;
 }
 
+/* *********** */
+/* SECCION ALUMNOS */
+/* *********** */
+.contenedor-header-alumnos{
+    width: 100%;
+    border-bottom: 1px solid #0b241b;
+    background-color: rgba(0,0,0,.7);
+    padding: 0 20px;
+}
+.contenedor-header-alumnos header{
+    max-width: 1100px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    color: #fff;
+}
+.contenedor-header-alumnos header nav a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+.contenedor-header-alumnos header nav a:last-child {
+    margin-right: 0;
+}
+
+.contenedor-header-alumnos header nav a:hover{
+    color: #68B984;
+}
+.contenedor-header-alumnos header .redes a{
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 8px;
+}
+.contenedor-header-alumnos header .redes a:hover{
+    color: #68B984;
+}
+.txtRojo{
+    color: #68B984;
+}
+.nav-responsive{
+    display: none;
+    font-size: 25px;
+}
+.card {
+    border-radius: 10px; 
+    background-color: #343a40; 
+    width: 100%; 
+    height: 100%;
+    color: #ffffff;
+    align-items: center;
+}
+.card-link{
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px groove none;
+    background-color: transparent;
+    transition: background-color 0.3s;  
+    border-radius: 5px;  
+    color: #ffffff;
+}
+.card-link:hover{
+    background-color: #68B984; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+}
+.card-de-pago{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px; 
+    background-color: #343a40; 
+    color: #ffffff;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.card-link:hover{
+    background-color: #68B984;
+}
+.card-whats{
+    border-radius: 10px; 
+    background-color: #343a40; 
+    color: #ffffff;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.whatsapp {
+    background-image: url("../img/whatsapp.png");
+    color: #ffffff;
+}
  /* *********** */
 /* PAGINA CONTACTO */
 /* *********** */
@@ -358,8 +455,8 @@ body{
     font-size: 3rem;
 }
 .servicios .fila .col p{
-   margin-bottom: 10px;
-   line-height: 28px;
+    margin-bottom: 10px;
+    line-height: 28px;
 }
 .servicios .fila .col .p-especial{
     font-weight: bold;
@@ -435,8 +532,8 @@ body{
     font-size: 3rem;
 }
 .comodidades .fila .col p{
-   margin-bottom: 10px;
-   line-height: 28px;
+    margin-bottom: 10px;
+    line-height: 28px;
 }
 .comodidades .fila .col .p-especial{
     font-weight: bold;
@@ -530,9 +627,9 @@ body{
     width: 25%;
 }
 .equipo .fila .col img{
-   max-height: 400px;
-   display: block;
-   margin: auto;
+    max-height: 400px;
+    display: block;
+    margin: auto;
 }
 .equipo .fila .info{
     border: 5px solid #0b241b;
