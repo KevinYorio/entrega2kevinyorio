@@ -71,6 +71,13 @@ body{
     display: none;
     font-size: 25px;
 }
+
+.offcanvas-start{
+    border-bottom: 1px solid #0b241b;
+    background-color: rgba(0,0,0,.7);
+    color: #ffffff;
+}
+
  /* *********** */
 /* SECCIÓN INICIO */
 /* *********** */
@@ -277,7 +284,7 @@ body{
     cursor: pointer;
     font-weight: bold;
     border: 1px groove none;
-    background-color: transparent;
+    background-color: #0b241b;
     transition: background-color 0.3s;  
     border-radius: 5px;  
     color: #ffffff;
@@ -318,7 +325,7 @@ body{
     background:linear-gradient( rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)),url(../img/fondo.jpg);
     background-size: cover;
     background-position: center center;
-    padding: 100px 20px;
+    padding: 100px 20px 200px;
 }
 
 .inicio2 .contenido-seccion{
@@ -404,6 +411,23 @@ body{
     margin-right: 10px;
 }
 
+/* ********** */
+/* estetica */
+/* ********** */
+.boton-imagen {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.btn-primary{
+    background-color: #0b241b;
+    color: #0b241b;
+}
 
 /* ********** */
 /* SERVICIOS */

@@ -15,7 +15,7 @@
     <div class="contenedor-header">
         <header>
             <div class="logo">
-                <img class="logo" src="../Prueba/img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
+                <img class="logo" src="./img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
             </div>
             <nav id="nav">
                 <a onclick="window.location.href = `./pages/alumnos.html`">Alumnos</a>
@@ -30,11 +30,32 @@
                 <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
                 <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
                 <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+            </div> 
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="fa-duotone fa-bars fa-fade"></i>
+            </a>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                        <a onclick="window.location.href = `./pages/alumnos.html`">Alumnos</a>
+                        <a onclick="window.location.href = `./pages/sobrenosotros.html`">Sobre nosotross</a>
+                        <a onclick="window.location.href = `./pages/clases.html`">Clases</a>
+                        <a onclick="window.location.href = `./pages/estetica.html`">Estetica</a>
+                        <a onclick="window.location.href = `./pages/contacto.html`">Contacto</a>
+                        <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
+                        <div class="redes-sociales2">
+                            <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+                            <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+                            <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+                            <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+                        </div> 
+                </div>
+                </div>
             </div>
             <!-- Icono del menu responsive -->
             <div id="icono-nav" class="nav-responsive" onclick="mostrarOcultarMenu()">
                 <i class="fa-solid fa-bars"></i>
-            </div>                
+            </div>   
         </header>
     </div>
 
@@ -99,7 +120,7 @@
                 <span class="frase">
                     <span class="txtRojo">ENTRENA</span> DIFERENTE
                 </span>
-                <h2>ENTRENA <span class="txtRojo">GRATIS</span> HOY!</h2>
+                <h2>PRIMERA CLASE<span class="txtRojo">GRATIS</span> HOY!</h2>
             </div>
             <div class="col2">
                 <a href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank">
@@ -123,8 +144,8 @@
                             <h2>SERVICIOS</h2>
                         </div>
                     </div>
-                    <p class="p-especial">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus quod provident libero, nam corrupti, adipisci ea inventore cum aliquid asperiores pariatur harum sunt. Tempore expedita atque quos ipsum nisi.</p>
+                    <p class="p-especial">La experiencia de entrenar comodo!</p>
+                    <p>En atix contamos con 10 años de experiencia en entrenamiento especializado de clases, junto a mas de 20 profesores que han trabajado con nosotros y profesionales actualizandose constantemente. A pocos meses de una renovacion total de insfraestructuras, te esperamos hoy dia con un centro de entrenamiento de ultima calidad!</p>
                 </div>
                 <div class="col">
                     <img src="img/servicios.png" alt="">
@@ -136,35 +157,35 @@
                 <tr>
                     <td>
                         <i class="fa-solid fa-person-walking"></i>
-                        <h3><span class="txtRojo">Clases </span> de Fitness</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <h3><span class="txtRojo">Clases </span> de Funcional</h3>
+                        <p>La mejor forma de mejorar tu fisico en grupo y con un profe alentandote minuto a minuto</p>
                     </td>
                     <td>
                         <i class="fa-solid fa-dumbbell"></i>
                         <h3><span class="txtRojo">Clases </span> de Crossfit</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <p>Queres dar un paso mas? Te interesa la intencidad? Cross es para vos! A darlo todo!</p>
                     </td>
                     <td>
                         <i class="fa-solid fa-mitten"></i>
-                        <h3><span class="txtRojo">Clases </span> de Boxeo</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <h3><span class="txtRojo">Clases </span> de Aerolocal</h3>
+                        <p>Ritmo, movimiento y mucho ejercicio, lo mejor para moverse y quemar calorias.</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <i class="fa-solid fa-clock"></i>
-                        <h3><span class="txtRojo">Clases </span> de Enduro</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <h3><span class="txtRojo">Clases </span> de Pilates</h3>
+                        <p>Cuando tenes que relajar y darle tiempo a tu cuerpo de recuperar y rehabilitar lesiones, la mejor opcion!</p>
                     </td>
                     <td>
                         <i class="fa-solid fa-heart-circle-bolt"></i>
-                        <h3><span class="txtRojo">Clases </span> de Cardio</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <h3><span class="txtRojo">Clases </span> de GAP</h3>
+                        <p>Gluteos, abdominales y piernes, la mejor opcion para el modelado a altas pulsaciones</p>
                     </td>
                     <td>
-                        <i class="fa-solid fa-bicycle"></i>
-                        <h3><span class="txtRojo">Clases </span> de Ciclismo</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis.</p>
+                        <i class="fa-solid fa-music"></i>
+                        <h3><span class="txtRojo">Clases </span> de Zumba</h3>
+                        <p>A moverse entre todos, ritmo, baile y sabor! Sumate a bailar con nosotros y divertirte!</p>
                     </td>
                 </tr>
             </table>
@@ -187,11 +208,11 @@
                         <h2>COMODIDADES</h2>
                     </div>
                 </div>
-                <p class="p-especial">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="p-especial">Infraestructura de primera calidad!</p>
                 <ul>
-                    <li><span>PILETA</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos tenetur, nam cumque adipisci ratione obcaecati impedit inventore eligendi</li>
-                    <li><span>WIFI GRATIS</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos tenetur, nam cumque adipisci ratione obcaecati impedit inventore</li>
-                    <li><span>ESTACIONAMIENTO GRATIS</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos tenetur, nam cumque adipisci ratione obcaecati impedit?</li>
+                    <li><span>SALON AMPLIADO</span> Ampliamos el salon principal de nuestras clases para que entren mas de ustedes, clases mas amplias y mas comodas para todos</li>
+                    <li><span>VESTUARIOS COMPLETO</span> Ahora los vestuarios cuentan con espacio de cambiado y duchadores, opciones mas completas para vos</li>
+                    <li><span>PILATES SEPARADO</span> Nuestro principal salon de pilates ahora tiene un piso especial para eso, podes tener tu lugar y tu espacio!</li>
                 </ul>
             </div>
         </div>
@@ -211,7 +232,6 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/v7b6f_MpQZE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             </div>
-        </div>
     </section>
     
     <!-- SECCION EQUIPO -->
@@ -228,7 +248,7 @@
             </div>
             <div class="fila">
                 <div class="col">
-                    <img src="img/e1.png" alt="">
+                    <img src="img/e1.png" alt="profealexis">
                     <div class="info">
                         <h2>ALEXIS</h2>
                         <p>Fitness - Pilates - Musculacion</p>
@@ -238,7 +258,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <img src="img/e2.png" alt="">
+                    <img src="img/e2.png" alt="profekarina">
                     <div class="info">
                         <h2>KARINA</h2>
                         <p>Fitness - Pilates - Yoga</p>

@@ -13,7 +13,7 @@
     <div class="contenedor-header">
     <header>
         <div class="logo">
-            <img class="logo" src="../img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
+            <img class="logo" src="./img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
         </div>
         <nav id="nav">
             <a onclick="window.location.href = `../pages/alumnos.html`">Alumnos</a>
@@ -35,28 +35,32 @@
         </div>                
     </header>
     </div>
-    <section id="inicio" class="inicio">
     <main>
-<h1>Registro de cuenta</h1>
-
-<form action="https://api.whatsapp.com/send?phone=5491166739161&text=Quisiera%20crear%20mi%20cuenta%20de%20atix%20con%20estos%20datos..." method="post">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="socio">Número de socio:</label>
-    <input type="text" id="socio" name="socio" required><br><br>
-
-    <label for="contraseña">Contraseña:</label>
-    <input type="password" id="contraseña" name="contraseña" required><br><br>
-
-    <input type="submit" value="Crear cuenta">
-</form>
+        <section class="inicio2">
+            <main>
+                <div class="contenido-seccion">
+                    <div class="contenedor-titulo">
+                        <div class="info">
+                            CREAR <span class="frase">TU CUENTA</span>
+                        </div>
+                    </div>
+                <div class="fila">
+                    <div class="col">
+                        <input type="email" placeholder="Ingrese Email">
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Ingrese Nombre">
+                    </div>
+                </div>
+                <div class="mensaje">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
+                    <a class="botoncontacto" href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en obtener informacion de..."" target="_blank">
+                    <button action="https://api.whatsapp.com/send?phone=5491166739161&text= Quisiera hacer una consulta sobre..." method="post">Enviar Mensaje</button>
+                    </a>
+                </div>
+            </main>
+        </section>
     </main>
-<button onclick="window.location.href = `index.html`">Home</button>
-    </section>
 <footer>
     <div class="info">
         <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>

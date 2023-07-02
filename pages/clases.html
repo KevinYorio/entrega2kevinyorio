@@ -10,7 +10,7 @@
         <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
     </head>
 <body>
-    <div class="contenedor-header">
+    <div class="contenedor-header-alumnos">
     <header>
         <div class="logo">
             <img class="logo" src="../img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
@@ -34,27 +34,34 @@
         </div>                
     </header>
     </div>
-    <section id="inicio" class="inicio">
     <main>
-        <div class="calendario">
-            <div class="carrusel-de-fotos">
-                <div class="carrusel-animacion"> <!--Calendario de clases animado-->
-                    <img class="calendario-img" src="../img/calendarioatix.jpeg" alt="Imagen 1">
-                    <img class="calendario-img" src="../img/calendarioatix2.jpeg" alt="Imagen 2">
-                    <img class="calendario-img" src="../img/calendarioatix3.jpeg" alt="Imagen 3">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="../img/calendarioatix.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="../img/calendarioatix2.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="../img/calendarioatix3.jpeg" class="d-block w-100" alt="...">
                 </div>
             </div>
-        </div>
-        <section class="whatsapp">
-            <h1>Consultas por WhatsApp</h1>
-            <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar la clase de..."" target="_blank"></a>
-            <button>Realizar Consulta</button>
-        </section>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
     </main>
     </section>
         <footer>
             <div class="info">
                 <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+                <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar clases de..." target="_blank" class="card-link" target="_blank">Relizar consulta</a>
                 <div class="redes-sociales2">
                     <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
                     <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
