@@ -16,12 +16,12 @@
                 <img class="logo" src="../img/LOGO.png" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
             </div>
             <nav id="nav">
-                <a onclick="window.location.href = `../pages/sobrenosotros.html`">SOBRE NOSOTROS</a>
-                <a onclick="window.location.href = `../pages/clases.html`">CLASES</a>
-                <a onclick="window.location.href = `../pages/estetica.html`">ESTETICA</a>
-                <a onclick="window.location.href = `../pages/contacto.html`">CONTACTO</a>
-                <a href="https://api.whatsapp.com/send?phone=5491166739161">ANOTATE</a>
-                <a onclick="window.location.href = `../index.html`">HOME</a>
+                <a href = "../pages/sobrenosotros.html">Sobre nosotros</a>
+                <a href = "../pages/clases.html">Clases</a>
+                <a href = "../pages/estetica.html">Estetica</a>
+                <a href = "../pages/contacto.html">Contacto</a>
+                <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
+                <a href = "../index.html">HOME</a>
             </nav>
             <div class="redes-sociales2">
                 <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
@@ -35,59 +35,57 @@
         <section id="nosotros" class="nosotros">
             <div class="container">
                 <div class="row">
+                    <div class="col-2">
+                        <div class="card" style="width: 20rem;">
+                            <img src="../img/f3.jpg" class="card-img-top" alt="Anotarse">
+                            <div class="card-body">
+                                <h5 class="card-title">ANOTATE</h5>
+                                <p class="card-text">Si aún no sos alumno, mediante este link podés anotarte ya mismo a tus clases favoritas</p>
+                            </div>
+                            <div class="card-body">
+                                <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en anotarme en ATIX..." class="card-link">Anotate aquí!</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-2"></div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <img src="../img/f3.jpg" class="card-img-top" alt="Anotarse">
-                    <div class="card-body">
-                        <h5 class="card-title">ANOTATE</h5>
-                        <p class="card-text">Si aún no sos alumno, mediante este link podés anotarte ya mismo a tus clases favoritas</p>
+                    <div class="col-2">
+                        <div class="card" style="width: 20rem;">
+                            <img src="../img/f2.jpg" class="card-img-top" alt="Crearcuenta">
+                            <div class="card-body">
+                                <h5 class="card-title">Crear cuenta</h5>
+                                <p class="card-text">Una vez que seas alumno, desde acá podés crearte tu cuenta para poder ver el estado de la misma y actualizar tu plan cuando quieras</p>
+                            </div>
+                            <div class="card-body">
+                                <button onclick="window.location.href = 'crearcuenta.html'" class="card-link">Crear cuenta</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en anotarme en ATIX..." class="card-link">Anotate aquí!</a>
+                    <div class="col-2"></div>
+                    <div class="col-2">
+                        <div class="card" style="width: 20rem;">
+                            <img src="../img/f6.jpg" class="card-img-top" alt="clases">
+                            <div class="card-body">
+                                <p class="card-text">Reserva desde hoy tus clases favoritas!</p>
+                                <button onclick="window.location.href = 'clases.html'" class="card-link">Reservar clases</button>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                    <img src="../img/f2.jpg" class="card-img-top" alt="Crearcuenta">
-                    <div class="card-body">
-                        <h5 class="card-title">Crear cuenta</h5>
-                        <p class="card-text">Una vez que seas alumno, desde acá podés crearte tu cuenta para poder ver el estado de la misma y actualizar tu plan cuando quieras</p>
-                    </div>
-                    <div class="card-body">
-                        <button onclick="window.location.href = 'crearcuenta.html'" class="card-link">Crear cuenta</button>
-                    </div>
-                    </div>
-                </div>
+                    <div class="col-1"></div>
                 </div>
                 <div class="row">
                     <div class="col-3"></div>
-                <div class="col-6">
-                    <div class="card-de-pago">
-                    <div class="card-body">
-                        <h5 class="card-title">Actualiza tu plan</h5>
-                        <p class="card-text">Desde aquí mismo podés pasar al chat para que tu plan quede al día</p>
-                        <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en actualizar mi plan de alumno..." target="_blank" class="card-link">Pagar</a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class="row">
-                    <div class="col-4"></div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/f6.jpg" class="card-img-top" alt="clases">
-                        <div class="card-body">
-                            <p class="card-text">Reserva desde hoy tus clases favoritas!</p>
-                            <button onclick="window.location.href = 'clases.html'" class="card-link">Reservar clases</button>
+                    <div class="col-6 mt-5">
+                        <div class="card-de-pago">
+                            <div class="card-body">
+                                <h5 class="card-title">Actualiza tu plan</h5>
+                                <p class="card-text">Desde aquí mismo podés pasar al chat para que tu plan quede al día</p>
+                                <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en actualizar mi plan de alumno..." target="_blank" class="card-link">Pagar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
-            </section>
+        </section> 
     </main>
     <footer>
         <div class="info">
