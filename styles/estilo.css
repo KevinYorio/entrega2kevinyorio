@@ -949,3 +949,135 @@ footer .info a{
         margin-bottom: 10px;
     }
     }
+
+    @media only screen and (max-width: 750px)  {
+        header nav{
+            position: initial;
+            display: none;
+            transform: translate(0);
+        }
+        .nav-responsive{
+            display: block;
+        }
+        nav.responsive{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position:absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color:#151623;
+            z-index: 99;
+        }
+        nav.responsive a{
+            display: block;
+            width: fit-content;
+            margin: 10px auto;
+            font-size: 30px;
+        }
+        .inicio .opciones{
+            display: none;
+        }
+        .nosotros .fila{
+            display: block;
+        }
+        .nosotros .fila .col{
+            width: 100%;
+            margin: auto;
+        }
+        .nosotros .fila .col img{
+            max-width: 200px;
+            display: block;
+            margin: auto;
+        }
+        .nosotros2 .fila{
+            display: block;
+        }
+        .nosotros2 .fila .col{
+            width: 100%;
+            margin: auto;
+        }
+        .nosotros2 .fila .col img{
+            max-width: 200px;
+            display: block;
+            margin: auto;
+        }
+        .containercard {
+            width: 100%;
+            margin-left: 100px;
+        }
+        .col-2 {
+            width: 100%; /* Cambia el ancho al 100% para que las cards ocupen todo el ancho */
+            margin-bottom: 5px; /* Añade un margen inferior para separar las cards */
+        }
+        .col-1 {
+            display: none; /* Oculta el espacio en blanco */
+        }
+        .card {
+            width: 100%; /* Cambia el ancho al 100% para ocupar todo el ancho de las columnas */
+        }
+        .card-body {
+            padding: 10px; /* Ajusta el padding según tus necesidades */
+        }
+        .card-img-top {
+            max-width: 100%; /* Cambia el ancho máximo de la imagen al 100% */
+            height: auto; /* Establece la altura automática para mantener la proporción */
+        }
+        .boton-imagen{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+        .servicios .contenido-seccion .fila{
+            display: block;
+        }
+        .servicios .contenido-seccion .fila .col{
+            width: 100%;
+        }
+        .comodidades .fila{
+            display: block;
+        }
+        .comodidades .fila .col{
+            width: 100%;
+        }
+        .comodidades .fila .col img{
+            max-width: 200px;
+        }
+    
+        .equipo .fila{
+            display: block;
+        }
+        .equipo .fila .col{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .equipo .fila .col img{
+            max-height: 200px;
+        }
+        .equipo .fila .info{
+            max-width: 250px;
+            margin: auto;
+        }
+        .contacto .fila{
+            display: block;
+        }
+        .contacto .fila .col{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .contacto .fila-datos{
+            display: block;
+        }
+        .contacto .fila-datos .col{
+            margin-bottom: 20px;
+        }
+        footer .info{
+            display: block;
+            text-align: center;
+        }
+        footer .info p{
+            margin-bottom: 10px;
+        }
+        }
