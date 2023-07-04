@@ -19,7 +19,6 @@ body{
 /* *********** */
 .contenedor-header{
     width: 100%;
-    position: fixed;
     border-bottom: 1px solid #0b241b;
     background-color: rgba(0,0,0,.7);
     z-index: 99;
@@ -221,7 +220,12 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
-
+.nosotros2{
+    max-width: 1100px;
+    margin: auto;
+    background-color: #dde1e9;
+    padding: 50px 20px;
+}
 /* *********** */
 /* SECCION ALUMNOS */
 /* *********** */
@@ -855,6 +859,44 @@ footer .info a{
         max-width: 200px;
         display: block;
         margin: auto;
+    }
+    .nosotros2 .fila{
+        display: block;
+    }
+    .nosotros2 .fila .col{
+        width: 100%;
+        margin: auto;
+    }
+    .nosotros2 .fila .col img{
+        max-width: 200px;
+        display: block;
+        margin: auto;
+    }
+    .containercard {
+        width: 100%;
+        margin-left: 100px;
+    }
+    .col-2 {
+        width: 100%; /* Cambia el ancho al 100% para que las cards ocupen todo el ancho */
+        margin-bottom: 5px; /* Añade un margen inferior para separar las cards */
+    }
+    .col-1 {
+        display: none; /* Oculta el espacio en blanco */
+    }
+    .card {
+        width: 100%; /* Cambia el ancho al 100% para ocupar todo el ancho de las columnas */
+    }
+    .card-body {
+        padding: 10px; /* Ajusta el padding según tus necesidades */
+    }
+    .card-img-top {
+        max-width: 100%; /* Cambia el ancho máximo de la imagen al 100% */
+        height: auto; /* Establece la altura automática para mantener la proporción */
+    }
+    .boton-imagen{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
     }
     .servicios .contenido-seccion .fila{
         display: block;
