@@ -477,33 +477,30 @@ body{
 .servicios .fila .col .p-especial{
     font-weight: bold;
 }
-.servicios .info-servicios{
+.servicios .info-servicios {
     max-width: 800px;
     margin: auto;
-}
-.servicios .info-servicios table{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
     text-align: center;
     background-color: #fff;
     color: #0b241b;
-    border-collapse: collapse;
-    position: relative;
-    bottom: 10px;
 }
-.servicios .info-servicios table td{
+.servicios .info-servicios div {
     padding: 30px;
-    border: 1px solid #dde1e9
+    border: 1px solid #dde1e9;
 }
-.servicios .info-servicios table td i{
-    color: #68B984;
+.servicios .info-servicios i {
+    color: #68b984;
     font-size: 2.5rem;
     margin-bottom: 20px;
-
 }
-.servicios .info-servicios h3{
+.servicios .info-servicios h3 {
     margin-bottom: 20px;
     text-transform: uppercase;
 }
-.servicios .info-servicios p{
+.servicios .info-servicios p {
     line-height: 30px;
 }
 /* *********** */
@@ -949,135 +946,72 @@ footer .info a{
         margin-bottom: 10px;
     }
     }
+    @media only screen and (max-width: 700px) {
+        .youtubevideo{
+            width: 30%;
+            height: 10%;
+        }
+}
 
-    @media only screen and (max-width: 750px)  {
-        header nav{
-            position: initial;
-            display: none;
-            transform: translate(0);
-        }
-        .nav-responsive{
-            display: block;
-        }
-        nav.responsive{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position:absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background-color:#151623;
-            z-index: 99;
-        }
-        nav.responsive a{
-            display: block;
-            width: fit-content;
-            margin: 10px auto;
-            font-size: 30px;
-        }
-        .inicio .opciones{
-            display: none;
-        }
-        .nosotros .fila{
-            display: block;
-        }
-        .nosotros .fila .col{
-            width: 100%;
-            margin: auto;
-        }
-        .nosotros .fila .col img{
-            max-width: 200px;
-            display: block;
-            margin: auto;
-        }
-        .nosotros2 .fila{
-            display: block;
-        }
-        .nosotros2 .fila .col{
-            width: 100%;
-            margin: auto;
-        }
-        .nosotros2 .fila .col img{
-            max-width: 200px;
-            display: block;
-            margin: auto;
-        }
-        .containercard {
-            width: 100%;
-            margin-left: 100px;
-        }
-        .col-2 {
-            width: 100%; /* Cambia el ancho al 100% para que las cards ocupen todo el ancho */
-            margin-bottom: 5px; /* Añade un margen inferior para separar las cards */
-        }
-        .col-1 {
-            display: none; /* Oculta el espacio en blanco */
-        }
-        .card {
-            width: 100%; /* Cambia el ancho al 100% para ocupar todo el ancho de las columnas */
-        }
-        .card-body {
-            padding: 10px; /* Ajusta el padding según tus necesidades */
-        }
-        .card-img-top {
-            max-width: 100%; /* Cambia el ancho máximo de la imagen al 100% */
-            height: auto; /* Establece la altura automática para mantener la proporción */
-        }
-        .boton-imagen{
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-        }
-        .servicios .contenido-seccion .fila{
-            display: block;
-        }
-        .servicios .contenido-seccion .fila .col{
-            width: 100%;
-        }
-        .comodidades .fila{
-            display: block;
-        }
-        .comodidades .fila .col{
-            width: 100%;
-        }
-        .comodidades .fila .col img{
-            max-width: 200px;
-        }
+@media only screen and (max-width: 600px) {
+    .servicios .info-servicios {
+    grid-template-columns: 1fr;
+    }
+    .servicios .info-servicios div {
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .servicios .info-servicios i {
+    font-size: 2rem;
+    }
+
+    .servicios .info-servicios h3 {
+    font-size: 1.5rem;
+    }
+    .servicios .info-servicios p {
+    line-height: 24px;
+    }
+    .galeria .contenedor-titulo {
+        flex-direction: column;
+        align-items: center;
+    }
     
-        .equipo .fila{
-            display: block;
+    .galeria .youtubevideo {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+    .youtubevideo{
+        width: 30%;
+        height: 10%;
+    }
+    .frase{
+        font-size: 70%;
+    }
+    .comodidades .fila .col .contenedor-titulo .info h2{
+        font-size: 70%;
         }
-        .equipo .fila .col{
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .equipo .fila .col img{
-            max-height: 200px;
-        }
-        .equipo .fila .info{
-            max-width: 250px;
-            margin: auto;
-        }
-        .contacto .fila{
-            display: block;
-        }
-        .contacto .fila .col{
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .contacto .fila-datos{
-            display: block;
-        }
-        .contacto .fila-datos .col{
-            margin-bottom: 20px;
-        }
-        footer .info{
-            display: block;
-            text-align: center;
-        }
-        footer .info p{
-            margin-bottom: 10px;
-        }
-        }
+    .inicio .info h2{
+        font-size: 70%;
+    }
+    .nosotros .fila-nosotros h2{
+        font-size: 70%;
+    }
+    .servicios .fila .col .contenedor-titulo .info h2{
+        font-size: 70%;
+    }
+    .contacto .contenedor-titulo .info h2{
+        font-size: 70%;
+    }
+    .nosotros .fila .col .contenedor-titulo .info h2{
+        font-size: 70%;
+    }
+    .equipo .contenedor-titulo .info h2{
+        font-size: 70%;
+    }
+
+}
