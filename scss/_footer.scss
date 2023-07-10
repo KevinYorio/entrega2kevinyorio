@@ -1,0 +1,55 @@
+/* *********** */
+/* FOOTER */
+/* *********** */
+footer{
+    background-color: #151623;
+    padding: 30px 0;
+    .info{
+        display: flex;
+        max-width: 1100px;
+        margin: auto;
+        justify-content: space-between;
+        padding: 0 20px;
+        p{
+            color: #797e8e;
+        }
+        a{
+            text-decoration: none;
+            color: #797e8e;
+            display: inline-block;
+            margin: 0 15px;
+        }
+    }
+}
+
+.redes-sociales2 i {
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.facebook {
+    background-image: url("../img/facebook.png");
+}
+
+.maps {
+    background-image: url("../img/google-maps.png");
+}
+
+.instagram {
+    background-image: url("../img/instagram.png");
+}
+
+.youtube {
+    background-image: url("../img/youtube.png");
+}
+
+.volver-arriba a {
+    color: $claro;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}

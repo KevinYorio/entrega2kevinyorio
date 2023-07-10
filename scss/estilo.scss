@@ -1,0 +1,31 @@
+@import 'variables';
+@import 'encabezadomenu';
+@import 'seccioninicio';
+@import 'seccionosotros';
+@import 'alumnos';
+@import 'contacto';
+@import 'estetica';
+@import 'servicios';
+@import 'comodidades';
+@import 'galeria';
+@import 'entrenadores';
+@import 'contacto2';
+@import 'footer';
+@import 'responsive';
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap');
+*{
+    font-family: 'Myriad Condensed Bold Italic', sans-serif;
+}
+
+a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: #ffffff; /* Hereda el color del elemento padre */
+}
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: #dde1e9;
+}

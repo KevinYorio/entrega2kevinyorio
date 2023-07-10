@@ -1,0 +1,82 @@
+/* *********** */
+/* SECCION NOSOTROS */
+/* *********** */
+.nosotros{
+    max-width: 1100px;
+    margin: auto;
+    height: 100vh;
+    background-color: #dde1e9;
+    padding: 50px 20px;
+    .fila{
+        display: flex;
+        align-items: center;
+        .col{
+            width: 50%;
+            img{
+                width: 80%;
+                display: block;
+                margin: auto;
+                margin-bottom: 5px;
+            }
+            .contenedor-titulo{
+                display: flex;
+                align-items:center
+                .numero{
+                    color: #68B984;
+                    font-weight: bold;
+                    display: block;
+                    font-size: 5rem;
+                }
+                .info{
+                    margin-left: 30px;
+                    .frase{
+                        color: #68B984;
+                    }
+                    h2{
+                        font-size: 3rem;
+                    }
+                }
+            }
+            p{
+                margin-bottom: 10px;
+                line-height: 28px;
+            }
+            .p-especial{
+                font-weight: bold;
+            }
+        }
+    }
+    hr{
+        margin-bottom: 30px;
+    }
+    .fila-nosotros{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .frase{
+            font-size: 18px;
+            font-weight: 600;
+        }
+        h2{
+            font-size: 2.5rem;
+        }
+        button{
+            background-color: #68B984;
+            border: none;
+            color: $claro;
+            padding: 15px 35px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
+.nosotros2{
+    max-width: 1100px;
+    margin: auto;
+    background-color: #dde1e9;
+    padding: 50px 20px;
+}

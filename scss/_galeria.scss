@@ -1,0 +1,42 @@
+/* ********** */
+/* GALERIA */
+/* ********** */
+.galeria{
+    color: $claro;
+    background:linear-gradient( rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)),url(../img/fondo-galeria.jpg);
+    background-size: cover;
+    background-position: center center;
+    padding: 100px 0;
+    .contenido-seccion{
+        max-width: 1100px;
+        margin: auto;
+        padding: 0 20px;
+    }
+    .contenedor-titulo{
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        .numero{
+            color: #68B984;
+            font-weight: bold;
+            display: block;
+            font-size: 5rem;
+        }
+        .info{
+            margin-left: 30px;
+            .frase{
+                color: #68B984;
+            }
+            h2{
+                font-size: 3rem;
+            }
+        }
+    }
+    .fila{
+        display: flex;
+        .col img{
+            width: 100%;
+            display: block;
+        }
+    }
+}

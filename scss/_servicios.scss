@@ -1,0 +1,76 @@
+/* SERVICIOS */
+
+.servicios{
+    color: $claro;
+    position: relative;
+    .contenido-seccion{
+        background:linear-gradient( rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)),url(../img/fondo-servicios.jpg);
+        background-size: cover;
+        background-position: center center;
+        margin: auto;
+        padding: 0 20px;
+        .fila{
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            .col{
+                width: 50%;
+                img{
+                    display: block;
+                    width: 50%;
+                    margin: auto;
+                    .contenedor-titulo{
+                        display: flex;
+                        align-items: center;
+                        .numero{
+                            color: #68B984;
+                            font-weight: bold;
+                            display: block;
+                            font-size: 5rem;
+                        }
+                        .info{
+                            margin-left: 30px;
+                            .frase{
+                                color: #68B984;
+                            }
+                            h2{
+                                font-size: 3rem;
+                            }
+                        }
+                    }
+                }
+                .p-especial{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    .info-servicios {
+        max-width: 800px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        text-align: center;
+        background-color: $claro;
+        color: #0b241b;
+        div {
+            padding: 30px;
+            border: 1px solid #dde1e9;
+        }
+        i {
+            color: #68b984;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        p {
+            line-height: 30px;
+        }
+    }
+}
