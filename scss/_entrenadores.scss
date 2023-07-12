@@ -1,8 +1,7 @@
 /* ENTRENADORES */
 
 .equipo{
-    max-width: 1100px;
-    margin: auto;
+    @include orden;
     padding-top: 95px;
     background-color: #dde1e9;
     .contenedor-titulo{
@@ -11,7 +10,7 @@
         width: fit-content;
         margin: auto;
         .numero{
-            color: #68B984;
+            color: $colorprincipal;
             font-weight: bold;
             display: block;
             font-size: 5rem;
@@ -19,7 +18,7 @@
         .info{
             margin-left: 30px;
             .frase{
-                color: #68B984;
+                color: $colorprincipal;
             }
             h2{
                 font-size: 3rem;
@@ -39,11 +38,11 @@
             }
         }
         .info{
-            border: 5px solid #0b241b;
+            border: 5px solid $detalleoscuro;
             text-align: center;
             border-radius: 5px;
             padding: 20px;
-            background: linear-gradient(#68B984, #44835a);
+            background: linear-gradient($colorprincipal, #44835a);
             color: $claro;
             p{
                 margin: 20px 0;

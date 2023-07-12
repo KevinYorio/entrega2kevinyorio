@@ -8,8 +8,7 @@
     color: $claro;
     position: relative;
     .contenido-seccion{
-        max-width: 1100px;
-        margin: auto;
+        @include orden;
     }
     .info{
         width:fit-content;
@@ -34,12 +33,10 @@
             width: 50px;
             margin: auto;
             height: 50px;
-            border: 2px solid #68B984;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 2px solid $colorprincipal;
+            @include centrado;
             border-radius: 50%;
-            color: #68B984;
+            color: $colorprincipal;
             margin-top: 50px;
             text-decoration: none;
         }

@@ -10,8 +10,7 @@
         margin: auto;
         padding: 0 20px;
         .fila{
-            max-width: 1100px;
-            margin: auto;
+            @include orden;
             display: flex;
             align-items: center;
             padding: 100px 0;
@@ -25,7 +24,7 @@
                         display: flex;
                         align-items: center;
                         .numero{
-                            color: #68B984;
+                            color: $colorprincipal;
                             font-weight: bold;
                             display: block;
                             font-size: 5rem;
@@ -33,7 +32,7 @@
                         .info{
                             margin-left: 30px;
                             .frase{
-                                color: #68B984;
+                                color: $colorprincipal;
                             }
                             h2{
                                 font-size: 3rem;
@@ -55,13 +54,13 @@
         grid-gap: 20px;
         text-align: center;
         background-color: $claro;
-        color: #0b241b;
+        color: $detalleoscuro;
         div {
             padding: 30px;
             border: 1px solid #dde1e9;
         }
         i {
-            color: #68b984;
+            color: $colorprincipal;
             font-size: 2.5rem;
             margin-bottom: 20px;
         }

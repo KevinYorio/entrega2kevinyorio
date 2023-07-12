@@ -1,17 +1,17 @@
-/* estetica */
-.boton-imagen {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  margin-top: 20px;
-}
+/* Error: Undefined variable.
+ *    ,
+ * 14 |     background-color: $detalleoscuro;
+ *    |                       ^^^^^^^^^^^^^^
+ *    '
+ *   scss\estetica.scss 14:23  root stylesheet */
 
-.btn-primary {
-  background-color: #0b241b;
-  color: #0b241b;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 14 \2502      background-color: $detalleoscuro;\d\a    \2502                        ^^^^^^^^^^^^^^\a    \2575 \a   scss\\estetica.scss 14:23  root stylesheet";
 }
-
-/*# sourceMappingURL=estetica.css.map */

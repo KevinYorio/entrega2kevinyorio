@@ -1,3 +1,17 @@
 /*VARIABLES*/
 
 $claro: #ffffff;
+$colorprincipal: #68B984;
+$fuente-grande: 30px;
+$detalleoscuro: #0b241b;
+
+@mixin centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+@mixin orden {
+        max-width: 1100px;
+        margin: auto;
+        }
