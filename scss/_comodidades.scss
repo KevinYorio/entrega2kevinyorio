@@ -2,7 +2,7 @@
 
 .comodidades{
     @include orden;
-    background-color: #dde1e9;
+    background-color: $fondo;
     padding: 5px 5px;
     .fila{
         display: flex;

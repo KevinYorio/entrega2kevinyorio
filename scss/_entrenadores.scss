@@ -3,7 +3,7 @@
 .equipo{
     @include orden;
     padding-top: 95px;
-    background-color: #dde1e9;
+    background-color: $fondo;
     .contenedor-titulo{
         display: flex;
         align-items: center;

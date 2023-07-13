@@ -4,7 +4,7 @@
 .nosotros{
     @include orden;
     height: 100vh;
-    background-color: #dde1e9;
+    background-color: $fondo;
     padding: 50px 20px;
     .fila{
         display: flex;
