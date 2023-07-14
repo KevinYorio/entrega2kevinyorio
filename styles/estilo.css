@@ -1,21 +1,8 @@
 @charset "UTF-8";
 /*VARIABLES*/
 /*MIXIN*/
-/*MAP GET*/
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap");
-.text-primary-color {
-  color: #68B984;
-}
-
-.text-secondary-color {
-  color: #0b241b;
-}
-
-.bg-tertiary-color {
-  background-color: #ffffff;
-}
-
 /*CONDICIONALES*/
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap");
 .comodidades {
   background-color: #dde1e9;
 }
@@ -30,6 +17,19 @@
 
 body {
   background-color: #dde1e9;
+}
+
+/*MAP GET*/
+.text-primary-color {
+  color: #68B984;
+}
+
+.text-secondary-color {
+  color: #0b241b;
+}
+
+.bg-tertiary-color {
+  background-color: #ffffff;
 }
 
 /* ENCABEZADO - MENU */
@@ -148,7 +148,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-.inicio .info h2 {
+.inicio .info h1 {
   font-size: 4rem;
   letter-spacing: 3px;
 }
@@ -510,22 +510,6 @@ button {
   transform: rotateX(-90deg);
 }
 
-/* estetica */
-.boton-imagen {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  margin-top: 20px;
-}
-
-.btn-primary {
-  background-color: #0b241b;
-  color: #0b241b;
-}
-
 /* SERVICIOS */
 .servicios {
   color: #ffffff;
@@ -600,6 +584,22 @@ button {
 }
 .servicios .info-servicios p {
   line-height: 30px;
+}
+
+/* estetica */
+.boton-imagen {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #0b241b;
+  color: #0b241b;
 }
 
 /* COMODIDADES */
@@ -919,6 +919,24 @@ button {
   transform: rotateX(-90deg);
 }
 
+.carousel-inner {
+  width: 860px;
+}
+
+.especial {
+  text-align: center; /* Centra horizontalmente el texto */
+  display: flex;
+  justify-content: center; /* Centra verticalmente el texto */
+  align-items: center;
+  text-shadow: 2px 2px 4px rgb(255, 255, 255); /* Sombras blancas */
+}
+
+.txtverde {
+  color: #68B984;
+  font-size: 4rem;
+  letter-spacing: 3px;
+}
+
 /* *********** */
 /* FOOTER */
 /* *********** */
@@ -1170,6 +1188,36 @@ footer .info a {
   }
   .equipo .contenedor-titulo .info h2 {
     font-size: 70%;
+  }
+  .inicio .info h1 {
+    font-size: 2rem;
+  }
+  .txtverde {
+    color: #68B984;
+    font-size: 2rem;
+  }
+  .carousel-item {
+    width: 400px;
+  }
+  .carousel-inner {
+    width: 100%;
+  }
+  .boton-imagen {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .card-body {
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+    overflow: hidden; /* Oculta el desbordamiento */
+    max-width: 100%;
+  }
+  .nosotros2 {
+    transform: translateX(-100px);
   }
 }
 * {

@@ -1,0 +1,15 @@
+.carousel-inner{
+    width: 860px;
+}
+.especial{
+    text-align: center; /* Centra horizontalmente el texto */
+    display: flex;
+    justify-content: center; /* Centra verticalmente el texto */
+    align-items: center;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 1.5); /* Sombras blancas */
+}
+.txtverde {
+    color: $colorprincipal;
+        font-size: 4rem;
+        letter-spacing: 3px;
+}

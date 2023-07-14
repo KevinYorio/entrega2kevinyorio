@@ -1,0 +1,36 @@
+/*CONDICIONALES*/
+$fondo: normal;
+
+@if $fondo == normal {
+.comodidades {
+    background-color: #dde1e9;
+}
+.nosotros {
+    background-color: #dde1e9;
+}
+.equipo {
+    background-color: #dde1e9;
+}
+body {
+    background-color: #dde1e9;
+}
+} 
+
+@else if $fondo == darkmode {
+    .comodidades {
+    background: linear-gradient( #000000, #000e06);
+    color: #dde1e9;
+}
+.nosotros {
+    background: linear-gradient( #000000, #000e06);
+    color: #dde1e9;
+}
+.equipo {
+    background: linear-gradient( #000000, #000e06);
+    color: #dde1e9;
+}
+body {
+    background: linear-gradient( #000000, #000e06);
+    color: #dde1e9;
+}
+}

@@ -196,4 +196,34 @@
     .equipo .contenedor-titulo .info h2{
         font-size: 70%;
     }
-}
+    .inicio .info h1{
+        font-size: 2rem;
+    }
+    .txtverde {
+        color: $colorprincipal;
+            font-size: 2rem;
+    }
+    .carousel-item{
+        width: 400px;
+    }
+    .carousel-inner{
+        width: 100%;
+    }
+    .boton-imagen{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+    .card-body {
+        background-color: #222;
+        color: #fff;
+        padding: 10px;
+        font-size: 0.8rem;
+        text-align: center;
+        overflow: hidden; /* Oculta el desbordamiento */
+        max-width: 100%;
+    }
+    .nosotros2{
+        transform: translateX(-100px);
+    }
+    }

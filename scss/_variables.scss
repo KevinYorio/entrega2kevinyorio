@@ -7,68 +7,14 @@ $detalleoscuro: #0b241b;
 
 /*MIXIN*/
 @mixin centrado {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 
 @mixin orden {
-    max-width: 1100px;
-    margin: auto;
-    }
-    
-/*MAP GET*/    
-$colors: (
-    primary: #68B984,
-    secondary: #0b241b,
-    tertiary: #ffffff
-        );
-        
-.text-primary-color {
-    color: map-get($colors, primary);
-    }
-        
-.text-secondary-color {
-    color: map-get($colors, secondary);
-    }
-        
-.bg-tertiary-color {
-    background-color: map-get($colors, tertiary);
-    }
+  max-width: 1100px;
+  margin: auto;
+  }
+  
 
-/*CONDICIONALES*/
-    $fondo: normal;
-
-    @if $fondo == normal {
-      .comodidades {
-        background-color: #dde1e9;
-      }
-      .nosotros {
-        background-color: #dde1e9;
-      }
-      .equipo {
-        background-color: #dde1e9;
-      }
-      body {
-        background-color: #dde1e9;
-      }
-    } 
-
-    @else if $fondo == darkmode {
-        .comodidades {
-        background: linear-gradient( #000000, #000e06);
-        color: #dde1e9;
-      }
-      .nosotros {
-        background: linear-gradient( #000000, #000e06);
-        color: #dde1e9;
-      }
-      .equipo {
-        background: linear-gradient( #000000, #000e06);
-        color: #dde1e9;
-      }
-      body {
-        background: linear-gradient( #000000, #000e06);
-        color: #dde1e9;
-      }
-    }

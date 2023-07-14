@@ -1,0 +1,18 @@
+/*MAP GET*/    
+$colors: (
+    primary: #68B984,
+    secondary: #0b241b,
+    tertiary: #ffffff
+        );
+        
+.text-primary-color {
+    color: map-get($colors, primary);
+    }
+        
+.text-secondary-color {
+    color: map-get($colors, secondary);
+    }
+        
+.bg-tertiary-color {
+    background-color: map-get($colors, tertiary);
+    }
