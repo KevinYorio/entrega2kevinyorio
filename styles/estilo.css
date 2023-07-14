@@ -129,7 +129,7 @@ body {
 /* SECCIÓN INICIO */
 .inicio {
   height: 100vh;
-  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.jpg);
+  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.webp);
   background-size: cover;
   background-position: center center;
   color: #ffffff;
@@ -360,7 +360,7 @@ body {
 /* *********** */
 .inicio2 {
   color: #ffffff;
-  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.jpg);
+  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.webp);
   background-size: cover;
   background-position: center center;
   padding: 100px 20px 200px;
@@ -532,7 +532,7 @@ button {
   position: relative;
 }
 .servicios .contenido-seccion {
-  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo-servicios.jpg);
+  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo-servicios.webp);
   background-size: cover;
   background-position: center center;
   margin: auto;
@@ -661,7 +661,7 @@ button {
 /* ********** */
 .galeria {
   color: #ffffff;
-  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo-galeria.jpg);
+  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo-galeria.webp);
   background-size: cover;
   background-position: center center;
   padding: 100px 0;
@@ -764,7 +764,7 @@ button {
 /* *********** */
 .contacto {
   color: #ffffff;
-  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.jpg);
+  background: linear-gradient(rgba(0, 41, 7, 0.295), rgba(0, 78, 35, 0.144)), url(../img/fondo.webp);
   background-size: cover;
   background-position: center center;
   padding: 100px 20px;
@@ -952,19 +952,19 @@ footer .info a {
 }
 
 .facebook {
-  background-image: url("../img/facebook.png");
+  background-image: url("../img/facebook.webp");
 }
 
 .maps {
-  background-image: url("../img/google-maps.png");
+  background-image: url("../img/google-maps.webp");
 }
 
 .instagram {
-  background-image: url("../img/instagram.png");
+  background-image: url("../img/instagram.webp");
 }
 
 .youtube {
-  background-image: url("../img/youtube.png");
+  background-image: url("../img/youtube.webp");
 }
 
 .volver-arriba a {
