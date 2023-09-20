@@ -67,22 +67,23 @@
                             CREAR <span class="frase">TU CUENTA</span>
                         </div>
                     </div>
-                <div class="fila">
-                    <div class="col">
-                        <input type="email" placeholder="Ingrese Email">
+                    <div class="fila">
+                        <div class="col">
+                            <input type="email" id="email" placeholder="Ingrese Email">
+                        </div>
+                        <div class="col">
+                            <input type="text" id="nombre" placeholder="Ingrese Nombre">
+                        </div>
                     </div>
-                    <div class="col">
-                        <input type="text" placeholder="Ingrese Nombre">
+                    <div class="mensaje">
+                        <textarea id="mensaje" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
                     </div>
-                </div>
-                <div class="mensaje">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
-                </div>
                     <div class="frame">
                         <a class="custom-btn btn-12" href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a de crear mi cuenta de la pagina de atix..." target="_blank">
-                            <button class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
+                            <button id="enviar" class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
                         </a>
                     </div>
+                </div>
             </main>
         </section>
     </main>
@@ -100,6 +101,6 @@
         <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
     </div>
 </footer>
-<script src="app.js"></script>
+<script src="../app.js"></script>
 </body>
 </html>

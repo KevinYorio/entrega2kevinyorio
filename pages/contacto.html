@@ -59,34 +59,31 @@
                 </div>              
         </header>
     </div>
-    
-        <section class="inicio2">
-            <main>
-                <div class="contenido-seccion">
-                    <div class="contenedor-titulo">
-                        <div class="info">
-                            <h1>DEJANOS <span class="txtRojo">TUS CONSULTAS</span></h1>
+    <section class="inicio2">
+        <main>
+            <div class="contenido-seccion">
+                <div class="contenedor-titulo">
+                    <div class="info">
+                        <h1>DEJANOS <span class="txtRojo">TUS CONSULTAS</span></h1>
+                    </div>
+                    <div class="fila">
+                        <div class="col">
+                            <input type="email" id="email" placeholder="Ingrese Email">
+                        </div>
+                        <div class="col">
+                            <input type="text" id="nombre" placeholder="Ingrese Nombre">
                         </div>
                     </div>
-                <div class="fila">
-                    <div class="col">
-                        <input type="email" placeholder="Ingrese Email">
+                    <div class="mensaje">
+                        <textarea id="mensaje" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
                     </div>
-                    <div class="col">
-                        <input type="text" placeholder="Ingrese Nombre">
-                    </div>
-                </div>
-                <div class="mensaje">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
-                </div>
-                <div class="frame">
-                    <a class="custom-btn btn-12" href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en obtener informacion de..." target="_blank">
-                        <button class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
-                    </a>
-                </div>
-            </main>
-        </section>
-
+                    <div class="frame">
+                        <a class="custom-btn btn-12" id="enviar">
+                            <button class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
+                        </a>
+                    </div>                    
+        </main>
+    </section>    
     <footer>
         <div class="info">
             <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
@@ -102,6 +99,6 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>
