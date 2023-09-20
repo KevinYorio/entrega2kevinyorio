@@ -1,58 +1,41 @@
-let menuVisible = false;
-//Función que oculta o muestra el menu
-function mostrarOcultarMenu(){
-    if(menuVisible){
-        document.getElementById("nav").classList ="";
-        menuVisible = false;
-    }else{
-        document.getElementById("nav").classList ="responsive";
-        menuVisible = true;
+document.addEventListener("DOMContentLoaded", function () {
+    let enviarBtn;
+
+    // Verifica la URL de la página actual y selecciona el botón correspondiente
+    if (window.location.pathname.includes("contacto.html")) {
+        enviarBtn = document.getElementById("enviarContacto");
+    } else if (window.location.pathname.includes("crearcuenta.html")) {
+        enviarBtn = document.getElementById("enviarCrearCuenta");
     }
-}
-document.addEventListener("DOMContentLoaded", function () {
-    const enviarBtn = document.getElementById("enviar");
 
-    enviarBtn.addEventListener("click", function () {
-        const email = encodeURIComponent(document.getElementById("email").value);
-        const nombre = encodeURIComponent(document.getElementById("nombre").value);
-        const mensaje = encodeURIComponent(document.getElementById("mensaje").value);
+    // Agrega el evento de clic solo si se encontró el botón
+    if (enviarBtn) {
+        enviarBtn.addEventListener("click", function () {
+            const email = encodeURIComponent(document.getElementById("email").value);
+            const nombre = encodeURIComponent(document.getElementById("nombre").value);
+            const mensaje = encodeURIComponent(document.getElementById("mensaje").value);
     
-        console.log("Email:", email);
-        console.log("Nombre:", nombre);
-        console.log("Mensaje:", mensaje);
+            console.log("Email:", email);
+            console.log("Nombre:", nombre);
+            console.log("Mensaje:", mensaje);
 
-        const url = `https://api.whatsapp.com/send?phone=5491166739161&text=Email: ${email}%0A%0ANombre: ${nombre}%0A%0AMensaje: ${mensaje}`;
-    
-        window.open(url, '_blank');
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const enviarBtn = document.getElementById("enviar");
+            const userData = {
+                email: email,
+                nombre: nombre,
+                mensaje: mensaje
+            };
 
-    enviarBtn.addEventListener("click", function () {
-        const email = encodeURIComponent(document.getElementById("email").value);
-        const nombre = encodeURIComponent(document.getElementById("nombre").value);
-        const mensaje = encodeURIComponent(document.getElementById("mensaje").value);
+            const userDataJSON = JSON.stringify(userData);
 
-        console.log("Email:", email);
-        console.log("Nombre:", nombre);
-        console.log("Mensaje:", mensaje);
+            // Guardar los datos en localStorage
+            localStorage.setItem("userData", userDataJSON);
 
-        const userData = {
-            email: email,
-            nombre: nombre,
-            mensaje: mensaje
-        };
+            const url = `https://api.whatsapp.com/send?phone=5491166739161&text=Email: ${email}%0A%0ANombre: ${nombre}%0A%0AMensaje: ${mensaje}`;
+            window.open(url, '_blank');
+        });
+    }
 
-        const userDataJSON = JSON.stringify(userData);
-
-        // Guardar los datos en localStorage
-        localStorage.setItem("userData", userDataJSON);
-
-        const url = `https://api.whatsapp.com/send?phone=5491166739161&text=Email: ${email}%0A%0ANombre: ${nombre}%0A%0AMensaje: ${mensaje}`;
-        window.open(url, '_blank');
-    });
-
+    // Recuperar datos del almacenamiento local y llenar los campos si están disponibles
     const userDataJSON = localStorage.getItem("userData");
     if (userDataJSON) {
         const userData = JSON.parse(userDataJSON);
