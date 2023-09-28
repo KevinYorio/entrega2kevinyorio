@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Verifica si los datos ingresados coinciden con los almacenados
             if (enteredEmail === storedEmail && enteredContrasena === storedContrasena) {
                 // Los datos coinciden, redirige al usuario a la página deseada
-                window.location.href = "alumnos.html"; // Reemplaza con la URL correcta
+                window.location.href = "carrodecompras.html"; // Reemplaza con la URL correcta
             } else {
                 alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
             }
