@@ -11,10 +11,8 @@ btnCart.addEventListener('click', () => {
 const cartInfo = document.querySelector('.cart-product');
 const rowProduct = document.querySelector('.row-product');
 
-// Lista de todos los contenedores de productos
 const productsList = document.querySelector('.container-items');
 
-// Variable de arreglos de Productos
 let allProducts = [];
 
 const valorTotal = document.querySelector('.total-pagar');
@@ -71,7 +69,6 @@ rowProduct.addEventListener('click', e => {
 	}
 });
 
-// Funcion para mostrar  HTML
 const showHTML = () => {
 	if (!allProducts.length) {
 		cartEmpty.classList.remove('hidden');
@@ -125,3 +122,12 @@ const showHTML = () => {
 	valorTotal.innerText = `$${total}`;
 	countProducts.innerText = totalOfProducts;
 };
+const btnIrAPago = document.querySelector(".btn-ir-a-pago");
+
+const cantidadProductosEnCarrito = obtenerCantidadProductosEnCarrito();
+
+if (cantidadProductosEnCarrito > 0) {
+    btnIrAPago.classList.remove("hidden");
+} else {
+    btnIrAPago.classList.add("hidden");
+}

@@ -1493,3 +1493,12 @@ header{
 .hidden{
     display: none;
 }
+
+#clima-info {
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  background-color: #0e5e1c;
+  color: #fff;
+  border-radius: 5px;
+}
