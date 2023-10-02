@@ -1,3 +1,4 @@
+
 let menuVisible = false;
 //Función que oculta o muestra el menu
 function mostrarOcultarMenu(){
@@ -32,6 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            // Validar que se haya proporcionado un nombre
+            if (!nombre) {
+                alert("El campo 'Nombre' es obligatorio.");
+                return;
+            }
             // Validar la contraseña
             if (!isValidPassword(contrasena)) {
                 alert("La contraseña debe contener al menos una mayúscula, una minúscula y un número.");
@@ -227,3 +233,25 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("contrasena").value = userData.contrasena;
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const username = document.getElementById('email');
+    const password = document.getElementById('contrasena');
+    const button = document.getElementById('button');
+
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // ... Tu código de validación de inicio de sesión ...
+
+        // Verifica si los datos ingresados coinciden con los almacenados
+        if (enteredEmail === storedEmail && enteredContrasena === storedContrasena) {
+            mostrarToast(); // Muestra el toast de inicio de sesión exitoso
+            // Redirige al usuario a la página deseada
+            window.location.href = "carrodecompras.html"; // Reemplaza con la URL correcta
+        } else {
+            alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+        }
+    });
+});
+
