@@ -22,6 +22,12 @@ const countProducts = document.querySelector('#contador-productos');
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
 
+function obtenerCantidadProductosEnCarrito() {
+    // Esta función podría obtener la cantidad de productos en el carrito desde tus datos, si es que los tienes almacenados.
+    // Por ahora, devolveremos la cantidad de productos en allProducts.
+    return allProducts.reduce((total, product) => total + product.quantity, 0);
+}
+
 productsList.addEventListener('click', e => {
 	if (e.target.classList.contains('btn-add-cart')) {
 		const product = e.target.parentElement;
@@ -121,13 +127,22 @@ const showHTML = () => {
 
 	valorTotal.innerText = `$${total}`;
 	countProducts.innerText = totalOfProducts;
+
+	const cantidadProductosEnCarrito = obtenerCantidadProductosEnCarrito();
+	if (cantidadProductosEnCarrito > 0) {
+		btnIrAPago.classList.remove("hidden");
+	} else {
+		btnIrAPago.classList.add("hidden");
+	}
+
+	if (allProducts.length > 0) {
+		comprarBtn.classList.remove("hidden");
+	} else {
+		comprarBtn.classList.add("hidden");
+	}
 };
+
 const btnIrAPago = document.querySelector(".btn-ir-a-pago");
-
-const cantidadProductosEnCarrito = obtenerCantidadProductosEnCarrito();
-
-if (cantidadProductosEnCarrito > 0) {
-    btnIrAPago.classList.remove("hidden");
-} else {
-    btnIrAPago.classList.add("hidden");
-}
+btnIrAPago.addEventListener("click", () => {
+	window.location.href = "pago.html"; 
+});
