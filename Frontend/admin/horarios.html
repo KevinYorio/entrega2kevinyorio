@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ATIX ERP - Horarios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/admin.js"></script>
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../admin/assets/admin.css">
+</head>
+<body class="bg-dark text-white">
+<div class="admin-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <img src="../img/LOGO.webp" alt="ATIX Admin"/>
+        <strong>ATIX • ERP</strong>
+      </a>
+    </div>
+    <nav class="menu d-grid gap-1">
+      <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+      <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
+      <a href="../admin/proveedores.html" data-admin-only><i class="fa-solid fa-truck"></i>Proveedores/Gastos</a>
+      <a href="../admin/empleados.html" data-admin-only><i class="fa-solid fa-id-badge"></i>Empleados</a>
+      <a href="../admin/facturacion.html"><i class="fa-solid fa-file-invoice-dollar"></i>Facturación</a>
+      <a href="../admin/horarios.html"><i class="fa-regular fa-calendar-days"></i>Días y Horarios</a>
+      <a class="active" href="../admin/reservas.html"><i class="fa-solid fa-calendar-check"></i>Reservas</a>
+      <a href="../admin/reportes.html"><i class="fa-solid fa-chart-line"></i>Reportes</a>
+      <a href="../admin/checkin.html"><i class="fa-solid fa-qrcode"></i>Check-in</a>
+    </nav>
+  </aside>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="d-flex align-items-center gap-2">
+      <i class="fa-regular fa-calendar-days text-success"></i>
+      <span class="text-muted-2">Días y Horarios</span>
+    </div>
+    <div><span id="topUser" class="text-muted-2">Admin</span></div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="m-0">Clases</h3>
+      <button class="btn btn-admin" data-bs-toggle="modal" data-bs-target="#mdlClase">Nueva clase</button>
+    </div>
+
+    <div class="card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Nombre</th><th>Día</th><th>Inicio</th><th>Fin</th><th>Profesor</th><th>Capacidad</th><th class="text-end">Acciones</th></tr></thead>
+          <tbody id="tbClases"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mdlClase" tabindex="-1">
+      <div class="modal-dialog">
+        <form id="frmClase" class="modal-content">
+          <div class="modal-header"><h5 class="modal-title">Clase</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body">
+            <input type="hidden" id="claseId">
+            <div class="mb-2"><label class="form-label required">Nombre</label><input id="cName" class="form-control" required></div>
+            <div class="mb-2">
+              <label class="form-label required">Día</label>
+              <select id="cDay" class="form-select" required>
+                <option value="MON">Lunes</option><option value="TUE">Martes</option><option value="WED">Miércoles</option>
+                <option value="THU">Jueves</option><option value="FRI">Viernes</option><option value="SAT">Sábado</option>
+              </select>
+            </div>
+            <div class="mb-2"><label class="form-label required">Hora inicio</label><input id="cStart" type="time" class="form-control" required></div>
+            <div class="mb-2"><label class="form-label required">Hora fin</label><input id="cEnd" type="time" class="form-control" required></div>
+            <div class="mb-2"><label class="form-label">Profesor</label><select id="cCoach" class="form-select"></select></div>
+            <div class="mb-2"><label class="form-label">Capacidad</label><input id="cCap" type="number" min="1" class="form-control" value="20"></div>
+          </div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button><button class="btn btn-admin">Guardar</button></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      let coaches=[];
+      function rowClase(c){
+        return `<tr>
+          <td>${c.name}</td><td>${c.day}</td><td>${c.startTime}</td><td>${c.endTime}</td>
+          <td>${c.coach?.firstName? c.coach.firstName+' '+(c.coach.lastName||''):'-'}</td>
+          <td>${c.capacity||'-'}</td>
+          <td class="text-end">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-light" onclick='editClase(${JSON.stringify(c).replaceAll("'","&#39;")})'>Editar</button>
+              <button class="btn btn-outline-danger" onclick='delClase(${c.id})'>Eliminar</button>
+            </div>
+          </td>
+        </tr>`;
+      }
+      async function listar(){ tbClases.innerHTML = (await Admin.apiGet('/classes')).map(rowClase).join(''); }
+      function fillCoaches(){ cCoach.innerHTML=`<option value="">—</option>`+coaches.map(e=>`<option value="${e.id}">${e.firstName} ${e.lastName||''}</option>`).join(''); }
+      function editClase(c){ new bootstrap.Modal('#mdlClase').show(); claseId.value=c.id; cName.value=c.name; cDay.value=c.day; cStart.value=c.startTime; cEnd.value=c.endTime; cCoach.value=c.coachId||''; cCap.value=c.capacity||20; }
+      async function delClase(id){ if(!confirm('¿Eliminar clase?')) return; await Admin.apiDel('/classes/'+id); listar(); }
+      frmClase.onsubmit=async(e)=>{ e.preventDefault(); const payload={name:cName.value.trim(),day:cDay.value,startTime:cStart.value,endTime:cEnd.value,coachId:cCoach.value?+cCoach.value:null,capacity:cCap.value?+cCap.value:null}; if(claseId.value) await Admin.apiPut('/classes/'+claseId.value,payload); else await Admin.apiPost('/classes',payload); bootstrap.Modal.getInstance(mdlClase).hide(); listar(); };
+      document.addEventListener('DOMContentLoaded',async()=>{coaches=await Admin.apiGet('/employees?role=COACH');fillCoaches();listar();});
+    </script>
+  </main>
+</div>
+
+<script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ATIX ERP - Reportes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilo.css">
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../admin/assets/admin.css">
+</head>
+<body class="bg-dark text-white">
+<div class="admin-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <img src="../img/LOGO.webp" alt="ATIX Admin"/>
+        <strong>ATIX • ERP</strong>
+      </a>
+    </div>
+    <nav class="menu d-grid gap-1">
+      <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+      <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
+      <a href="../admin/proveedores.html" data-admin-only><i class="fa-solid fa-truck"></i>Proveedores/Gastos</a>
+      <a href="../admin/empleados.html" data-admin-only><i class="fa-solid fa-id-badge"></i>Empleados</a>
+      <a href="../admin/facturacion.html"><i class="fa-solid fa-file-invoice-dollar"></i>Facturación</a>
+      <a href="../admin/horarios.html"><i class="fa-regular fa-calendar-days"></i>Días y Horarios</a>
+      <a class="active" href="../admin/reservas.html"><i class="fa-solid fa-calendar-check"></i>Reservas</a>
+      <a href="../admin/reportes.html"><i class="fa-solid fa-chart-line"></i>Reportes</a>
+      <a href="../admin/checkin.html"><i class="fa-solid fa-qrcode"></i>Check-in</a>
+    </nav>
+  </aside>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="d-flex align-items-center gap-2">
+      <i class="fa-solid fa-chart-line text-success"></i>
+      <span class="text-muted-2">Reportes</span>
+    </div>
+    <div><span id="topUser" class="text-muted-2"></span></div>
+  </header>
+
+  <main class="main">
+    <h3 class="mb-3">Ingresos y gastos por rango</h3>
+
+    <div class="card p-3 mb-3">
+      <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+          <label class="form-label">Desde</label>
+          <input id="rFrom" type="date" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Hasta</label>
+          <input id="rTo" type="date" class="form-control">
+        </div>
+        <div class="col-md-2">
+          <button id="btnRep" class="btn btn-admin w-100">Consultar</button>
+        </div>
+        <div class="col-md-4 text-end">
+          <a class="btn btn-outline-light btn-sm" href="/api/export/invoices.csv" target="_blank">CSV facturas</a>
+          <a class="btn btn-outline-light btn-sm" href="/api/export/expenses.csv" target="_blank">CSV gastos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-4">
+        <div class="card p-3">
+          <h6 class="text-muted-2">Totales</h6>
+          <div class="mt-2 d-grid gap-2">
+            <div class="d-flex justify-content-between"><span>Ingresos (PAGADAS)</span><strong id="tIncome">$0</strong></div>
+            <div class="d-flex justify-content-between"><span>Ingresos (PEND.)</span><strong id="tPending">$0</strong></div>
+            <div class="d-flex justify-content-between"><span>Gastos</span><strong id="tExp">$0</strong></div>
+            <hr>
+            <div class="d-flex justify-content-between"><span>Balance</span><strong id="tBal">$0</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card p-3 mb-3">
+          <h6>Facturas</h6>
+          <div class="table-responsive">
+            <table class="table table-sm" id="tblInv">
+              <thead><tr><th>#</th><th>Fecha</th><th>Alumno</th><th>Estado</th><th>Total</th></tr></thead>
+              <tbody id="tbInv"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-outline-light btn-sm" onclick="Admin.exportTableCSV('#tblInv','facturas_reporte.csv')">Exportar CSV (vista)</button>
+        </div>
+        <div class="card p-3">
+          <h6>Gastos</h6>
+          <div class="table-responsive">
+            <table class="table table-sm" id="tblExp">
+              <thead><tr><th>Fecha</th><th>Proveedor</th><th>Concepto</th><th>Importe</th></tr></thead>
+              <tbody id="tbExp"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-outline-light btn-sm" onclick="Admin.exportTableCSV('#tblExp','gastos_reporte.csv')">Exportar CSV (vista)</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function money(n){ return '$ ' + Number(n||0).toLocaleString('es-AR', {minimumFractionDigits:2}); }
+  async function run(){
+    await Admin.guardStaff(); Admin.setActiveMenu();
+    const from = document.getElementById('rFrom'), to = document.getElementById('rTo');
+    const today = new Date().toISOString().slice(0,10);
+    const first = new Date(); first.setDate(1);
+    from.value = first.toISOString().slice(0,10); to.value = today;
+
+    async function load(){
+      const q = new URLSearchParams({ from: from.value, to: to.value });
+      const r = await Admin.apiGet('/reports/income-expenses?'+q.toString());
+      tIncome.textContent = money(r.totals.income_paid);
+      tPending.textContent= money(r.totals.income_pending);
+      tExp.textContent    = money(r.totals.expenses);
+      tBal.textContent    = money(r.totals.balance);
+
+      tbInv.innerHTML = r.invoices.map(i=>`
+        <tr><td>${i.number||i.id}</td><td>${new Date(i.date).toLocaleDateString()}</td>
+        <td>${i.student}</td><td>${i.status}</td><td>${money(i.total)}</td></tr>
+      `).join('');
+      tbExp.innerHTML = r.expenses.map(e=>`
+        <tr><td>${new Date(e.date).toLocaleDateString()}</td><td>${e.provider}</td><td>${e.concept}</td><td>${money(e.amount)}</td></tr>
+      `).join('');
+    }
+    btnRep.onclick = load; load();
+  }
+  document.addEventListener('DOMContentLoaded', run);
+</script>
+<script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
+</body>
+</html>

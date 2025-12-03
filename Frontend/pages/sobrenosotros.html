@@ -14,49 +14,63 @@
     </head>
 <body>
     <div class="contenedor-header">
-    <header>
-        <div class="logo">
-            <img class="logo" src="../img/LOGO.webp" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
-        </div>
-        <nav id="nav">
-            <a href = "../pages/crearcuenta.html">Crear cuenta</a>
-            <a href = "../pages/contacto.html">Contacto</a>
-            <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
-            <a href = "../pages/alumnos.html">Alumnos</a>
-            <a href = "../pages/sobrenosotros.html">Sobre nosotros</a>
-            <a href = "../pages/clases.html">Clases</a>
-            <a href = "../pages/estetica.html">Estetica</a>
-            <a href = "../index.html">HOME</a>
-        </nav>
-        <div class="redes-sociales2">
-            <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
-            <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
-            <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
-            <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
-        </div>
-        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="fa-solid fa-bars"></i>
-        </a>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<header>
+            <div class="logo">
+                <!-- Logo ahora lleva a Home -->
+                <a href="../index.html" aria-label="Ir al inicio">
+                    <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
+                </a>
             </div>
-                    <a href = "../pages/crearcuenta.html">Crear cuenta</a>
-                    <a href = "../pages/contacto.html">Contacto</a>
-                    <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
-                    <a href = "../pages/alumnos.html">Alumnos</a>
-                    <a href = "../pages/sobrenosotros.html">Sobre nosotros</a>
-                    <a href = "../pages/clases.html">Clases</a>
-                    <a href = "../pages/estetica.html">Estetica</a>
-                    <a href = "../index.html">HOME</a>
-                    <div class="redes-sociales2">
-                        <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
-                        <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
-                        <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
-                        <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
-                    </div> 
-            </div>   
-            </div>             
-    </header>
+
+            <!-- Navbar principal -->
+            <nav id="nav">
+                <a href="../pages/contacto.html">Contacto</a>
+                <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
+                <a href="../pages/clases.html">Clases</a>
+                <a href="../pages/estetica.html">Estética</a>
+            </nav>
+
+            <div class="redes-sociales2">
+                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+            </div>
+
+            <!-- Botón hamburguesa -->
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
+            <!-- Menú hamburguesa -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header align-items-center">
+                    <!-- Logo también dentro del menú -->
+                    <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
+                        <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                </div>
+                <div class="menu-hamburguesa">
+                    <div class="enlaces">
+                        <!-- Opciones solo de alumno -->
+                        <a href="../pages/crearcuenta.html">Crear cuenta</a>
+                        <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
+                        <!-- Resto de secciones -->
+                        <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
+                        <a href="../pages/clases.html">Clases</a>
+                        <a href="../pages/estetica.html">Estética</a>
+                        <a href="../pages/contacto.html">Contacto</a>
+                    </div>
+                </div>
+                <div class="redes-sociales2">
+                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+                </div>
+            </div>
+        </header>
     </div>
     <section class="equipo" id="equipo">
         <div class="contenido-seccion">

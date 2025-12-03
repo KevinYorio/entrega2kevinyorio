@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ATIX ERP - Dashboard</title>
+
+  <!-- Bootstrap + Tema ATIX -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../admin/assets/admin.css">
+
+  <!-- Admin helpers -->
+  <script src="./assets/admin.js"></script>
+</head>
+<body>
+<div class="admin-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <a href="/admin/dashboard.html" class="d-flex align-items-center text-decoration-none">
+        <img src="../img/LOGO.webp" alt="ATIX Admin"/>
+        <strong class="ms-2">ATIX • ERP</strong>
+      </a>
+    </div>
+    <nav class="menu d-grid gap-1">
+      <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+      <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
+      <a href="../admin/proveedores.html" data-admin-only><i class="fa-solid fa-truck"></i>Proveedores/Gastos</a>
+      <a href="../admin/empleados.html" data-admin-only><i class="fa-solid fa-id-badge"></i>Empleados</a>
+      <a href="../admin/facturacion.html"><i class="fa-solid fa-file-invoice-dollar"></i>Facturación</a>
+      <a href="../admin/horarios.html"><i class="fa-regular fa-calendar-days"></i>Días y Horarios</a>
+      <a class="active" href="../admin/reservas.html"><i class="fa-solid fa-calendar-check"></i>Reservas</a>
+      <a href="../admin/reportes.html"><i class="fa-solid fa-chart-line"></i>Reportes</a>
+      <a href="../admin/checkin.html"><i class="fa-solid fa-qrcode"></i>Check-in</a>
+    </nav>
+  </aside>
+
+  <!-- TOPBAR -->
+  <header class="topbar border-bottom" style="background-color: rgba(0,0,0,.7);">
+    <div class="d-flex align-items-center gap-2">
+      <i class="fa-solid fa-shield-halved text-success"></i>
+      <span class="text-muted-2">Panel de administración</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span id="topUser" class="text-muted-2">Admin</span>
+      <button class="btn btn-sm btn-outline-light" onclick="localStorage.removeItem('atix_token');location.href='/'">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <section class="mb-3">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted-2">Alumnos activos</div>
+                <div id="mA" class="fs-3 fw-bold">—</div>
+              </div>
+              <i class="fa-solid fa-users fa-2x text-success"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted-2">Ingresos (mes)</div>
+                <div id="mI" class="fs-3 fw-bold">—</div>
+              </div>
+              <i class="fa-solid fa-coins fa-2x" style="color:#ffd166"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted-2">Clases hoy</div>
+                <div id="mC" class="fs-3 fw-bold">—</div>
+              </div>
+              <i class="fa-regular fa-calendar-days fa-2x text-info"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted-2">Reservas hoy</div>
+                <div id="mR" class="fs-3 fw-bold">—</div>
+              </div>
+              <i class="fa-solid fa-calendar-check fa-2x text-primary"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row g-3">
+      <div class="col-lg-7">
+        <div class="card p-3">
+          <h5 class="mb-3">Últimas facturas</h5>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead><tr><th>#</th><th>Alumno</th><th>Fecha</th><th>Total</th><th>Estado</th></tr></thead>
+              <tbody id="tbLastInvoices"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card p-3">
+          <h5 class="mb-3">Próximas clases (hoy)</h5>
+          <ul id="ulClases" class="list-group list-group-flush"></ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try{
+      const [kpi, last, today] = await Promise.all([
+        Admin.apiGet('/admin/kpis'),
+        Admin.apiGet('/invoices?limit=8'),
+        Admin.apiGet('/classes/today')
+      ]);
+      document.getElementById('mA').textContent = kpi.activeStudents ?? '0';
+      document.getElementById('mI').textContent = '$ ' + (kpi.monthIncome ?? 0);
+      document.getElementById('mC').textContent = today.total ?? 0;
+      document.getElementById('mR').textContent = today.bookings ?? 0;
+
+      const tb = document.getElementById('tbLastInvoices');
+      tb.innerHTML = (last.items||[]).map(i=>`
+        <tr>
+          <td>${i.number || i.id}</td>
+          <td>${i.studentName || '-'}</td>
+          <td>${new Date(i.date).toLocaleDateString()}</td>
+          <td>$${i.total}</td>
+          <td><span class="badge ${i.status==='PAID'?'bg-success':'bg-secondary'}">${i.status}</span></td>
+        </tr>
+      `).join('');
+
+      const ul = document.getElementById('ulClases');
+      ul.innerHTML = (today.classes||[]).map(c=>`
+        <li class="list-group-item d-flex justify-content-between bg-transparent text-white">
+          <span>${c.name} · ${c.coach}</span>
+          <span class="badge badge-soft">${c.startTime} (${c.booked}/${c.capacity})</span>
+        </li>
+      `).join('');
+    }catch(e){ console.error(e); }
+  });
+</script>
+</body>
+</html>

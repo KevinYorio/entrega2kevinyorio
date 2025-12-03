@@ -563,7 +563,7 @@ button {
 }
 .servicios .info-servicios {
   max-width: 800px;
-  margin: auto;
+  margin: 40px auto;   /* antes estaba solo "auto". Ahora arriba/abajo 40px */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -571,6 +571,7 @@ button {
   background-color: #ffffff;
   color: #0b241b;
 }
+
 .servicios .info-servicios div {
   padding: 30px;
   border: 1px solid #dde1e9;
@@ -987,12 +988,48 @@ footer .info a {
   background-image: url("../img/youtube.webp");
 }
 
+/* Volver arriba */
+.volver-arriba {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+}
+
 .volver-arriba a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
   color: #ffffff;
   text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
 }
+
 .volver-arriba a:hover {
-  text-decoration: underline;
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateY(-2px) scale(1.05);
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0,0,0,.45);
+}
+
+.volver-arriba i {
+  font-size: 22px; /* icono más grande */
+}
+
+/* un pelín más chico en móviles pequeños */
+@media (max-width: 576px) {
+  .volver-arriba a {
+    width: 52px;
+    height: 52px;
+  }
+  .volver-arriba i {
+    font-size: 20px;
+  }
 }
 
 /* *********** */

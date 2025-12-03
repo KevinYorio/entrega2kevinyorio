@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>ATIX - Crear cuenta / Anotarme (MVP)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Onboarding de ATIX: crear cuenta, elegir plan y pagar.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- mismo stylesheet del home (rutas relativas desde /pages) -->
+  <link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+  <!-- HEADER idéntico al index -->
+  <div class="contenedor-header">
+    <header>
+      <div class="logo">
+        <a href="../index.html" aria-label="Ir al inicio">
+          <img class="logo" src="../img/LOGO.webp" alt="ATIX Home">
+        </a>
+      </div>
+
+      <!-- Navbar principal -->
+      <nav id="nav">
+        <a href="./contacto.html">Contacto</a>
+        <a href="./sobrenosotros.html">Sobre nosotros</a>
+        <a href="./clases.html">Clases</a>
+        <a href="./estetica.html">Estetica</a>
+      </nav>
+
+      <div class="redes-sociales2">
+        <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+        <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+        <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+        <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+      </div>
+
+      <!-- Botón hamburguesa -->
+      <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+
+      <!-- Menú hamburguesa -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header align-items-center">
+          <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
+            <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
+          </a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="menu-hamburguesa">
+          <div class="enlaces">
+            <!-- Onboarding visible aquí también -->
+            <a href="./onboarding.html">Anotate</a>
+            <a href="./sobrenosotros.html">Sobre nosotros</a>
+            <a href="./clases.html">Clases</a>
+            <a href="./estetica.html">Estetica</a>
+            <a href="./contacto.html">Contacto</a>
+          </div>
+        </div>
+
+        <div class="redes-sociales2">
+          <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+          <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+          <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+          <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- CUERPO: se apoya en tu estética (fondo, tipografías y paleta). 
+       Usamos card oscura de tu CSS (.card) para encapsular el flujo -->
+  <main class="container my-5" style="max-width: 860px;">
+    <div class="card p-4 shadow-lg">
+      <div class="d-flex align-items-center mb-3">
+        <i class="fa-solid fa-user-plus me-2 txtRojo"></i>
+        <h1 class="m-0" style="font-size: clamp(1.4rem, 2.5vw, 2rem);">Crear cuenta / Anotarme</h1>
+      </div>
+
+      <!-- Paso 1: Cuenta (envolvemos en <form> para que tomen tus estilos de form/inputs) -->
+      <section id="step1" class="mb-5">
+        <h3 class="mb-3">1) Cuenta</h3>
+        <form id="formAccount" onsubmit="return false;">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="w-100">
+                <i class="fa-solid fa-id-card-clip"></i>
+                <input id="firstName" class="form-control bg-tertiary-color" placeholder="Nombre" />
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="w-100">
+                <i class="fa-solid fa-id-card"></i>
+                <input id="lastName" class="form-control bg-tertiary-color" placeholder="Apellido" />
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="w-100">
+                <i class="fa-solid fa-envelope"></i>
+                <input id="email" type="email" class="form-control bg-tertiary-color" placeholder="Email" />
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="w-100">
+                <i class="fa-solid fa-lock"></i>
+                <input id="password" type="password" class="form-control bg-tertiary-color" placeholder="Contraseña (mín. 6)" />
+              </label>
+            </div>
+          </div>
+        </form>
+
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          <!-- Botón principal con tu gradiente (btn-12) + fallback Bootstrap -->
+          <button id="btnRegister" class="custom-btn btn-12">
+            <span>Registrarme</span><span>Crear cuenta</span>
+          </button>
+          <button id="btnLogin" class="btn btn-outline-light border">Ya tengo cuenta (Login)</button>
+        </div>
+        <div id="msg1" class="mt-2 text-danger"></div>
+        <div id="ok1" class="mt-2 text-success"></div>
+      </section>
+
+      <!-- Paso 2: Plan -->
+      <section id="step2" class="mb-5 d-none">
+        <h3 class="mb-3">2) Elegí tu plan</h3>
+        <select id="planSelect" class="form-select"></select>
+
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="payLater" />
+          <label class="form-check-label" for="payLater">
+            Pagar después / en ventanilla
+          </label>
+        </div>
+
+        <div class="mt-3 d-flex flex-column flex-md-row align-items-start gap-2">
+          <button id="btnCash" class="btn btn-warning">Pagar en efectivo (Pago Fácil / Rapipago)</button>
+          <select id="cashMethod" class="form-select" style="max-width:260px;">
+            <option value="pagofacil">Pago Fácil</option>
+            <option value="rapipago">Rapipago</option>
+          </select>
+        </div>
+
+        <button id="btnOrder" class="btn btn-success mt-3">Continuar</button>
+        <div id="msg2" class="mt-2 text-danger"></div>
+      </section>
+
+      <!-- Paso 3: Final -->
+      <section id="step3" class="mb-3 d-none">
+        <h3 class="mb-3">3) Confirmación</h3>
+        <p id="finalMsg" class="mb-3"></p>
+        <a id="goCheckout" href="#" class="btn btn-primary d-none" target="_blank" rel="noopener">Ir a pagar</a>
+        <div class="mt-3">
+          <a class="btn btn-outline-light border" href="#" onclick="location.reload()">Empezar de nuevo</a>
+        </div>
+      </section>
+
+      <hr class="border-secondary" />
+      <details class="mt-3">
+        <summary>Debug</summary>
+        <pre id="debug" class="p-2 bg-light border rounded small text-dark"></pre>
+      </details>
+    </div>
+  </main>
+
+  <!-- FOOTER idéntico -->
+  <footer>
+    <div class="info">
+      <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+      <div class="redes-sociales2">
+        <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+        <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+        <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+        <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+      </div>
+    </div>
+    <div class="volver-arriba">
+      <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
+    </div>
+  </footer>
+
+  <!-- scripts al final -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const API = 'http://localhost:4000/api';
+  let token = null;
+
+  function dbg(...args){ 
+    const el = document.getElementById('debug');
+    if (!el) return;
+    el.textContent += args.map(a => (typeof a === 'object' ? JSON.stringify(a, null, 2) : a)).join(' ') + '\n';
+  }
+
+  async function fetchPlans() {
+    const rp = await fetch(`${API}/plans`);
+    if (!rp.ok) {
+      const txt = await rp.text().catch(() => '');
+      throw new Error(`Error obteniendo planes (${rp.status}): ${txt || rp.statusText}`);
+    }
+    const plans = await rp.json();
+    const select = document.getElementById('planSelect');
+    if (select) {
+      select.innerHTML = plans.map(p => `<option value="${p.id}">${p.name} - $${p.price}</option>`).join('');
+    }
+    return plans;
+  }
+
+  const btnRegister = document.getElementById('btnRegister');
+  const btnLogin    = document.getElementById('btnLogin');
+  const btnCash     = document.getElementById('btnCash');
+  const btnOrder    = document.getElementById('btnOrder');
+
+  if (btnRegister) btnRegister.onclick = async () => {
+    const body = {
+      firstName: document.getElementById('firstName').value.trim(),
+      lastName:  document.getElementById('lastName').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      password:  document.getElementById('password').value.trim(),
+    };
+    const msg = document.getElementById('msg1');
+    const ok  = document.getElementById('ok1');
+    if (msg) msg.textContent = '';
+    if (ok)  ok.textContent  = '';
+    try {
+      const r = await fetch(`${API}/auth/register`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(body)
+      });
+      const j = await r.json().catch(() => ({}));
+      dbg('register:', j);
+      if (!r.ok) throw new Error(j.error || `Error registrando (${r.status})`);
+
+      // auto-login
+      const rl = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email: body.email, password: body.password })
+      });
+      const jl = await rl.json().catch(() => ({}));
+      dbg('login:', jl);
+      if (!rl.ok) throw new Error(jl.error || `Error login (${rl.status})`);
+      token = jl.token;
+
+      await fetchPlans();
+      document.getElementById('step1').classList.add('d-none');
+      document.getElementById('step2').classList.remove('d-none');
+      if (ok) ok.textContent = 'Cuenta creada y logueado correctamente.';
+    } catch (e) {
+      if (msg) msg.textContent = e.message;
+    }
+  };
+
+  if (btnLogin) btnLogin.onclick = async () => {
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const msg = document.getElementById('msg1');
+    const ok  = document.getElementById('ok1');
+    if (msg) msg.textContent = '';
+    if (ok)  ok.textContent  = '';
+
+    if (!email) { if (msg) msg.textContent = 'Ingresá tu email.'; return; }
+    // regex correcto (una sola \s)
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { if (msg) msg.textContent = 'Email inválido.'; return; }
+    if (!password || password.length < 6) { if (msg) msg.textContent = 'La contraseña debe tener al menos 6 caracteres.'; return; }
+
+    try {
+      const r = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email, password })
+      });
+      const j = await r.json().catch(() => ({}));
+      dbg('login:', j);
+      if (!r.ok) throw new Error(j.error || `Error login (${r.status})`);
+      token = j.token;
+
+      await fetchPlans();
+      document.getElementById('step1').classList.add('d-none');
+      document.getElementById('step2').classList.remove('d-none');
+      if (ok) ok.textContent = 'Login correcto.';
+    } catch (e) {
+      if (msg) msg.textContent = e.message;
+    }
+  };
+
+  if (btnCash) btnCash.onclick = async () => {
+    const select = document.getElementById('planSelect');
+    const msg2   = document.getElementById('msg2');
+    if (!select) { if (msg2) msg2.textContent = 'No se encontró el selector de planes.'; return; }
+    const planId = parseInt(select.value, 10);
+
+    let orderId = null;
+    try {
+      const r1 = await fetch(`${API}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ planId, payNow: false })
+      });
+      const j1 = await r1.json().catch(() => ({}));
+      dbg('create order (cash):', j1);
+      if (!r1.ok) throw new Error(j1.error || `Error creando orden (${r1.status})`);
+      orderId = j1.orderId;
+    } catch (e) {
+      if (msg2) msg2.textContent = e.message;
+      return;
+    }
+
+    try {
+      const method = document.getElementById('cashMethod').value;
+      const r2 = await fetch(`${API}/orders/${orderId}/pay-cash`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ method })
+      });
+      const j2 = await r2.json().catch(() => ({}));
+      dbg('pay-cash:', j2);
+      if (!r2.ok) throw new Error(j2.error || `Error generando cupón (${r2.status})`);
+
+      document.getElementById('step2').classList.add('d-none');
+      document.getElementById('step3').classList.remove('d-none');
+
+      const msgFinal = document.getElementById('finalMsg');
+      const go = document.getElementById('goCheckout');
+
+      if (j2.ticket_url) {
+        msgFinal.innerHTML = `Generamos tu cupón ${method.toUpperCase()}. <a href="${j2.ticket_url}" target="_blank" rel="noopener">Descargar cupón</a>. También te lo enviamos por email.`;
+        go.classList.add('d-none');
+      } else {
+        msgFinal.textContent = 'Generamos tu orden en efectivo. Si no te llega el cupón por email, escribinos.';
+        go.classList.add('d-none');
+      }
+    } catch (e) {
+      if (msg2) msg2.textContent = e.message;
+    }
+  };
+
+  if (btnOrder) btnOrder.onclick = async () => {
+    const select = document.getElementById('planSelect');
+    const msg    = document.getElementById('msg2');
+    if (!select) { if (msg) msg.textContent = 'No se encontró el selector de planes.'; return; }
+    const planId   = parseInt(select.value, 10);
+    const payLater = document.getElementById('payLater').checked;
+
+    if (msg) msg.textContent = '';
+    try {
+      const r = await fetch(`${API}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ planId, payNow: !payLater })
+      });
+      const j = await r.json().catch(() => ({}));
+      dbg('create order:', j);
+      if (!r.ok) throw new Error(j.error || `Error creando orden (${r.status})`);
+
+      document.getElementById('step2').classList.add('d-none');
+      document.getElementById('step3').classList.remove('d-none');
+
+      const msgFinal = document.getElementById('finalMsg');
+      const go = document.getElementById('goCheckout');
+
+      if (j.init_point) {
+        msgFinal.textContent = 'Redirigite al checkout para completar el pago:';
+        go.href = j.init_point;
+        go.classList.remove('d-none');
+      } else {
+        msgFinal.textContent = 'Orden creada para pagar más tarde / en ventanilla.';
+        go.classList.add('d-none');
+      }
+    } catch (e) {
+      if (msg) msg.textContent = e.message;
+    }
+  };
+});
+</script>
+</body>
+</html>

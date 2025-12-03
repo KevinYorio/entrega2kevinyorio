@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Este es la pagina home del sitio web del gimnasio">
+    <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <title>ATIX</title>
+</head>
+<body>
+    <!-- MENU -->
+    <div class="contenedor-header">
+        <header>
+            <div class="logo">
+                <!-- Logo ahora funciona como HOME -->
+                <a href="./index.html" aria-label="Ir al inicio">
+                    <img class="logo" src="./img/LOGO.webp" alt="Mi logo">
+                </a>
+            </div>
+
+            <!-- Navbar principal (sin HOME, sin Anotate y sin Crear cuenta) -->
+            <nav id="nav">
+                <a href="./pages/contacto.html">Contacto</a>
+                <a href="./pages/sobrenosotros.html">Sobre nosotros</a>
+                <a href="./pages/clases.html">Clases</a>
+                <a href="./pages/estetica.html">Estetica</a>
+            </nav>
+
+            
+            <!-- Menú de Usuario -->
+            <div class="dropdown d-flex align-items-center ms-2">
+            <a href="#" class="d-inline-flex align-items-center text-white" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de usuario">
+                <i class="fa-solid fa-user fa-lg"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="userMenu" style="min-width: 280px;">
+            <div id="userInfo" class="small mb-3 text-muted">No has iniciado sesión.</div>
+            <div class="d-grid gap-2">
+                <button id="btnOpenLogin" class="btn btn-sm btn-dark">Iniciar sesión</button>
+                <a class="btn btn-sm btn-success" href="./pages/onboarding.html">Anotarme</a>
+                <button id="btnLogout" class="btn btn-sm btn-outline-danger d-none">Cerrar sesión</button>
+                <!-- NUEVO -->
+                <button id="btnToggleDebug" class="btn btn-sm btn-secondary">Ver debug</button>
+            </div>
+            </ul>
+
+            </div>
+
+            <div class="redes-sociales2">
+                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+            </div> 
+
+            <!-- Botón hamburguesa -->
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
+            <!-- Menú hamburguesa -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header align-items-center">
+                    <!-- Logo dentro del menú hamburguesa como HOME -->
+                    <a href="./index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
+                        <img src="./img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="menu-hamburguesa">
+                    <div class="enlaces">
+                        <!-- Opciones para alumnos SOLO en el hamburguesa -->
+                        <a href="./pages/onboarding.html">Anotate</a>
+
+                        <!-- Resto de secciones del sitio -->
+                        <a href="./pages/sobrenosotros.html">Sobre nosotros</a>
+                        <a href="./pages/clases.html">Clases</a>
+                        <a href="./pages/estetica.html">Estetica</a>
+                        <a href="./pages/contacto.html">Contacto</a>
+                        <!-- HOME eliminado del menú hamburguesa -->
+                    </div>
+                </div>
+                <div class="redes-sociales2">
+                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+                </div> 
+            </div>
+        </header>
+    </div>
+
+    <!-- SECCION INICIO -->
+    <section id="inicio" class="inicio">
+        <div class="contenido-seccion">
+            <div class="info">
+                <h1>LO MAS PESADO SON <span class="txtRojo">TUS EXCUSAS</span></h1>
+                <p>Triunfar es más fácil de lo que pensás!</p>
+                <a href="#nosotros" class="btn-mas">
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                </a>
+            </div>
+            <div class="opciones">
+                <div class="opcion">01.FUNCIONAL</div>
+                <div class="opcion">02.CROSSFIT</div>
+                <div class="opcion">03.AEROLOCAL</div>
+                <div class="opcion">04.ZUMBA</div>
+                <div class="opcion">05.PILATES</div>
+                <div class="opcion">06.GAP</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION NOSOTROS --> 
+    <section id="nosotros" class="nosotros">
+        <div class="fila">
+            <div class="col">
+                <img src="img/nosotros.webp" alt="">
+            </div>
+            <div class="col">
+                <div class="contenedor-titulo">
+                    <div class="numero">01</div>
+                    <div class="info">
+                        <span class="frase">LA MEJOR EXPERIENCIA</span>
+                        <h2>NOSOTROS</h2>
+                    </div>
+                </div>
+                <p class="p-especial">Entrenar con amigos, como en familia!</p>
+                <p>En ATIX entrenamos como en casa. Nuestra principal motivación es que nuestros alumnos se sientan cómodos y alcancen sus objetivos. El profesionalismo no es negociable: nuestro equipo te acompaña para progresar.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="fila-nosotros">
+            <div class="col1">
+                <span class="frase"><span class="txtRojo">ENTRENA</span> DIFERENTE</span>
+                <h2>PRIMERA CLASE <span class="txtRojo">GRATIS</span> HOY!</h2>
+            </div>
+            <div class="col2">
+                <a href="https://api.whatsapp.com/send?phone=5491166739161" target="_blank" rel="noopener">
+                    <button>PASE LIBRE</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION SERVICIOS -->
+    <section class="servicios" id="servicios">
+        <div class="contenido-seccion">
+            <div class="fila">
+                <div class="col">
+                    <div class="contenedor-titulo">
+                        <div class="numero">02</div>
+                        <div class="info">
+                            <span class="frase">LA MEJOR EXPERIENCIA</span>
+                            <h2>SERVICIOS</h2>
+                        </div>
+                    </div>
+                    <p class="p-especial">La experiencia de entrenar cómodo!</p>
+                    <p>En ATIX contamos con 10 años de experiencia en entrenamiento especializado de clases, junto a más de 20 profesores que han trabajado con nosotros y profesionales actualizándose constantemente. A pocos meses de una renovación total de infraestructura, te esperamos hoy con un centro de entrenamiento de última calidad!</p>
+                </div>
+                <div class="col">
+                    <img src="img/servicios.webp" alt="Servicios del gimnasio ATIX" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <div class="info-servicios">
+            <div>
+                <i class="fa-solid fa-person-walking"></i>
+                <h3><span class="txtRojo">Clases </span> de Funcional</h3>
+                <p>La mejor forma de mejorar tu físico en grupo y con un profesor alentándote minuto a minuto.</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-dumbbell"></i>
+                <h3><span class="txtRojo">Clases </span> de Crossfit</h3>
+                <p>¿Querés dar un paso más? ¿Te interesa la intensidad? ¡Crossfit es para vos! ¡A darlo todo!</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-mitten"></i>
+                <h3><span class="txtRojo">Clases </span> de Aerolocal</h3>
+                <p>Ritmo, movimiento y mucho ejercicio; lo mejor para moverse y quemar calorías.</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-clock"></i>
+                <h3><span class="txtRojo">Clases </span> de Pilates</h3>
+                <p>Cuando necesitás relajar y darle tiempo a tu cuerpo de recuperar y rehabilitar lesiones, ¡la mejor opción!</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-heart-circle-bolt"></i>
+                <h3><span class="txtRojo">Clases </span> de GAP</h3>
+                <p>Glúteos, abdominales y piernas: la mejor opción para el modelado a altas pulsaciones.</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-music"></i>
+                <h3><span class="txtRojo">Clases </span> de Zumba</h3>
+                <p>A moverse entre todos: ritmo, baile y sabor. ¡Sumate a bailar con nosotros y divertite!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION COMODIDADES -->
+    <section id="comodidades" class="comodidades">
+        <div class="fila">
+            <div class="col">
+                <img src="img/nosotros3.webp" alt="Instalaciones del gimnasio" loading="lazy">
+            </div>
+            <div class="col">
+                <div class="contenedor-titulo">
+                    <div class="numero">03</div>
+                    <div class="info">
+                        <span class="frase">LA MEJOR EXPERIENCIA</span>
+                        <h2>COMODIDADES</h2>
+                    </div>
+                </div>
+                <p class="p-especial">Infraestructura de primera calidad!</p>
+                <ul>
+                    <li><span>SALÓN AMPLIADO</span> Ampliamos el salón principal de nuestras clases para que entren más de ustedes; clases más amplias y más cómodas para todos.</li>
+                    <li><span>VESTUARIOS COMPLETOS</span> Ahora los vestuarios cuentan con espacio de cambiado y duchadores; opciones más completas para vos.</li>
+                    <li><span>PILATES SEPARADO</span> Nuestro principal salón de pilates ahora tiene un piso especial para eso; ¡podés tener tu lugar y tu espacio!</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION GALERIA -->
+    <section class="galeria" id="galeria">
+        <div class="contenido-seccion">
+            <div class="contenedor-titulo">
+                <div class="numero">04</div>
+                <div class="info">
+                    <span class="frase">LA MEJOR EXPERIENCIA</span>
+                    <h2>GALERÍA</h2>
+                </div>
+                <iframe class="youtubevideo" width="560" height="315" src="https://www.youtube.com/embed/v7b6f_MpQZE" title="Video de circuito de entrenamiento ATIX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCION EQUIPO -->
+    <section class="equipo" id="equipo">
+        <div class="contenido-seccion">
+            <div class="contenedor-titulo">
+                <div class="numero">05</div>
+                <div class="info">
+                    <span class="frase">LA MEJOR EXPERIENCIA</span>
+                    <h2>EQUIPO</h2>
+                </div>
+            </div>
+            <div class="fila">
+                <div class="col">
+                    <img src="img/e1.webp" alt="Profesor Alexis" loading="lazy">
+                    <div class="info">
+                        <h2>ALEXIS</h2>
+                        <p>Fitness - Pilates - Musculación</p>
+                        <a href="https://www.instagram.com/aleyoriofit/" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="img/e2.webp" alt="Profe Karina" loading="lazy">
+                    <div class="info">
+                        <h2>KARINA</h2>
+                        <p>Fitness - Pilates - Yoga</p>
+                        <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION CONTACTO -->
+    <section class="contacto" id="contacto">
+        <div class="contenido-seccion">
+            <div class="contenedor-titulo">
+                <div class="numero">06</div>
+                <div class="info">
+                    <span class="frase">LA MEJOR EXPERIENCIA</span>
+                    <h2>CONTACTO</h2>
+                </div>
+            </div>
+            <div class="fila">
+                <div class="col">
+                    <input type="email" placeholder="Ingrese Email" class="text-secondary-color">
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="Ingrese Nombre" class="text-primary-color">
+                </div>
+            </div>
+            <div class="mensaje">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Ingresa el Mensaje" class="bg-tertiary-color"></textarea>
+            </div>
+            <div class="frame">
+                <a class="custom-btn btn-12" href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en obtener informacion de..." target="_blank" rel="noopener">
+                    <button class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
+                </a>
+            </div>
+            <div class="fila-datos">
+                <div class="col">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Cesio 289, Haedo
+                </div>
+                <div class="col">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+1234567890">+1234567890</a>
+                </div>
+                <div class="col">
+                    <i class="fa-regular fa-clock"></i>
+                    Lunes a Sábado, 8:00h - 21:00h
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="info">
+            <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+            <div class="redes-sociales2">
+                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
+                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
+                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
+                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+            </div>
+        </div>
+        <div class="volver-arriba">
+            <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
+        </div>
+    </footer>
+
+<!-- Modal Login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+    <div class="modal-content" style="background:#111;color:#fff;border:1px solid #0b241b;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="loginModalLabel">
+          <i class="fa-solid fa-right-to-bracket me-2 txtRojo"></i>Iniciar sesión
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="return false;">
+          <label class="w-100 mb-3">
+            <i class="fa-solid fa-envelope"></i>
+            <input id="loginEmail" type="email" class="form-control bg-tertiary-color" placeholder="Email" />
+          </label>
+          <label class="w-100 mb-2">
+            <i class="fa-solid fa-lock"></i>
+            <input id="loginPassword" type="password" class="form-control bg-tertiary-color" placeholder="Contraseña (mín. 6)" />
+          </label>
+          <div id="loginMsg" class="mt-2 small text-danger"></div>
+        </form>
+      </div>
+      <div class="modal-footer border-0 d-flex justify-content-between">
+        <a class="btn btn-outline-light" href="./pages/onboarding.html">Anotarme</a>
+        <button id="doLogin" class="btn btn-success">Entrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Panel flotante de debug -->
+<div id="uiDebug" class="position-fixed bottom-0 end-0 m-3 p-2 bg-dark text-white small rounded shadow"
+     style="width: 380px; max-height: 45vh; overflow:auto; z-index: 2000; display:none;">
+  <div class="d-flex justify-content-between align-items-center">
+    <strong>Debug ATIX</strong>
+    <div class="btn-group btn-group-sm">
+      <button id="dbgCopy" class="btn btn-outline-light">Copiar</button>
+      <button id="dbgClear" class="btn btn-outline-light">Limpiar</button>
+      <button id="dbgClose" class="btn btn-outline-light">Cerrar</button>
+    </div>
+  </div>
+  <pre id="dbgOut" class="mt-2 mb-0" style="white-space:pre-wrap;"></pre>
+</div>
+
+
+<script>
+(function(){
+  const API = 'http://localhost:4000/api';          // <-- ajusta si corresponde
+  const LS_KEY = 'atix_token';
+  let token = localStorage.getItem(LS_KEY) || null;
+
+  // ====== DEBUG UI ======
+  const $ = (id) => document.getElementById(id);
+  const dbgOutId = 'dbgOut';
+  function ts(){ return new Date().toLocaleTimeString(); }
+  function showDebug(v=true){ const box = $('uiDebug'); if (box) box.style.display = v ? 'block' : 'none'; }
+  function uiLog(...args){
+    const out = $(dbgOutId);
+    if (!out) return;
+    const line = args.map(a => {
+      try { return typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a); }
+      catch { return String(a); }
+    }).join(' ');
+    out.textContent += `[${ts()}] ${line}\n`;
+    out.scrollTop = out.scrollHeight;
+    // console también
+    console.log('[ATIX]', ...args);
+  }
+  function uiWarn(msg){ uiLog('⚠️', msg); }
+  function uiErr(msg){ uiLog('❌', msg); }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnT = $('btnToggleDebug'), btnC=$('dbgClose'), btnCl=$('dbgClear'), btnCp=$('dbgCopy');
+    if (btnT){ btnT.onclick = () => showDebug($('uiDebug').style.display === 'none'); }
+    if (btnC){ btnC.onclick = () => showDebug(false); }
+    if (btnCl){ btnCl.onclick = () => { const o=$(dbgOutId); if (o) o.textContent=''; }; }
+    if (btnCp){ btnCp.onclick = async () => {
+      const o=$(dbgOutId); if (!o) return;
+      try { await navigator.clipboard.writeText(o.textContent); uiLog('📋 Debug copiado al portapapeles'); }
+      catch(e){ uiWarn('No se pudo copiar'); }
+    }; }
+
+    // Mensajes útiles de entorno
+    if (location.protocol === 'https:' && API.startsWith('http://')){
+      uiWarn('Posible mixed content: página https llama a API http. Considerá usar https en API.');
+      showDebug(true);
+    }
+    if (location.protocol === 'file:'){
+      uiWarn('Estás sirviendo el HTML con file://. Algunas peticiones pueden fallar o no enviar origin (CORS).');
+    }
+
+    window.addEventListener('online',  () => uiLog('🌐 online'));
+    window.addEventListener('offline', () => uiWarn('🔌 offline'));
+  });
+
+  // ====== HELPERS ======
+  function setToken(t){ token = t; t ? localStorage.setItem(LS_KEY, t) : localStorage.removeItem(LS_KEY); }
+
+  function badgePlan(active){
+    const color = active ? 'text-success' : 'text-danger';
+    const texto = active ? 'Plan activo' : 'Plan inactivo';
+    return `<span class="${color}" style="font-weight:700">${texto}</span>`;
+  }
+
+  function updateUserUI(profile){
+    const userInfo  = $('userInfo');
+    const btnOpen   = $('btnOpenLogin');
+    const btnLogout = $('btnLogout');
+    if (!userInfo || !btnOpen || !btnLogout) return;
+
+    if (profile){
+      const fullName = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || profile.name || 'Alumno';
+      const active = !!(profile.planActive || profile.activePlan || profile.plan_active || profile.hasActivePlan);
+      userInfo.innerHTML = `<div class="mb-1">Hola, <strong>${fullName}</strong></div><div class="small">Estado: ${badgePlan(active)}</div>`;
+      btnOpen.classList.add('d-none');
+      btnLogout.classList.remove('d-none');
+    } else {
+      userInfo.innerHTML = `No has iniciado sesión.`;
+      btnOpen.classList.remove('d-none');
+      btnLogout.classList.add('d-none');
+    }
+  }
+
+  async function fetchWithLog(url, opts={}, tag=''){
+    uiLog('➡️', tag || 'request', url, opts);
+    try{
+      const r = await fetch(url, opts);
+      const ct = r.headers.get('content-type') || '';
+      let bodyText = await r.text().catch(()=> '');
+      let data = {};
+      if (ct.includes('application/json')){
+        try { data = bodyText ? JSON.parse(bodyText) : {}; } catch(e){ uiWarn('JSON inválido en respuesta'); }
+      } else {
+        data = { raw: bodyText };
+      }
+      uiLog('⬅️', tag || 'response', `${r.status} ${r.statusText}`, data);
+      if (!r.ok){
+        // mensajes útiles
+        if (r.status === 401) uiWarn('401 no autorizado: token inválido/ausente.');
+        if (r.status === 404) uiWarn('404: endpoint no encontrado.');
+        if (r.status >= 500) uiWarn('Servidor devolvió 5xx.');
+        const errMsg = (data && (data.error || data.message)) || r.statusText || `HTTP ${r.status}`;
+        throw new Error(errMsg);
+      }
+      return data;
+    } catch(e){
+      // “Failed to fetch” suele ser CORS, DNS o server caído
+      if (String(e).includes('Failed to fetch')){
+        uiErr('Failed to fetch (¿CORS? ¿servidor caído? ¿URL incorrecta?)');
+      }
+      uiErr(e.message || e);
+      throw e;
+    }
+  }
+
+  async function fetchJSON(url, opts={}, tag=''){
+    return await fetchWithLog(url, opts, tag);
+  }
+
+  async function fetchProfile(){
+    if (!token) return null;
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const candidates = [`${API}/auth/me`, `${API}/users/me`, `${API}/me`];
+    for (const u of candidates){
+      try {
+        const d = await fetchJSON(u, { headers }, 'GET profile');
+        return {
+          firstName: d.firstName || d.nombre || d.first_name || d.given_name,
+          lastName:  d.lastName  || d.apellido || d.last_name  || d.family_name,
+          name:      d.name || d.displayName || null,
+          planActive: d.planActive ?? d.activePlan ?? d.plan_activo ?? d.hasActivePlan ?? false
+        };
+      } catch(e){
+        // probar siguiente
+      }
+    }
+    throw new Error('No se pudo obtener el perfil en ninguna ruta conocida');
+  }
+
+  async function doLogin(email, password){
+    const body = JSON.stringify({ email, password });
+    const data = await fetchJSON(`${API}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    }, 'POST /auth/login');
+    if (!data.token) throw new Error('Login sin token devuelto por el backend');
+    setToken(data.token);
+    return data;
+  }
+
+  // ====== EVENTOS UI ======
+  document.addEventListener('DOMContentLoaded', async () => {
+    const btnOpen   = $('btnOpenLogin');
+    const btnLogout = $('btnLogout');
+    const doLoginBtn= $('doLogin');
+    const loginMsg  = $('loginMsg');
+
+    // Abrir modal login
+    if (btnOpen) btnOpen.addEventListener('click', () => {
+      try{
+        const modalEl = $('loginModal');
+        if (!modalEl){ uiWarn('No se encontró #loginModal'); return; }
+        $('loginEmail').value = '';
+        $('loginPassword').value = '';
+        if (loginMsg) loginMsg.textContent = '';
+        if (!window.bootstrap || !bootstrap.Modal){
+          uiWarn('Bootstrap Modal no disponible. ¿Cargaste el JS de Bootstrap antes del click?');
+          return;
+        }
+        new bootstrap.Modal(modalEl).show();
+      } catch(e){
+        uiErr('Error mostrando modal: ' + (e.message || e));
+      }
+    });
+
+    // Hacer login
+    if (doLoginBtn) doLoginBtn.addEventListener('click', async () => {
+      const email = $('loginEmail').value.trim();
+      const pass  = $('loginPassword').value.trim();
+      if (loginMsg) loginMsg.textContent = '';
+
+      if (!email){ loginMsg.textContent = 'Ingresá tu email.'; return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ loginMsg.textContent = 'Email inválido.'; return; }
+      if (!pass || pass.length < 6){ loginMsg.textContent = 'La contraseña debe tener al menos 6 caracteres.'; return; }
+
+      try {
+        doLoginBtn.disabled = true; doLoginBtn.textContent = 'Entrando...';
+        await doLogin(email, pass);
+        // cerrar modal
+        if (window.bootstrap && bootstrap.Modal){
+          bootstrap.Modal.getInstance($('loginModal')).hide();
+        }
+        // cargar perfil y actualizar UI
+        const profile = await fetchProfile().catch((e)=>{ uiWarn('No se pudo obtener perfil tras login'); return null; });
+        updateUserUI(profile);
+      } catch(e){
+        if (loginMsg) loginMsg.textContent = e.message || 'Error iniciando sesión.';
+      } finally {
+        doLoginBtn.disabled = false; doLoginBtn.textContent = 'Entrar';
+      }
+    });
+
+    // Logout
+    if (btnLogout) btnLogout.addEventListener('click', () => {
+      setToken(null);
+      updateUserUI(null);
+      uiLog('🔓 Sesión cerrada');
+    });
+
+    // Cargar perfil si ya hay token
+    try {
+      const profile = await fetchProfile().catch(()=> null);
+      updateUserUI(profile);
+    } catch(_){
+      updateUserUI(null);
+    }
+
+    // Prueba rápida de API (opcional: loguea status de /plans)
+    fetchJSON(`${API}/plans`, {}, 'GET /plans (ping)').catch(()=>{});
+  });
+})();
+</script>
+
+
+
+    <!-- scripts al final -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <!-- Eliminado api.js (clima) -->
+    <!-- <script src="api.js"></script> -->
+    <script src="java.js"></script>
+</body>
+</html>

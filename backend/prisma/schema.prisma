@@ -1,0 +1,255 @@
+// ---------- GENERATOR ----------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ---------- DATASOURCE ----------
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- ENUMS ----------
+enum Role {
+  USER
+  ADMIN
+  RECEPTION
+  COACH
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+enum WeekDay {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+}
+
+// ---------- MODELS (TU BASE + ERP) ----------
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  passwordHash  String
+  firstName     String
+  lastName      String
+  emailVerified Boolean  @default(false)
+  // ERP
+  role          Role     @default(USER)
+  phone         String?
+  active        Boolean  @default(true)
+  // común
+  createdAt     DateTime @default(now())
+
+  // Relaciones existentes
+  orders        Order[]
+  memberships   Membership[]
+  refreshTokens RefreshToken[]
+
+  // ERP relaciones
+  bookings Booking[]
+  invoices Invoice[]
+
+  @@index([role])
+  @@index([emailVerified])
+}
+
+model Plan {
+  id              Int      @id @default(autoincrement())
+  name            String
+  price           Int
+  currency        String   @default("ARS")
+  sessionsPerWeek Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  orders      Order[]
+  memberships Membership[]
+
+  @@index([isActive])
+}
+
+model Order {
+  id                Int      @id @default(autoincrement())
+  userId            Int
+  planId            Int
+  priceAtMoment     Int
+  status            String   @default("pending") // pending, approved, rejected, canceled
+  externalReference String?
+  preferenceId      String?
+  merchantOrderId   String?
+  createdAt         DateTime @default(now())
+
+  user     User      @relation(fields: [userId], references: [id])
+  plan     Plan      @relation(fields: [planId], references: [id])
+  payments Payment[]
+}
+
+model Payment {
+  id          Int      @id @default(autoincrement())
+  orderId     Int
+  mpPaymentId String   @unique
+  status      String
+  method      String?
+  amount      Int
+  detailsJson String?
+  createdAt   DateTime @default(now())
+
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model Membership {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  planId    Int
+  startsAt  DateTime
+  endsAt    DateTime
+  status    String   @default("inactive") // "active", "inactive", "paused"
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  plan Plan @relation(fields: [planId], references: [id])
+
+  @@index([userId, status, endsAt])
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  tokenHash String
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, revoked])
+}
+
+// ---------- ERP: Empleados / Proveedores / Gastos ----------
+model Employee {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  email     String?  @unique
+  role      Role     @default(COACH) // COACH o RECEPTION
+  hourRate  Decimal? @db.Decimal(10, 2)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  classes Class[] @relation("CoachClasses")
+
+  @@index([role])
+  @@index([active])
+}
+
+model Provider {
+  id        Int      @id @default(autoincrement())
+  name      String
+  contact   String?
+  email     String?
+  phone     String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  expenses Expense[]
+
+  @@index([name])
+  @@index([active])
+}
+
+model Expense {
+  id         Int      @id @default(autoincrement())
+  providerId Int
+  concept    String
+  amount     Decimal  @db.Decimal(10, 2)
+  date       DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  provider Provider @relation(fields: [providerId], references: [id])
+
+  @@index([date])
+  @@index([providerId])
+}
+
+// ---------- ERP: Clases / Reservas (con Check-in QR) ----------
+model Class {
+  id        Int      @id @default(autoincrement())
+  name      String
+  day       WeekDay
+  startTime String
+  endTime   String
+  capacity  Int?
+  coachId   Int?
+  createdAt DateTime @default(now())
+
+  coach    Employee? @relation("CoachClasses", fields: [coachId], references: [id])
+  bookings Booking[]
+
+  @@index([day])
+}
+
+model Booking {
+  id     Int           @id @default(autoincrement())
+  date   DateTime
+  time   String?
+  status BookingStatus @default(PENDING)
+
+  classId   Int
+  studentId Int
+
+  // check-in / QR
+  checkedIn    Boolean   @default(false)
+  checkInAt    DateTime?
+  checkInToken String?   @unique
+
+  createdAt DateTime @default(now())
+
+  class   Class @relation(fields: [classId], references: [id])
+  student User  @relation(fields: [studentId], references: [id])
+
+  @@index([date])
+  @@index([status])
+  @@index([classId])
+  @@index([studentId])
+}
+
+// ---------- ERP: Facturación ----------
+model Invoice {
+  id        Int           @id @default(autoincrement())
+  number    Int?
+  date      DateTime      @default(now())
+  status    InvoiceStatus @default(PENDING)
+  total     Decimal       @db.Decimal(10, 2)
+  createdAt DateTime      @default(now())
+
+  studentId Int
+  student   User @relation(fields: [studentId], references: [id])
+
+  items InvoiceItem[]
+
+  @@index([date])
+  @@index([status])
+  @@index([studentId])
+}
+
+model InvoiceItem {
+  id          Int     @id @default(autoincrement())
+  invoiceId   Int
+  description String
+  qty         Int
+  price       Decimal @db.Decimal(10, 2)
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id])
+}
