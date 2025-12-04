@@ -1,32 +1,40 @@
 // ---------- GENERATOR ----------
+// Indica que Prisma generará el cliente oficial en JavaScript.
+// Este cliente se usa en tu backend para hacer consultas a la base de datos.
 generator client {
   provider = "prisma-client-js"
 }
 
 // ---------- DATASOURCE ----------
+// Configura la conexión a la base de datos.
+// - provider: PostgreSQL
+// - url: variable de entorno DATABASE_URL que contiene usuario, pass, host, db, etc.
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 // ---------- ENUMS ----------
+// Enumeraciones utilizadas en varios modelos.
+// Aseguran que ciertos campos solo puedan tomar valores específicos.
+
 enum Role {
-  USER
-  ADMIN
-  RECEPTION
-  COACH
+  USER       // Usuario estándar
+  ADMIN      // Administrador con permisos completos
+  RECEPTION  // Rol administrativo/recepción
+  COACH      // Entrenador
 }
 
 enum BookingStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
+  PENDING     // Reserva pendiente
+  CONFIRMED   // Confirmada
+  CANCELLED   // Cancelada
 }
 
 enum InvoiceStatus {
-  PENDING
-  PAID
-  CANCELLED
+  PENDING     // Factura pendiente
+  PAID        // Pagada
+  CANCELLED   // Cancelada
 }
 
 enum WeekDay {
@@ -39,28 +47,32 @@ enum WeekDay {
 }
 
 // ---------- MODELS (TU BASE + ERP) ----------
+// Aquí está el corazón de tu base de datos. Estos modelos representan las tablas reales.
+
 model User {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
-  passwordHash  String
-  firstName     String
-  lastName      String
-  emailVerified Boolean  @default(false)
+  id            Int      @id @default(autoincrement())  // PK autoincremental
+  email         String   @unique                        // Email único
+  passwordHash  String                                   // Hash seguro de la contraseña
+  firstName     String                                   // Nombre
+  lastName      String                                   // Apellido
+  emailVerified Boolean  @default(false)                 // Verificación de email
+
   // ERP
-  role          Role     @default(USER)
-  phone         String?
-  active        Boolean  @default(true)
+  role          Role     @default(USER)                  // Rol dentro del sistema
+  phone         String?                                 // Teléfono opcional
+  active        Boolean  @default(true)                  // Usuario activo/inactivo
+
   // común
-  createdAt     DateTime @default(now())
+  createdAt     DateTime @default(now())                 // Fecha creación
 
-  // Relaciones existentes
-  orders        Order[]
-  memberships   Membership[]
-  refreshTokens RefreshToken[]
+  // Relaciones existentes (de tu proyecto base)
+  orders        Order[]                                 // Relación 1:N con órdenes
+  memberships   Membership[]                            // Relación 1:N con membresías
+  refreshTokens RefreshToken[]                          // Tokens de sesión
 
-  // ERP relaciones
-  bookings Booking[]
-  invoices Invoice[]
+  // ERP relaciones adicionales
+  bookings Booking[]                                    // Reservas hechas por el usuario
+  invoices Invoice[]                                    // Facturas asociadas
 
   @@index([role])
   @@index([emailVerified])
@@ -68,13 +80,14 @@ model User {
 
 model Plan {
   id              Int      @id @default(autoincrement())
-  name            String
-  price           Int
-  currency        String   @default("ARS")
-  sessionsPerWeek Int      @default(0)
-  isActive        Boolean  @default(true)
+  name            String                                  // Nombre del plan
+  price           Int                                     // Precio del plan
+  currency        String   @default("ARS")                // Moneda
+  sessionsPerWeek Int      @default(0)                    // Sesiones por semana
+  isActive        Boolean  @default(true)                 // Plan habilitado
   createdAt       DateTime @default(now())
 
+  // Relaciones
   orders      Order[]
   memberships Membership[]
 
@@ -83,28 +96,29 @@ model Plan {
 
 model Order {
   id                Int      @id @default(autoincrement())
-  userId            Int
-  planId            Int
-  priceAtMoment     Int
-  status            String   @default("pending") // pending, approved, rejected, canceled
-  externalReference String?
-  preferenceId      String?
-  merchantOrderId   String?
+  userId            Int                                     // FK a usuario
+  planId            Int                                     // FK a plan
+  priceAtMoment     Int                                     // Precio congelado (evita cambios futuros)
+  status            String   @default("pending")            // Estado MP
+  externalReference String?                                // Referencia externa MP
+  preferenceId      String?                                // Preference ID MP
+  merchantOrderId   String?                                // Merchant Order ID MP
   createdAt         DateTime @default(now())
 
+  // Relaciones
   user     User      @relation(fields: [userId], references: [id])
   plan     Plan      @relation(fields: [planId], references: [id])
-  payments Payment[]
+  payments Payment[]                                    // Relación 1:N con pagos
 }
 
 model Payment {
   id          Int      @id @default(autoincrement())
-  orderId     Int
-  mpPaymentId String   @unique
-  status      String
-  method      String?
-  amount      Int
-  detailsJson String?
+  orderId     Int                                     // FK a orden
+  mpPaymentId String   @unique                        // ID del pago en MercadoPago
+  status      String                                  // Estado del pago
+  method      String?                                 // Método de pago utilizado
+  amount      Int                                     // Monto cobrado
+  detailsJson String?                                 // Detalles crudos en JSON
   createdAt   DateTime @default(now())
 
   order Order @relation(fields: [orderId], references: [id])
@@ -112,24 +126,24 @@ model Payment {
 
 model Membership {
   id        Int      @id @default(autoincrement())
-  userId    Int
-  planId    Int
-  startsAt  DateTime
-  endsAt    DateTime
-  status    String   @default("inactive") // "active", "inactive", "paused"
+  userId    Int                                    // Usuario asociado
+  planId    Int                                    // Plan asociado
+  startsAt  DateTime                               // Fecha de inicio
+  endsAt    DateTime                               // Fin de membresía
+  status    String   @default("inactive")          // Estado de la membresía
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
   plan Plan @relation(fields: [planId], references: [id])
 
-  @@index([userId, status, endsAt])
+  @@index([userId, status, endsAt])                // Optimiza consultas según estado
 }
 
 model RefreshToken {
   id        Int      @id @default(autoincrement())
-  userId    Int
-  tokenHash String
-  revoked   Boolean  @default(false)
+  userId    Int                                     // Usuario dueño del token
+  tokenHash String                                  // Hash del refresh token
+  revoked   Boolean  @default(false)                // Si fue invalidado
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
@@ -140,15 +154,15 @@ model RefreshToken {
 // ---------- ERP: Empleados / Proveedores / Gastos ----------
 model Employee {
   id        Int      @id @default(autoincrement())
-  firstName String
-  lastName  String?
-  email     String?  @unique
-  role      Role     @default(COACH) // COACH o RECEPTION
-  hourRate  Decimal? @db.Decimal(10, 2)
+  firstName String                                  // Nombre
+  lastName  String?                                 // Apellido (opcional)
+  email     String?  @unique                        // Email único
+  role      Role     @default(COACH)                // Rol dentro del gimnasio
+  hourRate  Decimal? @db.Decimal(10, 2)             // Pago por hora
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 
-  classes Class[] @relation("CoachClasses")
+  classes Class[] @relation("CoachClasses")         // Relación 1:N con clases que dicta
 
   @@index([role])
   @@index([active])
@@ -156,14 +170,14 @@ model Employee {
 
 model Provider {
   id        Int      @id @default(autoincrement())
-  name      String
-  contact   String?
+  name      String                                  // Nombre del proveedor
+  contact   String?                                 // Contacto
   email     String?
   phone     String?
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 
-  expenses Expense[]
+  expenses Expense[]                                // Gastos asociados al proveedor
 
   @@index([name])
   @@index([active])
@@ -171,9 +185,9 @@ model Provider {
 
 model Expense {
   id         Int      @id @default(autoincrement())
-  providerId Int
-  concept    String
-  amount     Decimal  @db.Decimal(10, 2)
+  providerId Int                                     // Proveedor del gasto
+  concept    String                                  // Concepto (ej: compra)
+  amount     Decimal  @db.Decimal(10, 2)             // Importe
   date       DateTime @default(now())
   createdAt  DateTime @default(now())
 
@@ -186,33 +200,33 @@ model Expense {
 // ---------- ERP: Clases / Reservas (con Check-in QR) ----------
 model Class {
   id        Int      @id @default(autoincrement())
-  name      String
-  day       WeekDay
-  startTime String
-  endTime   String
-  capacity  Int?
-  coachId   Int?
+  name      String                                  // Nombre de la clase
+  day       WeekDay                                 // Día de la semana
+  startTime String                                  // Inicio
+  endTime   String                                  // Fin
+  capacity  Int?                                    // Capacidad máxima
+  coachId   Int?                                    // Entrenador que la dicta
   createdAt DateTime @default(now())
 
   coach    Employee? @relation("CoachClasses", fields: [coachId], references: [id])
-  bookings Booking[]
+  bookings Booking[]                                // Reservas de la clase
 
   @@index([day])
 }
 
 model Booking {
   id     Int           @id @default(autoincrement())
-  date   DateTime
-  time   String?
-  status BookingStatus @default(PENDING)
+  date   DateTime                                   // Fecha de la clase
+  time   String?                                    // Horario adicional
+  status BookingStatus @default(PENDING)            // Estado reserva
 
-  classId   Int
-  studentId Int
+  classId   Int                                     // Clase reservada
+  studentId Int                                     // Alumno que reserva
 
   // check-in / QR
-  checkedIn    Boolean   @default(false)
-  checkInAt    DateTime?
-  checkInToken String?   @unique
+  checkedIn    Boolean   @default(false)            // Marcado en clase
+  checkInAt    DateTime?                            // Fecha/hora check-in
+  checkInToken String?   @unique                    // Token QR único
 
   createdAt DateTime @default(now())
 
@@ -228,16 +242,16 @@ model Booking {
 // ---------- ERP: Facturación ----------
 model Invoice {
   id        Int           @id @default(autoincrement())
-  number    Int?
-  date      DateTime      @default(now())
+  number    Int?                                     // Número secuencial
+  date      DateTime      @default(now())            // Fecha factura
   status    InvoiceStatus @default(PENDING)
-  total     Decimal       @db.Decimal(10, 2)
+  total     Decimal       @db.Decimal(10, 2)         // Total cobrado
   createdAt DateTime      @default(now())
 
-  studentId Int
+  studentId Int                                       // Cliente
   student   User @relation(fields: [studentId], references: [id])
 
-  items InvoiceItem[]
+  items InvoiceItem[]                                // Detalle de la factura
 
   @@index([date])
   @@index([status])
@@ -246,10 +260,10 @@ model Invoice {
 
 model InvoiceItem {
   id          Int     @id @default(autoincrement())
-  invoiceId   Int
-  description String
-  qty         Int
-  price       Decimal @db.Decimal(10, 2)
+  invoiceId   Int                                     // Factura padre
+  description String                                  // Descripción del ítem
+  qty         Int                                     // Cantidad
+  price       Decimal @db.Decimal(10, 2)              // Precio unitario
 
   invoice Invoice @relation(fields: [invoiceId], references: [id])
 }

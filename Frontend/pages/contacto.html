@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Configuración estándar de caracteres y adaptabilidad -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Metadatos SEO específicos para la página de contacto -->
         <meta name="description" content="Esta es la pagina contacto del sitio web del gimnasio">
         <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym">
+
         <title>Contacto</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css"> <!--linkeo de estilos-->
+
+        <!-- Iconografía FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" crossorigin="anonymous" />
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Bootstrap JS (offcanvas, menú móvil, etc.) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Estilos generales del sitio -->
+        <link rel="stylesheet" type="text/css" href="../css/estilo.css">
+
+        <!-- Favicon -->
         <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
     </head>
     
 <body>
     <div class="contenedor-header">
-<header>
+        <header>
+            <!-- Logo enlazado a la homepage -->
             <div class="logo">
-                <!-- Logo ahora lleva a Home -->
                 <a href="../index.html" aria-label="Ir al inicio">
                     <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
                 </a>
             </div>
 
-            <!-- Navbar principal -->
+            <!-- Navbar principal visible en escritorio -->
             <nav id="nav">
                 <a href="../pages/contacto.html">Contacto</a>
                 <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
@@ -31,55 +45,64 @@
                 <a href="../pages/estetica.html">Estética</a>
             </nav>
 
+            <!-- Redes sociales en header -->
             <div class="redes-sociales2">
-                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
-                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
-                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
-                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
             </div>
 
-            <!-- Botón hamburguesa -->
-            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <!-- Botón hamburguesa (solo móvil) -->
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button">
                 <i class="fa-solid fa-bars"></i>
             </a>
 
-            <!-- Menú hamburguesa -->
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <!-- Menú offcanvas móvil -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample">
                 <div class="offcanvas-header align-items-center">
-                    <!-- Logo también dentro del menú -->
-                    <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
-                        <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
+                    <!-- Logo dentro del menú -->
+                    <a href="../index.html" class="offcanvas-brand">
+                        <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;">
                     </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
+
+                <!-- Enlaces del menú móvil -->
                 <div class="menu-hamburguesa">
                     <div class="enlaces">
-                        <!-- Opciones solo de alumno -->
                         <a href="../pages/onboarding.html">Anotate</a>
-                        <!-- Resto de secciones -->
                         <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
                         <a href="../pages/clases.html">Clases</a>
-                        <a href="../pages/estetica.html">Estética</a>
+                        <a href="../pages/estetica.html">Estetica</a>
                         <a href="../pages/contacto.html">Contacto</a>
                     </div>
                 </div>
+
+                <!-- Redes sociales dentro del menú -->
                 <div class="redes-sociales2">
-                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
-                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
-                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
-                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
                 </div>
             </div>
         </header>
     </div>
+
+    <!-- Sección principal del formulario -->
     <section class="inicio2">
         <main>
             <div class="contenido-seccion">
+
+                <!-- Título principal -->
                 <div class="contenedor-titulo">
                     <div class="info">
                         DEJANOS <span class="frase">TU CONSULTA</span>
                     </div>
                 </div>
+
+                <!-- Inputs email y nombre en una fila -->
                 <div class="fila">
                     <div class="col">
                         <input type="email" id="contacto-email" placeholder="Ingrese Email">
@@ -88,20 +111,32 @@
                         <input type="text" id="contacto-nombre" placeholder="Ingrese Nombre">
                     </div>
                 </div>
+
+                <!-- Textarea del mensaje -->
                 <div class="mensaje">
                     <textarea id="contacto-mensaje" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
                 </div>
+
+                <!-- Botón con animación personalizada -->
                 <div class="frame">
                     <a class="custom-btn btn-12">
-                        <button id="contacto-enviar" class="custom-btn btn-12"><span>Click!</span><span>Enviar mensaje</span></button>
+                        <button id="contacto-enviar" class="custom-btn btn-12">
+                            <span>Click!</span>
+                            <span>Enviar mensaje</span>
+                        </button>
                     </a>
                 </div>
+
             </div>
         </main>
-    </section>  
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="info">
             <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+
+            <!-- Redes en footer -->
             <div class="redes-sociales2">
                 <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
                 <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
@@ -109,11 +144,14 @@
                 <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
             </div>
         </div>
+
+        <!-- Botón volver arriba -->
         <div class="volver-arriba">
             <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
         </div>
     </footer>
 
+    <!-- Lógica de envío del formulario (archivo externo) -->
     <script src="../contacto.js"></script>
 </body>
 </html>

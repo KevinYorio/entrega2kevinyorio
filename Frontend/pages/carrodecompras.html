@@ -8,15 +8,23 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Tienda</title>
+
+		<!-- Estilos generales del frontend -->
 		<link rel="stylesheet" href="../css/estilo.css" />
 	</head>
+
 	<body class="bod">
 		<header>
+            <!-- Contenedor principal del header -->
             <div class="contenedor-header-alumnos">
+
+                <!-- Logo superior que redirige al home -->
                 <header>
                     <div class="logo">
                         <img class="logo" src="../img/LOGO.webp" alt="Mi logo"> <!--Logo de la marca cargado desde carpeta-->
                     </div>
+
+                    <!-- Menú de navegación público -->
                     <nav id="nav">
                         <a href = "../pages/contacto.html">Contacto</a>
                         <a href = "../pages/sobrenosotros.html">Sobre nosotros</a>
@@ -24,17 +32,24 @@
                         <a href = "../pages/estetica.html">Estetica</a>
                         <a href = "../index.html">HOME</a>
                     </nav>
+
+                    <!-- Redes sociales superiores -->
                     <div class="redes-sociales2">
                         <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
                         <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
                         <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
                         <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
                     </div>
-                    <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="fa-solid fa-bars"></i>
-                    </a>
+
+                    <!-- Ícono menú hamburguesa (versión mobile) -->
+                    <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="fa-solid fa-bars"></i></a>
+                </header>
             </div>
+
+			<!-- Contenedor del icono carrito -->
 			<div class="container-icon">
 				<div class="container-cart-icon">
+					<!-- Ícono del carrito SVG -->
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -49,11 +64,17 @@
 							d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
 						/>
 					</svg>
+
+					<!-- Contador dinámico de productos en el carrito -->
 					<div class="count-products">
 						<span id="contador-productos">0</span>
 					</div>
 				</div>
+
+				<!-- Panel desplegable del carrito -->
 				<div class="container-cart-products hidden-cart">
+
+					<!-- Producto en carrito (plantilla inicial, oculta) -->
 					<div class="row-product hidden">
 						<div class="cart-product">
 							<div class="info-cart-product">
@@ -61,6 +82,8 @@
 								<p class="titulo-producto-carrito">Planes</p>
 								<span class="precio-producto-carrito">$80</span>
 							</div>
+
+							<!-- Ícono para eliminar un producto del carrito -->
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -78,17 +101,28 @@
 						</div>
 					</div>
 
+					<!-- Total del carrito -->
 					<div class="cart-total hidden">
 						<h3>Total:</h3>
 						<span class="total-pagar">$200</span>
 					</div>
+
+					<!-- Mensaje de carrito vacío -->
 					<p class="cart-empty">El carrito está vacío</p>
 				</div>
+
+                <!-- Botón directo a la página de pago -->
                 <a href="pago.html" class="comprita">Pagar</a>
 			</div>
 		</header>
+
+        <!-- Título de la sección -->
         <h1>Tienda</h1>
+
+		<!-- Contenedor de todos los productos visibles -->
 		<div class="container-items">
+
+			<!-- Producto 1 -->
 			<div class="item">
 				<figure>
 					<img
@@ -102,6 +136,8 @@
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
 			</div>
+
+			<!-- Producto 2 -->
 			<div class="item">
 				<figure>
 					<img
@@ -115,6 +151,8 @@
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
 			</div>
+
+			<!-- Producto 3 -->
 			<div class="item">
 				<figure>
 					<img
@@ -128,6 +166,8 @@
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
 			</div>
+
+			<!-- Producto 4 -->
 			<div class="item">
 				<figure>
 					<img
@@ -141,6 +181,8 @@
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
 			</div>
+
+			<!-- Producto 5 -->
 			<div class="item">
 				<figure>
 					<img
@@ -155,7 +197,11 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Botón compra móvil/alternativo (JS lo muestra/oculta) -->
 		<button id="comprita" class="hidden">Comprar</button>
+
+		<!-- Lógica del carrito -->
 		<script src="../carro.js"></script>
 	</body>
 </html>

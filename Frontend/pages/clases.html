@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Codificación estándar + responsive -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- SEO básico para buscadores -->
         <meta name="description" content="Esta es la pagina clases del sitio web del gimnasio">
         <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym">
+
         <title>Clases</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css"> <!--linkeo de estilos-->
+
+        <!-- Iconografía usando Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Bootstrap CSS + JS para estilos y componentes (carousel, offcanvas, etc.) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        <!-- Estilos propios del proyecto -->
+        <link rel="stylesheet" type="text/css" href="../css/estilo.css">
+
+        <!-- Icono de la pestaña -->
         <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
     </head>
+
 <body>
+    <!-- Contenedor que incluye header fijo o estilizado -->
     <div class="contenedor-header-alumnos">
     <header>
+
+            <!-- Logo que redirige a la página principal -->
             <div class="logo">
-                <!-- Logo ahora lleva a Home -->
                 <a href="../index.html" aria-label="Ir al inicio">
                     <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
                 </a>
             </div>
 
-            <!-- Navbar principal -->
+            <!-- Navegación principal visible en desktop -->
             <nav id="nav">
                 <a href="../pages/contacto.html">Contacto</a>
                 <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
@@ -30,6 +45,7 @@
                 <a href="../pages/estetica.html">Estética</a>
             </nav>
 
+            <!-- Íconos a redes sociales (header) -->
             <div class="redes-sociales2">
                 <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
                 <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
@@ -37,75 +53,38 @@
                 <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
             </div>
 
-            <!-- Botón hamburguesa -->
+            <!-- Botón hamburguesa para mobile -->
             <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <i class="fa-solid fa-bars"></i>
             </a>
 
-            <!-- Menú hamburguesa -->
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <!-- Menú lateral offcanvas (Bootstrap) -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample">
+                
+                <!-- Encabezado del menú hamburguesa -->
                 <div class="offcanvas-header align-items-center">
-                    <!-- Logo también dentro del menú -->
                     <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
                         <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
                     </a>
+
+                    <!-- Botón para cerrar menú -->
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                 </div>
+
                 <div class="menu-hamburguesa">
                     <div class="enlaces">
-                        <!-- Opciones solo de alumno -->
+                        <!-- Acceso directo a inscripción -->
                         <a href="../pages/onboarding.html">Anotate</a>
-                        <!-- Resto de secciones -->
+
+                        <!-- Secciones principales -->
                         <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
                         <a href="../pages/clases.html">Clases</a>
                         <a href="../pages/estetica.html">Estética</a>
                         <a href="../pages/contacto.html">Contacto</a>
                     </div>
                 </div>
-                <div class="redes-sociales2">
-                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
-                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
-                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
-                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
-                </div>
-            </div>
-        </header>
-    </div>
-    <main>
-        <section id="inicio" class="inicio">
-            <div class="contenido-seccion">
-                <div class="info">
-        <h1 class="especial">COMENZA <span class="txtverde">TU CAMBIO</span></h1>
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="../img/calendarioatix.webp" class="d-block w-100" alt="calendario1">
-                </div>
-                <div class="carousel-item">
-                <img src="../img/calendarioatix2.webp" class="d-block w-100" alt="calendario2">
-                </div>
-                <div class="carousel-item">
-                <img src="../img/calendarioatix3.webp" class="d-block w-100" alt="calendario3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    </section>
-        <footer>
-            <div class="info">
-                <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
-                <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar clases de..." target="_blank" class="card-link" target="_blank">Relizar consulta</a>
+
+                <!-- Redes también dentro del menú -->
                 <div class="redes-sociales2">
                     <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
                     <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
@@ -113,10 +92,79 @@
                     <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
                 </div>
             </div>
+        </header>
+    </div>
+
+    <main>
+
+        <!-- Sección principal con título + carousel -->
+        <section id="inicio" class="inicio">
+            <div class="contenido-seccion">
+                <div class="info">
+
+        <!-- Título motivacional -->
+        <h1 class="especial">COMENZA <span class="txtverde">TU CAMBIO</span></h1>
+
+        <!-- Carrusel automático con tres imágenes -->
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="../img/calendarioatix.webp" class="d-block w-100" alt="calendario1">
+                </div>
+
+                <div class="carousel-item">
+                <img src="../img/calendarioatix2.webp" class="d-block w-100" alt="calendario2">
+                </div>
+
+                <div class="carousel-item">
+                <img src="../img/calendarioatix3.webp" class="d-block w-100" alt="calendario3">
+                </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    </section>
+
+        <!-- Pie de página -->
+        <footer>
+            <div class="info">
+                <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+
+                <!-- Enlace a WhatsApp para consultas -->
+                <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar clases de..." target="_blank" class="card-link">Relizar consulta</a>
+
+                <!-- Redes sociales en footer -->
+                <div class="redes-sociales2">
+                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Botón para volver arriba -->
             <div class="volver-arriba">
                 <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
             </div>
         </footer>
+
+        <!-- Archivo JS general del sitio -->
         <script src="app.js"></script>
 </body>
 </html>

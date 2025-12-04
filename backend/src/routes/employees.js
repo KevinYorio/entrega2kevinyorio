@@ -4,20 +4,29 @@ import prisma from '../lib/prisma.js';
 
 const r = Router();
 
-// Normaliza payload del frontend -> DB
+/**
+ * Normaliza el payload recibido desde el frontend
+ * para asegurarnos de que los valores entren limpios
+ * y compatibles con las columnas de la base de datos.
+ */
 function normalizeEmployeeBody(body) {
   const firstName = (body.firstName || '').trim();
   const lastName  = (body.lastName  || '').trim() || null;
   const emailRaw  = (body.email     || '').trim();
   const email     = emailRaw === '' ? null : emailRaw;
-  const role      = (body.role      || 'COACH').toUpperCase();
+  const role      = (body.role      || 'COACH').toUpperCase(); // Rol por defecto COACH
   const hourRate  = body.hourRate === null || body.hourRate === undefined || body.hourRate === ''
     ? null
-    : Number(body.hourRate);
+    : Number(body.hourRate); // Se guarda como Decimal
 
   return { firstName, lastName, email, role, hourRate };
 }
 
+/**
+ * Valida reglas básicas del modelo Employee:
+ * - firstName obligatorio
+ * - role debe ser uno de los roles permitidos
+ */
 function validateEmployee({ firstName, role }) {
   if (!firstName) return 'El nombre es obligatorio';
   const allowed = ['ADMIN','RECEPTION','COACH'];
@@ -26,15 +35,17 @@ function validateEmployee({ firstName, role }) {
 }
 
 // GET /api/employees
+// Obtiene todos los empleados ordenados por fecha de creación descendente
 r.get('/', async (_req, res) => {
   const items = await prisma.employee.findMany({
     orderBy: [{ createdAt: 'desc' }],
   });
-  // Prisma Decimal serializa a string; frontend lo maneja ok
+  // Prisma convierte Decimal a string, el frontend ya lo maneja correctamente
   res.json(items);
 });
 
 // POST /api/employees
+// Crea un empleado nuevo validando datos y evitando emails duplicados
 r.post('/', async (req, res) => {
   const data = normalizeEmployeeBody(req.body);
   const err = validateEmployee(data);
@@ -46,14 +57,14 @@ r.post('/', async (req, res) => {
         firstName: data.firstName,
         lastName:  data.lastName,
         email:     data.email,     // unique nullable
-        role:      data.role,      // Role enum
-        hourRate:  data.hourRate,  // Decimal | null
+        role:      data.role,      // Enum Role
+        hourRate:  data.hourRate,  // Decimal o null
         active:    true,
       },
     });
     res.status(201).json(created);
   } catch (e) {
-    // Manejo de unique(email)
+    // Email duplicado (unique constraint)
     if (e.code === 'P2002') {
       return res.status(409).json({ error: 'El email ya está registrado en otro empleado' });
     }
@@ -63,6 +74,7 @@ r.post('/', async (req, res) => {
 });
 
 // PUT /api/employees/:id
+// Actualiza datos del empleado por ID
 r.put('/:id', async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: 'ID inválido' });
@@ -84,9 +96,11 @@ r.put('/:id', async (req, res) => {
     });
     res.json(updated);
   } catch (e) {
+    // Email duplicado
     if (e.code === 'P2002') {
       return res.status(409).json({ error: 'El email ya está registrado en otro empleado' });
     }
+    // Empleado no encontrado
     if (e.code === 'P2025') {
       return res.status(404).json({ error: 'Empleado no encontrado' });
     }
@@ -96,6 +110,7 @@ r.put('/:id', async (req, res) => {
 });
 
 // DELETE /api/employees/:id
+// Elimina un empleado; retorna 204 sin contenido si todo sale bien
 r.delete('/:id', async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: 'ID inválido' });
@@ -104,6 +119,7 @@ r.delete('/:id', async (req, res) => {
     await prisma.employee.delete({ where: { id } });
     res.status(204).end();
   } catch (e) {
+    // Empleado inexistente
     if (e.code === 'P2025') return res.status(404).json({ error: 'Empleado no encontrado' });
     console.error('DELETE /employees/:id error', e);
     res.status(500).json({ error: 'Error eliminando empleado' });

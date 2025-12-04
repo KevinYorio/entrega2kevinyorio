@@ -1,3 +1,9 @@
+-- ============================================
+-- ENUMS DEL SISTEMA
+-- Estos tipos permiten estandarizar roles,
+-- estados de reservas, facturas y días laborales.
+-- ============================================
+
 -- CreateEnum
 CREATE TYPE "public"."Role" AS ENUM ('USER', 'ADMIN', 'RECEPTION', 'COACH');
 
@@ -10,12 +16,21 @@ CREATE TYPE "public"."InvoiceStatus" AS ENUM ('PENDING', 'PAID', 'CANCELLED');
 -- CreateEnum
 CREATE TYPE "public"."WeekDay" AS ENUM ('MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
 
--- AlterTable
+-- ============================================
+-- MODIFICACIÓN DE TABLA USER
+-- Se agregan campos de activación, teléfono
+-- y rol del usuario para manejar perfiles.
+-- ============================================
 ALTER TABLE "public"."User" ADD COLUMN     "active" BOOLEAN NOT NULL DEFAULT true,
 ADD COLUMN     "phone" TEXT,
 ADD COLUMN     "role" "public"."Role" NOT NULL DEFAULT 'USER';
 
--- CreateTable
+-- ============================================
+-- TABLA EMPLOYEE
+-- Representa personal del gimnasio/empresa:
+-- coaches, recepción, administración, etc.
+-- Incluye hora laboral (hourRate) para cálculos.
+-- ============================================
 CREATE TABLE "public"."Employee" (
     "id" SERIAL NOT NULL,
     "firstName" TEXT NOT NULL,
@@ -29,7 +44,10 @@ CREATE TABLE "public"."Employee" (
     CONSTRAINT "Employee_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA PROVIDER
+-- Proveedores externos para compras y servicios.
+-- ============================================
 CREATE TABLE "public"."Provider" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -42,7 +60,11 @@ CREATE TABLE "public"."Provider" (
     CONSTRAINT "Provider_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA EXPENSE
+-- Registro de gastos vinculados a proveedores.
+-- amount DECIMAL para manipulación contable precisa.
+-- ============================================
 CREATE TABLE "public"."Expense" (
     "id" SERIAL NOT NULL,
     "providerId" INTEGER NOT NULL,
@@ -54,7 +76,12 @@ CREATE TABLE "public"."Expense" (
     CONSTRAINT "Expense_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA CLASS
+-- Modela una clase grupal:
+-- día, horarios, capacidad, coach asignado.
+-- coachId puede quedar en NULL si el empleado se borra.
+-- ============================================
 CREATE TABLE "public"."Class" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -68,7 +95,11 @@ CREATE TABLE "public"."Class" (
     CONSTRAINT "Class_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA BOOKING
+-- Reserva de un alumno a una clase.
+-- Incluye check-in, estado y token único.
+-- ============================================
 CREATE TABLE "public"."Booking" (
     "id" SERIAL NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
@@ -84,7 +115,11 @@ CREATE TABLE "public"."Booking" (
     CONSTRAINT "Booking_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA INVOICE
+-- Cabecera de una factura del sistema.
+-- number puede ser correlativo externo.
+-- ============================================
 CREATE TABLE "public"."Invoice" (
     "id" SERIAL NOT NULL,
     "number" INTEGER,
@@ -97,7 +132,10 @@ CREATE TABLE "public"."Invoice" (
     CONSTRAINT "Invoice_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- ============================================
+-- TABLA INVOICE ITEM
+-- Detalle de ítems de una factura.
+-- ============================================
 CREATE TABLE "public"."InvoiceItem" (
     "id" SERIAL NOT NULL,
     "invoiceId" INTEGER NOT NULL,
@@ -108,77 +146,50 @@ CREATE TABLE "public"."InvoiceItem" (
     CONSTRAINT "InvoiceItem_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
+-- ============================================
+-- ÍNDICES
+-- Mejoran rendimiento en búsquedas, listados y reportes.
+-- ============================================
 CREATE UNIQUE INDEX "Employee_email_key" ON "public"."Employee"("email");
-
--- CreateIndex
 CREATE INDEX "Employee_role_idx" ON "public"."Employee"("role");
-
--- CreateIndex
 CREATE INDEX "Employee_active_idx" ON "public"."Employee"("active");
 
--- CreateIndex
 CREATE INDEX "Provider_name_idx" ON "public"."Provider"("name");
-
--- CreateIndex
 CREATE INDEX "Provider_active_idx" ON "public"."Provider"("active");
 
--- CreateIndex
 CREATE INDEX "Expense_date_idx" ON "public"."Expense"("date");
-
--- CreateIndex
 CREATE INDEX "Expense_providerId_idx" ON "public"."Expense"("providerId");
 
--- CreateIndex
 CREATE INDEX "Class_day_idx" ON "public"."Class"("day");
 
--- CreateIndex
 CREATE UNIQUE INDEX "Booking_checkInToken_key" ON "public"."Booking"("checkInToken");
-
--- CreateIndex
 CREATE INDEX "Booking_date_idx" ON "public"."Booking"("date");
-
--- CreateIndex
 CREATE INDEX "Booking_status_idx" ON "public"."Booking"("status");
-
--- CreateIndex
 CREATE INDEX "Booking_classId_idx" ON "public"."Booking"("classId");
-
--- CreateIndex
 CREATE INDEX "Booking_studentId_idx" ON "public"."Booking"("studentId");
 
--- CreateIndex
 CREATE INDEX "Invoice_date_idx" ON "public"."Invoice"("date");
-
--- CreateIndex
 CREATE INDEX "Invoice_status_idx" ON "public"."Invoice"("status");
-
--- CreateIndex
 CREATE INDEX "Invoice_studentId_idx" ON "public"."Invoice"("studentId");
 
--- CreateIndex
 CREATE INDEX "Plan_isActive_idx" ON "public"."Plan"("isActive");
 
--- CreateIndex
 CREATE INDEX "User_role_idx" ON "public"."User"("role");
-
--- CreateIndex
 CREATE INDEX "User_emailVerified_idx" ON "public"."User"("emailVerified");
 
--- AddForeignKey
+-- ============================================
+-- FOREIGN KEYS
+-- Establecen relaciones entre entidades manteniendo
+-- integridad referencial.
+-- ============================================
 ALTER TABLE "public"."Expense" ADD CONSTRAINT "Expense_providerId_fkey" FOREIGN KEY ("providerId") REFERENCES "public"."Provider"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "public"."Class" ADD CONSTRAINT "Class_coachId_fkey" FOREIGN KEY ("coachId") REFERENCES "public"."Employee"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "public"."Booking" ADD CONSTRAINT "Booking_classId_fkey" FOREIGN KEY ("classId") REFERENCES "public"."Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "public"."Booking" ADD CONSTRAINT "Booking_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "public"."Invoice" ADD CONSTRAINT "Invoice_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "public"."InvoiceItem" ADD CONSTRAINT "InvoiceItem_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "public"."Invoice"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

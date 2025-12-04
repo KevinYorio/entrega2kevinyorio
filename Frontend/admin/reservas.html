@@ -4,16 +4,21 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ATIX ERP - Reservas</title>
+
+  <!-- Bootstrap: estilos principales -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Incluir SIEMPRE en cada página admin (debajo de Bootstrap) -->
+
+  <!-- Script principal del panel administrativo (maneja login, permisos, API, etc.) -->
   <script src="/admin/assets/admin.js"></script>
+
+  <!-- Hojas de estilo propias del frontend -->
   <link rel="stylesheet" href="../css/estilo.css">
   <link rel="stylesheet" href="../admin/assets/admin.css">
 
 <body class="bg-dark text-white">
 <div class="admin-shell">
 
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR: menú lateral del panel -->
   <aside class="sidebar">
     <div class="brand">
       <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
@@ -21,6 +26,8 @@
         <strong>ATIX • ERP</strong>
       </a>
     </div>
+
+    <!-- Navegación principal -->
     <nav class="menu d-grid gap-1">
       <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
       <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
@@ -28,70 +35,114 @@
       <a href="../admin/empleados.html" data-admin-only><i class="fa-solid fa-id-badge"></i>Empleados</a>
       <a href="../admin/facturacion.html"><i class="fa-solid fa-file-invoice-dollar"></i>Facturación</a>
       <a href="../admin/horarios.html"><i class="fa-regular fa-calendar-days"></i>Días y Horarios</a>
+
+      <!-- Página activa: Reservas -->
       <a class="active" href="../admin/reservas.html"><i class="fa-solid fa-calendar-check"></i>Reservas</a>
+
       <a href="../admin/reportes.html"><i class="fa-solid fa-chart-line"></i>Reportes</a>
       <a href="../admin/checkin.html"><i class="fa-solid fa-qrcode"></i>Check-in</a>
     </nav>
   </aside>
 
-  <!-- TOPBAR -->
+  <!-- TOPBAR: barra superior -->
   <header class="topbar">
     <div class="d-flex align-items-center gap-2">
       <i class="fa-solid fa-calendar-check text-success"></i>
       <span class="text-muted-2">Reservas</span>
     </div>
+
+    <!-- Usuario + botón logout -->
     <div class="d-flex align-items-center gap-3">
       <span id="topUser" class="text-muted-2">Admin</span>
+
+      <!-- Borra token y cierra sesión -->
       <button class="btn btn-sm btn-outline-light" onclick="localStorage.removeItem('atix_token');location.href='/'">
         Cerrar sesión
       </button>
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN: contenido principal -->
   <main class="main">
-    <!-- /admin/reservas.html -->
+    <!-- Título + filtros -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="m-0">Reservas de clases</h3>
+
+      <!-- Filtro de fecha -->
       <div class="d-flex gap-2">
         <input id="rDate" type="date" class="form-control">
         <button class="btn btn-outline-light" id="rBtn">Buscar</button>
       </div>
     </div>
 
+    <!-- Tabla de resultados -->
     <div class="card p-3">
       <div class="table-responsive">
         <table class="table align-middle">
-          <thead><tr><th>Fecha</th><th>Clase</th><th>Alumno</th><th>Estado</th><th class="text-end">Acciones</th></tr></thead>
-          <tbody id="tbRes"></tbody>
+          <thead>
+            <tr>
+              <th>Fecha</th><th>Clase</th><th>Alumno</th><th>Estado</th><th class="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbRes"></tbody> <!-- Aquí se inyectan las filas -->
         </table>
       </div>
     </div>
 
     <script>
+      // Renderiza una fila HTML a partir de un registro de reserva
       function rowRes(r){
+        // Construcción de fecha + hora
         const date = new Date(r.date).toLocaleDateString() + ' ' + (r.time || '');
+
+        // Se arma la fila de la tabla
         return `<tr>
           <td>${date}</td>
           <td>${r.className || r.class?.name}</td>
           <td>${r.studentName || (r.student?.firstName+' '+(r.student?.lastName||''))}</td>
-          <td><span class="badge ${r.status==='CONFIRMED'?'bg-success':(r.status==='CANCELLED'?'bg-secondary':'bg-warning')}">${r.status}</span></td>
+
+          <!-- Badge según estado (confirmado, cancelado o pendiente) -->
+          <td>
+            <span class="badge ${r.status==='CONFIRMED'?'bg-success':(r.status==='CANCELLED'?'bg-secondary':'bg-warning')}">
+              ${r.status}
+            </span>
+          </td>
+
+          <!-- Acciones: confirmar, QR, cancelar -->
           <td class="text-end">
             <div class="btn-group btn-group-sm">
-              <button class="btn btn-outline-light" onclick="Admin.apiPost('/bookings/${r.id}/confirm',{}).then(listar)">Confirmar</button>
+              <button class="btn btn-outline-light"
+                onclick="Admin.apiPost('/bookings/${r.id}/confirm',{}).then(listar)">
+                Confirmar
+              </button>
+
               <button class="btn btn-outline-primary" onclick="genQR(${r.id})">QR</button>
-              <button class="btn btn-outline-danger" onclick="Admin.apiPost('/bookings/${r.id}/cancel',{}).then(listar)">Cancelar</button>
+
+              <button class="btn btn-outline-danger"
+                onclick="Admin.apiPost('/bookings/${r.id}/cancel',{}).then(listar)">
+                Cancelar
+              </button>
             </div>
           </td>
         </tr>`;
       }
+
+      // Lista las reservas según la fecha seleccionada
       async function listar(){
         const p = new URLSearchParams();
         if(rDate.value) p.set('date', rDate.value);
+
+        // Llamada a la API de reservas
         const list = await Admin.apiGet('/bookings?'+p.toString());
+
+        // Insertar filas en la tabla
         tbRes.innerHTML = (list.items||list||[]).map(rowRes).join('');
       }
+
+      // Evento botón "Buscar"
       rBtn.onclick = listar;
+
+      // Al cargar la página, setea fecha actual y lista reservas
       document.addEventListener('DOMContentLoaded', ()=>{
         rDate.value = new Date().toISOString().slice(0,10);
         listar();
@@ -100,44 +151,60 @@
   </main>
 </div>
 
-<!-- Modal QR -->
+<!-- Modal para mostrar QR -->
 <div class="modal fade" id="mdlQR" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content card p-3">
+
       <div class="modal-header">
         <h5 class="modal-title">QR de check-in</h5>
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
       <div class="modal-body text-center">
-        <canvas id="qrCanvas"></canvas>
+        <canvas id="qrCanvas"></canvas> <!-- Aquí se renderiza el QR -->
         <div class="small mt-2 text-muted-2">Token: <span id="qrToken">—</span></div>
       </div>
+
       <div class="modal-footer">
+        <!-- Descarga de imagen PNG del QR -->
         <a id="qrDl" class="btn btn-outline-light" download="checkin.png">Descargar PNG</a>
       </div>
+
     </div>
   </div>
 </div>
-<!-- lib QR local -->
+
+<!-- Librería QRCode -->
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
-<!-- Si genQR no estuviera ya definido globalmente, defínelo de forma segura -->
+<!-- Definir genQR SOLO si aún no existe -->
 <script>
   if (typeof genQR !== 'function') {
     async function genQR(bookingId){
       try{
-        // Pide token de check-in para la reserva
+        // Solicita token QR al backend
         const r = await Admin.apiPost(`/bookings/${bookingId}/qr`, {});
+
+        // Token que identifica la reserva
         const token = r.token || r.qr || r.id || String(bookingId);
+
         const canvas = document.getElementById('qrCanvas');
-        const urlToken = token; // contenido QR (token crudo)
+
+        // Generar código QR en canvas
+        const urlToken = token;
         await QRCode.toCanvas(canvas, urlToken, { width: 240, margin: 2 });
+
+        // Mostrar token debajo
         document.getElementById('qrToken').textContent = token;
-        // preparar descarga
+
+        // Configurar descarga del PNG
         const dl = document.getElementById('qrDl');
         dl.href = canvas.toDataURL('image/png');
-        // mostrar modal
+
+        // Mostrar modal
         new bootstrap.Modal('#mdlQR').show();
+
       }catch(e){
         alert('No se pudo generar el QR: ' + (e.message || e));
       }
@@ -145,7 +212,11 @@
   }
 </script>
 
+<!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
+
+<!-- JS de Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

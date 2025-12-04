@@ -1,154 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Esta es la pagina estetica del sitio web del gimnasio">
-        <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym">
-        <title>Estetica</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css"> <!--linkeo de estilos-->
-        <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
-    </head>
-<body>
-    <div class="contenedor-header-alumnos">
-<header>
-            <div class="logo">
-                <!-- Logo ahora lleva a Home -->
-                <a href="../index.html" aria-label="Ir al inicio">
-                    <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
-                </a>
-            </div>
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <!-- Navbar principal -->
-            <nav id="nav">
-                <a href="../pages/contacto.html">Contacto</a>
+    <!-- SEO: descripción y keywords -->
+    <meta name="description" content="Esta es la pagina estetica del sitio web del gimnasio">
+    <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym, estética">
+
+    <title>Estética</title>
+
+    <!-- Íconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" crossorigin="anonymous"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" type="text/css" href="../css/estilo.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<!-- Contenedor del header exclusivo de páginas internas -->
+<div class="contenedor-header-alumnos">
+<header>
+    <!-- Logo que redirige al Home -->
+    <div class="logo">
+        <a href="../index.html" aria-label="Ir al inicio">
+            <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
+        </a>
+    </div>
+
+    <!-- Barra de navegación principal -->
+    <nav id="nav">
+        <a href="../pages/contacto.html">Contacto</a>
+        <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
+        <a href="../pages/clases.html">Clases</a>
+        <a href="../pages/estetica.html">Estética</a>
+    </nav>
+
+    <!-- Redes sociales -->
+    <div class="redes-sociales2">
+        <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+        <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+        <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+        <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button">
+        <i class="fa-solid fa-bars"></i>
+    </a>
+
+    <!-- Menú lateral offcanvas -->
+    <div class="offcanvas offcanvas-start" id="offcanvasExample">
+        <div class="offcanvas-header align-items-center">
+
+            <!-- Logo dentro del menú -->
+            <a href="../index.html" class="offcanvas-brand">
+                <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;">
+            </a>
+
+            <!-- Botón cerrar -->
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <!-- Enlaces dentro del menú lateral -->
+        <div class="menu-hamburguesa">
+            <div class="enlaces">
+                <a href="../pages/onboarding.html">Anotate</a>
                 <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
                 <a href="../pages/clases.html">Clases</a>
                 <a href="../pages/estetica.html">Estética</a>
-            </nav>
-
-            <div class="redes-sociales2">
-                <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
-                <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
-                <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
-                <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
+                <a href="../pages/contacto.html">Contacto</a>
             </div>
+        </div>
 
-            <!-- Botón hamburguesa -->
-            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </a>
-
-            <!-- Menú hamburguesa -->
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header align-items-center">
-                    <!-- Logo también dentro del menú -->
-                    <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
-                        <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
-                    </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-                </div>
-                <div class="menu-hamburguesa">
-                    <div class="enlaces">
-                        <!-- Opciones solo de alumno -->
-                        <a href="../pages/onboarding.html">Anotate</a>
-                        <!-- Resto de secciones -->
-                        <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
-                        <a href="../pages/clases.html">Clases</a>
-                        <a href="../pages/estetica.html">Estética</a>
-                        <a href="../pages/contacto.html">Contacto</a>
-                    </div>
-                </div>
-                <div class="redes-sociales2">
-                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
-                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
-                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank" rel="noopener"><i class="instagram"></i></a>
-                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
-                </div>
-            </div>
-        </header>
+        <!-- Redes sociales duplicadas para el menú -->
+        <div class="redes-sociales2">
+            <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+            <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+            <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+            <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+        </div>
     </div>
-    <main>
-        <div class="container text-center">
-            <h1>LOS MEJORES <span class="txtRojo">TRATAMIENTOS ESTETICOS</span></h1>
-            <div class="row row-cols-2">
-        <div class="col">
-        <p>
-        <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample1" aria-expanded="false" aria-controls="collapseWidthExample">
-            <img src="../img/estetica1.webp" alt="Estetica1" class="boton-imagen">
-        </a>
-        </p>
-        <div style="min-height: 120px;">
-        <div class="collapse collapse-horizontal" id="collapseWidthExample1">
-            <div class="card-body" style="width: 300px;">
-            Esto es un tratamiento de estetica que sirve para...
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="col">
-        <p>
-            <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
-                <img src="../img/estetica2.webp" alt="Estetica2" class="boton-imagen">
-            </a>
-            </p>
-            <div style="min-height: 120px;">
-            <div class="collapse collapse-horizontal" id="collapseWidthExample2">
-                <div class="card-body" style="width: 300px;">
-                Esto es un tratamiento de estetica que sirve para...
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col">
-            <p>
-                <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
-                    <img src="../img/estetica3.webp" alt="Estetica3" class="boton-imagen">
-                </a>
-                </p>
-                <div style="min-height: 120px;">
-                <div class="collapse collapse-horizontal" id="collapseWidthExample3">
-                    <div class="card-body" style="width: 300px;">
-                    Esto es un tratamiento de estetica que sirve para...
-                    </div>
-                </div>
-                </div>
-            </div>
-        <div class="col">
+</header>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main>
+    <div class="container text-center">
+
+        <!-- Título principal -->
+        <h1>LOS MEJORES <span class="txtRojo">TRATAMIENTOS ESTÉTICOS</span></h1>
+
+        <!-- Grilla de 4 tratamientos -->
+        <div class="row row-cols-2">
+
+            <!-- === TRATAMIENTO 1 === -->
+            <div class="col">
                 <p>
-                    <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample">
-                        <img src="../img/estetica4.webp" alt="Estetica4" class="boton-imagen">
+                    <!-- Imagen que abre el collapse -->
+                    <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                        <img src="../img/estetica1.webp" alt="Estética 1" class="boton-imagen">
                     </a>
-                    </p>
-                    <div style="min-height: 120px;">
-                    <div class="collapse collapse-horizontal" id="collapseWidthExample4">
+                </p>
+
+                <!-- Contenedor necesario para animación horizontal -->
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapse1">
                         <div class="card-body" style="width: 300px;">
-                        Esto es un tratamiento de estetica que sirve para...
+                            Esto es un tratamiento de estética que sirve para...
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- === TRATAMIENTO 2 === -->
+            <div class="col">
+                <p>
+                    <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                        <img src="../img/estetica2.webp" alt="Estética 2" class="boton-imagen">
+                    </a>
+                </p>
+
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapse2">
+                        <div class="card-body" style="width: 300px;">
+                            Esto es un tratamiento de estética que sirve para...
+                        </div>
                     </div>
                 </div>
-                    <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar clases de..." target="_blank" class="card-link" target="_blank">Relizar consulta</a>
-        </a>
-    </main>
-    </section>
-        <footer>
-            <div class="info">
-                <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
-                <div class="redes-sociales2">
-                    <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
-                    <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
-                    <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
-                    <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+            </div>
+
+            <!-- === TRATAMIENTO 3 === -->
+            <div class="col">
+                <p>
+                    <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                        <img src="../img/estetica3.webp" alt="Estética 3" class="boton-imagen">
+                    </a>
+                </p>
+
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapse3">
+                        <div class="card-body" style="width: 300px;">
+                            Esto es un tratamiento de estética que sirve para...
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="volver-arriba">
-                <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
+
+            <!-- === TRATAMIENTO 4 === -->
+            <div class="col">
+                <p>
+                    <a href="#" class="btn-primary" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                        <img src="../img/estetica4.webp" alt="Estética 4" class="boton-imagen">
+                    </a>
+                </p>
+
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapse4">
+                        <div class="card-body" style="width: 300px;">
+                            Esto es un tratamiento de estética que sirve para...
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
-        <script src="app.js"></script>
+
+            <!-- Botón de WhatsApp para reservas -->
+            <a href="https://api.whatsapp.com/send?phone=5491166739161&text=¡Hola! Estoy interesado/a en reservar clases de..." target="_blank" class="card-link">
+                Realizar consulta
+            </a>
+
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="info">
+        <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+
+        <div class="redes-sociales2">
+            <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
+            <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
+            <a href="https://www.instagram.com/atixhaedo/?hl=es" target="_blank"><i class="instagram"></i></a>
+            <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- Botón subir arriba -->
+    <div class="volver-arriba">
+        <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
+    </div>
+</footer>
+
+<!-- JS propio -->
+<script src="app.js"></script>
+
 </body>
 </html>

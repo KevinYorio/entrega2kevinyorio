@@ -1,24 +1,38 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Codificación estándar + responsive -->
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <!-- Título de la página -->
   <title>ATIX ERP - Reportes</title>
+
+  <!-- Bootstrap desde CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos del ERP y del panel admin -->
   <link rel="stylesheet" href="/css/estilo.css">
   <link rel="stylesheet" href="../css/estilo.css">
   <link rel="stylesheet" href="../admin/assets/admin.css">
 </head>
+
 <body class="bg-dark text-white">
 <div class="admin-shell">
 
-  <!-- SIDEBAR -->
+  <!-- ====================================== -->
+  <!-- SIDEBAR DE NAVEGACIÓN -->
+  <!-- ====================================== -->
   <aside class="sidebar">
     <div class="brand">
+      <!-- Logo de la plataforma + enlace al index -->
       <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
         <img src="../img/LOGO.webp" alt="ATIX Admin"/>
         <strong>ATIX • ERP</strong>
       </a>
     </div>
+
+    <!-- Menú de navegación lateral -->
     <nav class="menu d-grid gap-1">
       <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
       <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
@@ -26,113 +40,237 @@
       <a href="../admin/empleados.html" data-admin-only><i class="fa-solid fa-id-badge"></i>Empleados</a>
       <a href="../admin/facturacion.html"><i class="fa-solid fa-file-invoice-dollar"></i>Facturación</a>
       <a href="../admin/horarios.html"><i class="fa-regular fa-calendar-days"></i>Días y Horarios</a>
+      <!-- "active" marca la sección actual -->
       <a class="active" href="../admin/reservas.html"><i class="fa-solid fa-calendar-check"></i>Reservas</a>
       <a href="../admin/reportes.html"><i class="fa-solid fa-chart-line"></i>Reportes</a>
       <a href="../admin/checkin.html"><i class="fa-solid fa-qrcode"></i>Check-in</a>
     </nav>
   </aside>
 
-  <!-- TOPBAR -->
+  <!-- ====================================== -->
+  <!-- TOPBAR SUPERIOR -->
+  <!-- ====================================== -->
   <header class="topbar">
     <div class="d-flex align-items-center gap-2">
       <i class="fa-solid fa-chart-line text-success"></i>
       <span class="text-muted-2">Reportes</span>
     </div>
+
+    <!-- Usuario logueado (llenado por JS del Admin) -->
     <div><span id="topUser" class="text-muted-2"></span></div>
   </header>
 
+  <!-- ====================================== -->
+  <!-- CONTENIDO PRINCIPAL -->
+  <!-- ====================================== -->
   <main class="main">
+
     <h3 class="mb-3">Ingresos y gastos por rango</h3>
 
+    <!-- Card con filtros de fecha -->
     <div class="card p-3 mb-3">
       <div class="row g-2 align-items-end">
+
+        <!-- Fecha Desde -->
         <div class="col-md-3">
           <label class="form-label">Desde</label>
           <input id="rFrom" type="date" class="form-control">
         </div>
+
+        <!-- Fecha Hasta -->
         <div class="col-md-3">
           <label class="form-label">Hasta</label>
           <input id="rTo" type="date" class="form-control">
         </div>
+
+        <!-- Botón para ejecutar la consulta -->
         <div class="col-md-2">
           <button id="btnRep" class="btn btn-admin w-100">Consultar</button>
         </div>
+
+        <!-- Exportaciones directas del backend -->
         <div class="col-md-4 text-end">
           <a class="btn btn-outline-light btn-sm" href="/api/export/invoices.csv" target="_blank">CSV facturas</a>
           <a class="btn btn-outline-light btn-sm" href="/api/export/expenses.csv" target="_blank">CSV gastos</a>
         </div>
+
       </div>
     </div>
 
+    <!-- ====================================== -->
+    <!-- RESULTADOS: TOTALES + TABLAS -->
+    <!-- ====================================== -->
     <div class="row g-3">
+
+      <!-- Columna de totales -->
       <div class="col-lg-4">
         <div class="card p-3">
           <h6 class="text-muted-2">Totales</h6>
+
           <div class="mt-2 d-grid gap-2">
-            <div class="d-flex justify-content-between"><span>Ingresos (PAGADAS)</span><strong id="tIncome">$0</strong></div>
-            <div class="d-flex justify-content-between"><span>Ingresos (PEND.)</span><strong id="tPending">$0</strong></div>
-            <div class="d-flex justify-content-between"><span>Gastos</span><strong id="tExp">$0</strong></div>
+
+            <!-- Ingresos Pagados -->
+            <div class="d-flex justify-content-between">
+              <span>Ingresos (PAGADAS)</span>
+              <strong id="tIncome">$0</strong>
+            </div>
+
+            <!-- Ingresos Pendientes -->
+            <div class="d-flex justify-content-between">
+              <span>Ingresos (PEND.)</span>
+              <strong id="tPending">$0</strong>
+            </div>
+
+            <!-- Gastos -->
+            <div class="d-flex justify-content-between">
+              <span>Gastos</span>
+              <strong id="tExp">$0</strong>
+            </div>
+
             <hr>
-            <div class="d-flex justify-content-between"><span>Balance</span><strong id="tBal">$0</strong></div>
+
+            <!-- Balance general -->
+            <div class="d-flex justify-content-between">
+              <span>Balance</span>
+              <strong id="tBal">$0</strong>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Columna de tablas -->
       <div class="col-lg-8">
+
+        <!-- TABLA DE FACTURAS -->
         <div class="card p-3 mb-3">
           <h6>Facturas</h6>
+
           <div class="table-responsive">
             <table class="table table-sm" id="tblInv">
-              <thead><tr><th>#</th><th>Fecha</th><th>Alumno</th><th>Estado</th><th>Total</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>#</th><th>Fecha</th><th>Alumno</th><th>Estado</th><th>Total</th>
+                </tr>
+              </thead>
               <tbody id="tbInv"></tbody>
             </table>
           </div>
-          <button class="btn btn-outline-light btn-sm" onclick="Admin.exportTableCSV('#tblInv','facturas_reporte.csv')">Exportar CSV (vista)</button>
+
+          <!-- Exportar CSV desde la tabla renderizada -->
+          <button class="btn btn-outline-light btn-sm"
+            onclick="Admin.exportTableCSV('#tblInv','facturas_reporte.csv')">
+            Exportar CSV (vista)
+          </button>
         </div>
+
+        <!-- TABLA DE GASTOS -->
         <div class="card p-3">
           <h6>Gastos</h6>
+
           <div class="table-responsive">
             <table class="table table-sm" id="tblExp">
-              <thead><tr><th>Fecha</th><th>Proveedor</th><th>Concepto</th><th>Importe</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Fecha</th><th>Proveedor</th><th>Concepto</th><th>Importe</th>
+                </tr>
+              </thead>
               <tbody id="tbExp"></tbody>
             </table>
           </div>
-          <button class="btn btn-outline-light btn-sm" onclick="Admin.exportTableCSV('#tblExp','gastos_reporte.csv')">Exportar CSV (vista)</button>
+
+          <button class="btn btn-outline-light btn-sm"
+            onclick="Admin.exportTableCSV('#tblExp','gastos_reporte.csv')">
+            Exportar CSV (vista)
+          </button>
         </div>
+
       </div>
     </div>
   </main>
 </div>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  function money(n){ return '$ ' + Number(n||0).toLocaleString('es-AR', {minimumFractionDigits:2}); }
-  async function run(){
-    await Admin.guardStaff(); Admin.setActiveMenu();
-    const from = document.getElementById('rFrom'), to = document.getElementById('rTo');
-    const today = new Date().toISOString().slice(0,10);
-    const first = new Date(); first.setDate(1);
-    from.value = first.toISOString().slice(0,10); to.value = today;
 
+<!-- ====================================== -->
+<!-- SCRIPT PRINCIPAL DE REPORTE -->
+<!-- ====================================== -->
+<script>
+
+  /* Formateador de dinero en formato ARS */
+  function money(n){
+    return '$ ' + Number(n||0).toLocaleString('es-AR', {minimumFractionDigits:2});
+  }
+
+  /* Función principal */
+  async function run(){
+
+    /* Seguridad + UI */
+    await Admin.guardStaff();     // Protege acceso según rol
+    Admin.setActiveMenu();        // Marca menú activo
+
+    /* Inputs de fecha */
+    const from = document.getElementById('rFrom'),
+          to   = document.getElementById('rTo');
+
+    /* Seteo de fechas iniciales: primer día del mes → hoy */
+    const today = new Date().toISOString().slice(0,10);
+    const first = new Date(); 
+    first.setDate(1);
+
+    from.value = first.toISOString().slice(0,10);
+    to.value   = today;
+
+    /* Función para cargar resultados */
     async function load(){
+
+      /* Construcción de parámetros ?from=...&to=... */
       const q = new URLSearchParams({ from: from.value, to: to.value });
+
+      /* Consulta al endpoint del backend */
       const r = await Admin.apiGet('/reports/income-expenses?'+q.toString());
+
+      /* Actualización de totales */
       tIncome.textContent = money(r.totals.income_paid);
       tPending.textContent= money(r.totals.income_pending);
       tExp.textContent    = money(r.totals.expenses);
       tBal.textContent    = money(r.totals.balance);
 
+      /* Renderizado de la tabla de facturas */
       tbInv.innerHTML = r.invoices.map(i=>`
-        <tr><td>${i.number||i.id}</td><td>${new Date(i.date).toLocaleDateString()}</td>
-        <td>${i.student}</td><td>${i.status}</td><td>${money(i.total)}</td></tr>
+        <tr>
+          <td>${i.number||i.id}</td>
+          <td>${new Date(i.date).toLocaleDateString()}</td>
+          <td>${i.student}</td>
+          <td>${i.status}</td>
+          <td>${money(i.total)}</td>
+        </tr>
       `).join('');
+
+      /* Renderizado de la tabla de gastos */
       tbExp.innerHTML = r.expenses.map(e=>`
-        <tr><td>${new Date(e.date).toLocaleDateString()}</td><td>${e.provider}</td><td>${e.concept}</td><td>${money(e.amount)}</td></tr>
+        <tr>
+          <td>${new Date(e.date).toLocaleDateString()}</td>
+          <td>${e.provider}</td>
+          <td>${e.concept}</td>
+          <td>${money(e.amount)}</td>
+        </tr>
       `).join('');
     }
-    btnRep.onclick = load; load();
+
+    /* Click en botón = recargar datos */
+    btnRep.onclick = load;
+
+    /* Carga inicial */
+    load();
   }
+
+  /* Ejecuta run() al cargar la página */
   document.addEventListener('DOMContentLoaded', run);
 </script>
+
+<!-- Iconos FontAwesome -->
 <script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
 </body>
 </html>

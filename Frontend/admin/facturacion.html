@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ATIX ERP - Facturación</title>
 
-  <!-- Bootstrap -->
+  <!-- Bootstrap base para estilos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Admin core -->
+  <!-- Admin core (funciones Admin.apiGet/Admin.apiPost/etc.) -->
   <script src="./assets/admin.js"></script>
 
-  <!-- Iconos + Estilos del sitio -->
+  <!-- Iconos + estilos generales -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/estilo.css">
@@ -20,7 +20,7 @@
 <body class="bg-dark text-white">
 <div class="admin-shell">
 
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR - navegación principal del panel -->
   <aside class="sidebar">
     <div class="brand">
       <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
@@ -29,6 +29,7 @@
       </a>
     </div>
     <nav class="menu d-grid gap-1">
+      <!-- Navegación entre módulos -->
       <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
       <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
       <a href="../admin/proveedores.html" data-admin-only><i class="fa-solid fa-truck"></i>Proveedores/Gastos</a>
@@ -41,7 +42,7 @@
     </nav>
   </aside>
 
-  <!-- TOPBAR -->
+  <!-- TOPBAR - cabecera del usuario + logout -->
   <header class="topbar">
     <div class="d-flex align-items-center gap-2">
       <i class="fa-solid fa-file-invoice-dollar txtRojo"></i>
@@ -49,26 +50,34 @@
     </div>
     <div class="d-flex align-items-center gap-3">
       <span id="topUser" class="text-muted-2">Admin</span>
+      <!-- Limpia token y vuelve al login -->
       <button class="btn btn-sm btn-outline-light" onclick="localStorage.removeItem('atix_token');location.href='/'">
         Cerrar sesión
       </button>
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN - contenido funcional de Facturación -->
   <main class="main">
 
+    <!-- Título + botones principales -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="m-0">Facturación</h3>
       <div class="d-flex gap-2">
+        <!-- Botón para generar facturas masivas del mes -->
         <button class="btn btn-outline-light" id="btnGen">Generar facturas (mes)</button>
+        <!-- Abre modal de nueva factura -->
         <button class="btn btn-admin" data-bs-toggle="modal" data-bs-target="#mdlNewInv">Nueva factura</button>
       </div>
     </div>
 
+    <!-- Filtros de búsqueda -->
     <div class="card p-3 mb-3">
       <div class="row g-2">
+        <!-- Buscar por alumno o número -->
         <div class="col-md-3"><input id="fQ" class="form-control" placeholder="Buscar alumno/#"/></div>
+
+        <!-- Filtro por estado -->
         <div class="col-md-3">
           <select id="fStatus" class="form-select">
             <option value="">Todos</option>
@@ -77,11 +86,16 @@
             <option value="CANCELLED">Anuladas</option>
           </select>
         </div>
+
+        <!-- Botón filtrar -->
         <div class="col-md-2"><button id="btnF" class="btn btn-outline-light w-100">Filtrar</button></div>
+
+        <!-- Exportar CSV -->
         <button class="btn btn-outline-light btn-sm" onclick="Admin.exportTableCSV('table','alumnos.csv')">Exportar CSV</button>
       </div>
     </div>
 
+    <!-- Tabla de facturas -->
     <div class="card p-3">
       <div class="table-responsive">
         <table class="table align-middle">
@@ -91,24 +105,34 @@
       </div>
     </div>
 
-    <!-- Modal nueva factura -->
+    <!-- MODAL: Crear nueva factura -->
     <div class="modal fade" id="mdlNewInv" tabindex="-1">
       <div class="modal-dialog modal-lg">
+        <!-- Formulario principal -->
         <form id="frmNewInv" class="modal-content">
+
           <div class="modal-header">
             <h5 class="modal-title">Nueva factura</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
+
           <div class="modal-body">
+            <!-- Datos principales -->
             <div class="row g-2 mb-2">
+
+              <!-- Selector de alumno -->
               <div class="col-md-6">
                 <label class="form-label required">Alumno</label>
                 <select id="invStudent" class="form-select"></select>
               </div>
+
+              <!-- Fecha de factura -->
               <div class="col-md-3">
                 <label class="form-label">Fecha</label>
                 <input id="invDate" type="date" class="form-control">
               </div>
+
+              <!-- Estado inicial -->
               <div class="col-md-3">
                 <label class="form-label">Estado</label>
                 <select id="invStatus" class="form-select">
@@ -116,26 +140,39 @@
                   <option value="PAID">PAGADA</option>
                 </select>
               </div>
+
             </div>
+
+            <!-- Ítems -->
             <div>
               <table class="table table-sm align-middle">
                 <thead><tr><th>Descripción</th><th style="width:140px;">Cant</th><th style="width:180px;">Precio</th><th style="width:100px;">Subtotal</th><th></th></tr></thead>
                 <tbody id="invItems"></tbody>
               </table>
+
+              <!-- Agregar ítem -->
               <button class="btn btn-outline-light btn-sm" type="button" onclick="addItem()">+ Ítem</button>
+
+              <!-- Total calculado -->
               <div class="text-end mt-2"><strong>Total: $<span id="invTotal">0</span></strong></div>
             </div>
           </div>
+
+          <!-- Botones -->
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
             <button class="btn btn-admin">Guardar</button>
           </div>
+
         </form>
       </div>
     </div>
 
+    <!-- JS de funcionalidad -->
     <script>
       let alumnosCache=[];
+
+      // Genera una fila de tabla para cada factura
       function rowInv(i){
         return `<tr>
           <td>${i.number || i.id}</td>
@@ -145,12 +182,16 @@
           <td><span class="badge ${i.status==='PAID'?'bg-success':(i.status==='CANCELLED'?'bg-secondary':'bg-warning')}">${i.status}</span></td>
           <td class="text-end">
             <div class="btn-group btn-group-sm">
+              <!-- Marcar pagada -->
               <button class="btn btn-outline-light" onclick="markPaid(${i.id})">Marcar pagada</button>
+              <!-- Anular factura -->
               <button class="btn btn-outline-danger" onclick="cancelInv(${i.id})">Anular</button>
             </div>
           </td>
         </tr>`;
       }
+
+      // Lista facturas aplicando filtros
       async function listar(){
         const p = new URLSearchParams();
         if(fQ.value.trim()) p.set('q',fQ.value.trim());
@@ -158,12 +199,19 @@
         const list = await Admin.apiGet('/invoices?'+p.toString());
         tbInv.innerHTML = (list.items||list||[]).map(rowInv).join('');
       }
+
       btnF.onclick = listar;
+
+      // Marcar factura pagada
       async function markPaid(id){ await Admin.apiPost(`/invoices/${id}/pay`,{}); listar(); }
+
+      // Anular factura
       async function cancelInv(id){ if(!confirm('¿Anular factura?'))return; await Admin.apiPost(`/invoices/${id}/cancel`,{}); listar(); }
+
+      // Generar facturas del mes
       btnGen.onclick = async ()=>{ if(!confirm('Generar facturas del mes a alumnos con plan activo?')) return; await Admin.apiPost('/invoices/generate-month',{}); listar(); };
 
-      // Nueva factura
+      // Agrega un ítem al modal
       function addItem(desc='', qty=1, price=0){
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -177,6 +225,8 @@
         ['input','change'].forEach(evt=>tr.addEventListener(evt, calcTotal));
         calcTotal();
       }
+
+      // Calcula total dinámicamente
       function calcTotal(){
         let total=0;
         document.querySelectorAll('#invItems tr').forEach(tr=>{
@@ -188,6 +238,8 @@
         });
         document.getElementById('invTotal').textContent = total.toFixed(2);
       }
+
+      // Guardar nueva factura
       frmNewInv.onsubmit = async (e)=>{
         e.preventDefault();
         const items = Array.from(document.querySelectorAll('#invItems tr')).map(tr=>({
@@ -195,16 +247,22 @@
           qty: +tr.querySelector('.qty').value || 0,
           price: +tr.querySelector('.price').value || 0
         })).filter(i=>i.description && i.qty>0);
+
         const payload = {
           studentId: +invStudent.value,
           date: invDate.value || new Date().toISOString().slice(0,10),
           status: invStatus.value || 'PENDING',
           items
         };
+
         await Admin.apiPost('/invoices', payload);
         bootstrap.Modal.getInstance(mdlNewInv).hide();
-        document.getElementById('invItems').innerHTML=''; addItem(); listar();
+        document.getElementById('invItems').innerHTML=''; 
+        addItem(); 
+        listar();
       };
+
+      // Al cargar la página: cargar alumnos y listar facturas
       document.addEventListener('DOMContentLoaded', async ()=>{
         alumnosCache = await Admin.apiGet('/students?limit=1000');
         invStudent.innerHTML = (alumnosCache.items||alumnosCache||[]).map(a=>`<option value="${a.id}">${a.firstName} ${a.lastName} (${a.email})</option>`).join('');
@@ -216,7 +274,7 @@
   </main>
 </div>
 
-<!-- JS -->
+<!-- JS externos -->
 <script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

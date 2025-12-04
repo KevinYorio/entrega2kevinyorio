@@ -1,4 +1,15 @@
--- CreateTable
+-- ============================================
+-- MIGRATION: Initial database structure
+-- Purpose: Create core tables for users, plans,
+--          orders, payments and memberships.
+-- ============================================
+
+-- ============================================
+-- TABLE: User
+-- Stores all application users.
+-- Passwords must be stored hashed.
+-- Email is unique to prevent duplicates.
+-- ============================================
 CREATE TABLE "public"."User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
@@ -7,11 +18,18 @@ CREATE TABLE "public"."User" (
     "lastName" TEXT NOT NULL,
     "emailVerified" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- Unique email constraint
+CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
+
+
+-- ============================================
+-- TABLE: Plan
+-- Represents subscription plans/products.
+-- Includes pricing, currency and active state.
+-- ============================================
 CREATE TABLE "public"."Plan" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -20,11 +38,16 @@ CREATE TABLE "public"."Plan" (
     "sessionsPerWeek" INTEGER NOT NULL DEFAULT 0,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "Plan_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+
+-- ============================================
+-- TABLE: Order
+-- Represents a purchase intent.
+-- Links users with plans.
+-- Stores historical price and statuses.
+-- ============================================
 CREATE TABLE "public"."Order" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
@@ -35,11 +58,15 @@ CREATE TABLE "public"."Order" (
     "preferenceId" TEXT,
     "merchantOrderId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+
+-- ============================================
+-- TABLE: Payment
+-- Stores payments returned by MercadoPago.
+-- Prevents duplication via mpPaymentId unique index.
+-- ============================================
 CREATE TABLE "public"."Payment" (
     "id" SERIAL NOT NULL,
     "orderId" INTEGER NOT NULL,
@@ -49,11 +76,18 @@ CREATE TABLE "public"."Payment" (
     "amount" INTEGER NOT NULL,
     "detailsJson" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
+-- Prevent duplicate payments
+CREATE UNIQUE INDEX "Payment_mpPaymentId_key" ON "public"."Payment"("mpPaymentId");
+
+
+-- ============================================
+-- TABLE: Membership
+-- Represents a user's active or inactive membership.
+-- Derived from a successful order/payment.
+-- ============================================
 CREATE TABLE "public"."Membership" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
@@ -62,27 +96,38 @@ CREATE TABLE "public"."Membership" (
     "endsAt" TIMESTAMP(3) NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'inactive',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "Membership_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
 
--- CreateIndex
-CREATE UNIQUE INDEX "Payment_mpPaymentId_key" ON "public"."Payment"("mpPaymentId");
+-- ============================================
+-- FOREIGN KEYS
+-- Defines relations between tables.
+-- ON DELETE RESTRICT → prevents deleting referenced data.
+-- ON UPDATE CASCADE → updates propagate safely.
+-- ============================================
 
--- AddForeignKey
-ALTER TABLE "public"."Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Order"
+ADD CONSTRAINT "Order_userId_fkey"
+FOREIGN KEY ("userId") REFERENCES "public"."User"("id")
+ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE "public"."Order" ADD CONSTRAINT "Order_planId_fkey" FOREIGN KEY ("planId") REFERENCES "public"."Plan"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Order"
+ADD CONSTRAINT "Order_planId_fkey"
+FOREIGN KEY ("planId") REFERENCES "public"."Plan"("id")
+ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE "public"."Payment" ADD CONSTRAINT "Payment_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "public"."Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Payment"
+ADD CONSTRAINT "Payment_orderId_fkey"
+FOREIGN KEY ("orderId") REFERENCES "public"."Order"("id")
+ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE "public"."Membership" ADD CONSTRAINT "Membership_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Membership"
+ADD CONSTRAINT "Membership_userId_fkey"
+FOREIGN KEY ("userId") REFERENCES "public"."User"("id")
+ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE "public"."Membership" ADD CONSTRAINT "Membership_planId_fkey" FOREIGN KEY ("planId") REFERENCES "public"."Plan"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Membership"
+ADD CONSTRAINT "Membership_planId_fkey"
+FOREIGN KEY ("planId") REFERENCES "public"."Plan"("id")
+ON DELETE RESTRICT ON UPDATE CASCADE;

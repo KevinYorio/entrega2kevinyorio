@@ -3,26 +3,42 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- SEO básico de la página -->
         <meta name="description" content="Esta es la pagina sobre nosotros del sitio web del gimnasio">
         <meta name="keywords" content="gimnasio, entrenar, haedo, entrenamiento, gym">
+
         <title>Sobre Nosotros</title>
+
+        <!-- Iconos de FontAwesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- estilos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css"> <!--linkeo de estilos-->
+
+        <!-- JS de Bootstrap (necesario para menú hamburguesa) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+        <!-- Estilos propios del sitio -->
+        <link rel="stylesheet" type="text/css" href="../css/estilo.css">
+
+        <!-- Favicon del sitio -->
         <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
     </head>
+
 <body>
+
+    <!-- Contenedor general del header para estilos -->
     <div class="contenedor-header">
-<header>
+        <header>
+
+            <!-- Logo principal que redirige al inicio -->
             <div class="logo">
-                <!-- Logo ahora lleva a Home -->
                 <a href="../index.html" aria-label="Ir al inicio">
                     <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
                 </a>
             </div>
 
-            <!-- Navbar principal -->
+            <!-- Barra de navegación principal -->
             <nav id="nav">
                 <a href="../pages/contacto.html">Contacto</a>
                 <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
@@ -30,6 +46,7 @@
                 <a href="../pages/estetica.html">Estética</a>
             </nav>
 
+            <!-- Iconos de redes sociales (versión desktop) -->
             <div class="redes-sociales2">
                 <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
                 <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
@@ -37,32 +54,40 @@
                 <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
             </div>
 
-            <!-- Botón hamburguesa -->
+            <!-- Botón hamburguesa para menú mobile -->
             <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <i class="fa-solid fa-bars"></i>
             </a>
 
-            <!-- Menú hamburguesa -->
+            <!-- Menú offcanvas (para navegación en móviles) -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
                 <div class="offcanvas-header align-items-center">
-                    <!-- Logo también dentro del menú -->
+                    <!-- Logo dentro del menú -->
                     <a href="../index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
                         <img src="../img/LOGO.webp" alt="ATIX Home" style="height:40px;width:auto;">
                     </a>
+
+                    <!-- Botón para cerrar el menú -->
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                 </div>
+
+                <!-- Enlaces del menú hamburguesa -->
                 <div class="menu-hamburguesa">
                     <div class="enlaces">
-                        <!-- Opciones solo de alumno -->
+                        <!-- Opciones destacadas -->
                         <a href="../pages/crearcuenta.html">Crear cuenta</a>
                         <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
-                        <!-- Resto de secciones -->
+
+                        <!-- Secciones generales del sitio -->
                         <a href="../pages/sobrenosotros.html">Sobre nosotros</a>
                         <a href="../pages/clases.html">Clases</a>
                         <a href="../pages/estetica.html">Estética</a>
                         <a href="../pages/contacto.html">Contacto</a>
                     </div>
                 </div>
+
+                <!-- Redes sociales dentro del offcanvas -->
                 <div class="redes-sociales2">
                     <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
                     <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
@@ -72,33 +97,42 @@
             </div>
         </header>
     </div>
+
+    <!-- Sección principal del equipo -->
     <section class="equipo" id="equipo">
         <div class="contenido-seccion">
             <h1>NUESTROS <span class="txtRojo">PROFESIONALES</span></h1>
-            </div>
-            <div class="fila">
-                <div class="col">
-                    <img src="../img/e1.webp" alt="profealexis">
-                    <div class="info">
-                        <h2>ALEXIS</h2>
-                        <p>Fitness - Pilates - Musculacion</p>
-                        <p>Alexis no solo es profe, sino que tambien es entrenador especializado en musculacion y culturista profesional, dedicado 100% a su cuerpo y a enseñar a todos los alumnos e encontrar que los motiva para ir dia a dia a entrenar, a despejar la cabeza y a progresar.</p>
-                    </div>
+        </div>
+
+        <div class="fila">
+            <!-- Perfil de Alexis -->
+            <div class="col">
+                <img src="../img/e1.webp" alt="profealexis">
+                <div class="info">
+                    <h2>ALEXIS</h2>
+                    <p>Fitness - Pilates - Musculacion</p>
+                    <p>Alexis no solo es profe, sino que tambien es entrenador especializado en musculacion y culturista profesional, dedicado 100% a su cuerpo y a enseñar a todos los alumnos e encontrar que los motiva para ir dia a dia a entrenar, a despejar la cabeza y a progresar.</p>
                 </div>
-                <div class="col">
-                    <img src="../img/e2.webp" alt="profekarina">
-                    <div class="info">
-                        <h2>KARINA</h2>
-                        <p>Fitness - Pilates - Yoga</p>
-                        <p>Nuestra profe Karina cuenta con mas de 30 años de experiencia en el rubro del entrenamiento, siendo especialista en gimnasia y deportes individuales, dentro de nuestro gimnasio es la encargada de todas las actividades tanto fisicas como de gestionar la institucion tambien.</p>
-                    </div>
+            </div>
+
+            <!-- Perfil de Karina -->
+            <div class="col">
+                <img src="../img/e2.webp" alt="profekarina">
+                <div class="info">
+                    <h2>KARINA</h2>
+                    <p>Fitness - Pilates - Yoga</p>
+                    <p>Nuestra profe Karina cuenta con mas de 30 años de experiencia en el rubro del entrenamiento, siendo especialista en gimnasia y deportes individuales, dentro de nuestro gimnasio es la encargada de todas las actividades tanto fisicas como de gestionar la institucion tambien.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer del sitio -->
     <footer>
         <div class="info">
             <p>2023 - <span class="txtRojo">ATIX Haedo</span> Todos los derechos reservados</p>
+
+            <!-- Redes sociales -->
             <div class="redes-sociales2">
                 <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank"><i class="facebook"></i></a>
                 <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank"><i class="maps"></i></a>
@@ -106,10 +140,14 @@
                 <a href="https://www.youtube.com/@atixhaedo3292" target="_blank"><i class="youtube"></i></a>
             </div>
         </div>
+
+        <!-- Botón para volver arriba -->
         <div class="volver-arriba">
             <a href="#top"><i class="fa-solid fa-circle-chevron-up"></i></a>
         </div>
     </footer>
+
+    <!-- Script global del sitio -->
     <script src="app.js"></script>
 </body>
 </html>

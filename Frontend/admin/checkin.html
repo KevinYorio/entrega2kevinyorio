@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>ATIX ERP - Check-in</title>
 
-  <!-- Bootstrap + Tema ATIX -->
+  <!-- Bootstrap para estilos base -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Íconos FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="../css/estilo.css">
   <link rel="stylesheet" href="../admin/assets/admin.css">
 
-  <!-- Scanner QR (html5-qrcode) -->
+  <!-- Librería para escanear códigos QR -->
   <script src="https://unpkg.com/html5-qrcode"></script>
-  <!-- Admin helpers (mantener) -->
+  <!-- Script del panel admin (maneja auth, API, etc.) -->
   <script src="./assets/admin.js"></script>
 </head>
 <body>
 <div class="admin-shell">
 
-  <!-- SIDEBAR (igual) -->
+  <!-- SIDEBAR: Menú lateral del panel administrativo -->
   <aside class="sidebar">
     <div class="brand">
       <a href="/admin/dashboard.html" class="d-flex align-items-center text-decoration-none">
@@ -28,6 +30,7 @@
       </a>
     </div>
     <nav class="menu d-grid gap-1">
+      <!-- Enlaces del panel -->
       <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
       <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
       <a href="../admin/proveedores.html" data-admin-only><i class="fa-solid fa-truck"></i>Proveedores/Gastos</a>
@@ -40,19 +43,18 @@
     </nav>
   </aside>
 
-  <!-- TOPBAR con el NAVBAR público -->
+  <!-- TOPBAR: Se reutiliza estructura pública para mantener diseño -->
   <header class="topbar p-0">
-    <!-- Reusa exactamente la estructura de estilo.css -->
     <div class="contenedor-header w-100">
       <header>
-        <!-- Logo a Home público -->
+        <!-- Logo que lleva al sitio público -->
         <div class="logo">
           <a href="/index.html" aria-label="Ir al inicio">
             <img class="logo" src="../img/LOGO.webp" alt="Logo ATIX">
           </a>
         </div>
 
-        <!-- Navbar principal del sitio público -->
+        <!-- Menú público (No del admin, se deja como look general del sitio) -->
         <nav id="nav">
           <a href="/pages/contacto.html">Contacto</a>
           <a href="/pages/sobrenosotros.html">Sobre nosotros</a>
@@ -60,7 +62,7 @@
           <a href="/pages/estetica.html">Estética</a>
         </nav>
 
-        <!-- Redes (usa los íconos con background del CSS) -->
+        <!-- Íconos de redes sociales -->
         <div class="redes-sociales2">
           <a href="https://es-la.facebook.com/people/ATIX-HAEDO/100058285552600/" target="_blank" rel="noopener"><i class="facebook"></i></a>
           <a href="https://goo.gl/maps/p11AYbT84yGrof1c6" target="_blank" rel="noopener"><i class="maps"></i></a>
@@ -68,12 +70,12 @@
           <a href="https://www.youtube.com/@atixhaedo3292" target="_blank" rel="noopener"><i class="youtube"></i></a>
         </div>
 
-        <!-- Botón hamburguesa -->
+        <!-- Botón menú hamburguesa para móviles -->
         <a data-bs-toggle="offcanvas" href="#offcanvasAdminNav" role="button" aria-controls="offcanvasAdminNav">
           <i class="fa-solid fa-bars"></i>
         </a>
 
-        <!-- Menú hamburguesa -->
+        <!-- Menú móvil offcanvas -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAdminNav" aria-labelledby="offcanvasAdminNavLabel">
           <div class="offcanvas-header align-items-center">
             <a href="/index.html" class="offcanvas-brand d-flex align-items-center" aria-label="Ir al inicio">
@@ -84,7 +86,7 @@
 
           <div class="menu-hamburguesa">
             <div class="enlaces">
-              <!-- Enlaces públicos (mismos que en sobrenosotros) -->
+              <!-- Enlaces del sitio público -->
               <a href="/pages/sobrenosotros.html">Sobre nosotros</a>
               <a href="/pages/clases.html">Clases</a>
               <a href="/pages/estetica.html">Estética</a>
@@ -92,7 +94,7 @@
               <!-- Acciones rápidas -->
               <a href="/pages/crearcuenta.html">Crear cuenta</a>
               <a href="https://api.whatsapp.com/send?phone=5491166739161">Anotate</a>
-              <!-- Acciones staff -->
+              <!-- Acceso a admin -->
               <a href="/admin/dashboard.html">Panel admin</a>
               <a href="#" onclick="localStorage.removeItem('atix_token');location.href='/'">Cerrar sesión</a>
             </div>
@@ -109,23 +111,30 @@
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN: contenido central de Check-in -->
   <main class="main">
     <div class="row g-3">
       <div class="col-lg-6">
         <div class="card p-3">
+          <!-- Bloque de escaneo QR -->
           <h5 class="mb-3"><i class="fa-solid fa-camera me-2 txtRojo"></i>Escanear QR</h5>
+          <!-- Contenedor donde aparece el lector QR -->
           <div id="reader" style="width:100%"></div>
+          <!-- Mensaje debajo del lector -->
           <div id="scanMsg" class="mt-2 text-muted-2">Apuntá al QR del alumno.</div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="card p-3">
+          <!-- Bloque de check-in manual -->
           <h5 class="mb-3"><i class="fa-solid fa-keyboard me-2 txtRojo"></i>Check-in manual</h5>
           <div class="input-group">
+            <!-- Campo para ingresar token -->
             <input id="tk" class="form-control bg-tertiary-color" placeholder="Ingresá token QR">
+            <!-- Botón manual -->
             <button id="btnTk" class="btn btn-admin">Check-in</button>
           </div>
+          <!-- Resultado de check-in -->
           <div id="res" class="mt-3 small"></div>
         </div>
       </div>
@@ -133,24 +142,46 @@
   </main>
 </div>
 
-<!-- Scripts -->
+<!-- Scripts Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
+  // Función para hacer check-in enviando token a la API
   async function doCheck(token){
     try{
+      // Llama a POST /checkin/:token usando helper Admin.apiPost
       const r = await Admin.apiPost('/checkin/'+token, {});
+      // Renderiza resultado exitoso
       res.innerHTML = `<div class="alert alert-success mb-0">✓ Check-in OK · Alumno: <b>${r.student||'-'}</b> · Clase: <b>${r.class||'-'}</b> · ${new Date(r.at||Date.now()).toLocaleTimeString()}</div>`;
     }catch(e){
+      // Renderiza error
       res.innerHTML = `<div class="alert alert-danger mb-0">Error: ${e.message||e}</div>`;
     }
   }
+
+  // Inicialización general al cargar la página
   document.addEventListener('DOMContentLoaded', async ()=>{
-    await Admin.guardStaff(); Admin.setActiveMenu();
+    // Verifica login del staff y marca menú activo
+    await Admin.guardStaff(); 
+    Admin.setActiveMenu();
+
+    // Check-in manual por botón
     btnTk.onclick = ()=> doCheck(tk.value.trim());
-    // init QR
+
+    // Inicializar lector QR
     const qr = new Html5Qrcode("reader");
     const config = { fps:10, qrbox: { width: 250, height: 250 } };
-    qr.start({ facingMode: "environment" }, config, (decoded)=>{ scanMsg.textContent='QR leído: '+decoded; doCheck(decoded); });
+
+    // Inicia cámara con preferencia por cámara trasera
+    qr.start(
+      { facingMode: "environment" }, 
+      config,
+      // Callback cuando se detecta QR
+      (decoded)=>{
+        scanMsg.textContent='QR leído: '+decoded;
+        doCheck(decoded); // Ejecuta check-in automático
+      }
+    );
   });
 </script>
 </body>

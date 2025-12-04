@@ -6,18 +6,20 @@
   <title>ATIX ERP - Clientes</title>
 
   <!-- Bootstrap + Tema ATIX -->
+  <!-- Framework principal para estilos + iconografía -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../css/estilo.css">
-  <link rel="stylesheet" href="../admin/assets/admin.css">
+  <link rel="stylesheet" href="../css/estilo.css">    <!-- Estilos generales -->
+  <link rel="stylesheet" href="../admin/assets/admin.css"> <!-- Estilos del panel admin -->
 
-  <!-- Admin helpers -->
+  <!-- Admin helpers (auth, api, tokens, etc.) -->
   <script src="./assets/admin.js"></script>
 </head>
 <body>
 <div class="admin-shell">
 
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR ─────────────────────────────────────────────────────────────-->
+  <!-- Menú lateral de navegación -->
   <aside class="sidebar">
     <div class="brand">
       <a href="/admin/dashboard.html" class="d-flex align-items-center text-decoration-none">
@@ -25,6 +27,8 @@
         <strong class="ms-2">ATIX • ERP</strong>
       </a>
     </div>
+
+    <!-- Menú principal del panel -->
     <nav class="menu d-grid gap-1">
       <a href="../admin/dashboard.html"><i class="fa-solid fa-gauge"></i>Dashboard</a>
       <a href="../admin/clientes.html"><i class="fa-solid fa-users"></i>Clientes</a>
@@ -38,32 +42,53 @@
     </nav>
   </aside>
 
-  <!-- TOPBAR -->
+  <!-- TOPBAR ─────────────────────────────────────────────────────────────-->
+  <!-- Barra superior con identificación del usuario -->
   <header class="topbar border-bottom" style="background-color: rgba(0,0,0,.7);">
     <div class="d-flex align-items-center gap-2">
       <i class="fa-solid fa-users txtRojo"></i>
       <span class="text-muted-2">Panel de administración</span>
     </div>
+
     <div class="d-flex align-items-center gap-3">
+      <!-- Muestra el usuario autenticado -->
       <span id="topUser" class="text-muted-2">Admin</span>
-      <button class="btn btn-sm btn-outline-light" onclick="localStorage.removeItem('atix_token');location.href='/'">Cerrar sesión</button>
+
+      <!-- Cerrar sesión -->
+      <button class="btn btn-sm btn-outline-light"
+              onclick="localStorage.removeItem('atix_token');location.href='/'">
+        Cerrar sesión
+      </button>
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN ─────────────────────────────────────────────────────────────-->
+  <!-- Contenido principal: gestión de alumnos -->
   <main class="main">
+
+    <!-- Encabezado con botón para nuevo alumno -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="m-0">Clientes (Alumnos)</h3>
+
+      <!-- Abre modal para crear nuevo alumno -->
       <button class="btn btn-admin" data-bs-toggle="modal" data-bs-target="#mdlAlumno">
         <i class="fa-solid fa-user-plus me-1"></i>Nuevo alumno
       </button>
     </div>
 
+    <!-- Tarjeta contenedora -->
     <div class="card p-3">
+
+      <!-- FILTROS DE BÚSQUEDA --------------------------------------------- -->
       <div class="row g-2 mb-2">
+
+        <!-- Filtro por nombre/email -->
         <div class="col-md-3">
-          <input id="q" class="form-control bg-tertiary-color" placeholder="Buscar por nombre o email"/>
+          <input id="q" class="form-control bg-tertiary-color"
+                 placeholder="Buscar por nombre o email"/>
         </div>
+
+        <!-- Filtro por estado -->
         <div class="col-md-3">
           <select id="qEstado" class="form-select bg-tertiary-color">
             <option value="">Todos</option>
@@ -71,42 +96,81 @@
             <option value="inactive">Inactivos</option>
           </select>
         </div>
+
+        <!-- Botón aplicar filtros -->
         <div class="col-md-2">
           <button id="btnFiltrar" class="btn btn-outline-light w-100">Filtrar</button>
         </div>
       </div>
 
+      <!-- TABLA DE ALUMNOS ------------------------------------------------ -->
       <div class="table-responsive">
         <table class="table table-hover align-middle">
           <thead>
             <tr>
-              <th>Nombre</th><th>Email</th><th>Teléfono</th><th>Plan</th><th>Estado</th>
+              <th>Nombre</th><th>Email</th><th>Teléfono</th>
+              <th>Plan</th><th>Estado</th>
               <th class="text-end">Acciones</th>
             </tr>
           </thead>
+
+          <!-- Cuerpo dinámico generado por JS -->
           <tbody id="tbAlumnos"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- Modal Crear/Editar -->
+    <!-- MODAL CREAR/EDITAR ALUMNO ---------------------------------------- -->
+    <!-- Reutilizado tanto para crear como editar -->
     <div class="modal fade" id="mdlAlumno" tabindex="-1">
       <div class="modal-dialog">
+
+        <!-- Form dentro del modal -->
         <form id="frmAlumno" class="modal-content">
+
           <div class="modal-header border-0">
-            <h5 class="modal-title"><i class="fa-solid fa-user-pen me-2 txtRojo"></i>Alumno</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <h5 class="modal-title">
+              <i class="fa-solid fa-user-pen me-2 txtRojo"></i>Alumno
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
+
           <div class="modal-body g-2">
+
+            <!-- Campo oculto: ID del alumno (solo en edición) -->
             <input type="hidden" id="alumnoId"/>
-            <div class="mb-2"><label class="form-label required">Nombre</label><input id="firstName" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label required">Apellido</label><input id="lastName" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label required">Email</label><input id="email" type="email" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label">Teléfono</label><input id="phone" class="form-control"></div>
+
+            <!-- Nombre -->
+            <div class="mb-2">
+              <label class="form-label required">Nombre</label>
+              <input id="firstName" class="form-control" required>
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-2">
+              <label class="form-label required">Apellido</label>
+              <input id="lastName" class="form-control" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-2">
+              <label class="form-label required">Email</label>
+              <input id="email" type="email" class="form-control" required>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-2">
+              <label class="form-label">Teléfono</label>
+              <input id="phone" class="form-control">
+            </div>
+
+            <!-- Plan asignado -->
             <div class="mb-2">
               <label class="form-label">Plan</label>
               <select id="planId" class="form-select"></select>
             </div>
+
+            <!-- Estado -->
             <div class="mb-2">
               <label class="form-label">Estado</label>
               <select id="status" class="form-select">
@@ -115,30 +179,54 @@
               </select>
             </div>
           </div>
+
+          <!-- Botones modal -->
           <div class="modal-footer border-0">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
             <button class="btn btn-admin" type="submit">Guardar</button>
           </div>
+
         </form>
       </div>
     </div>
   </main>
 </div>
 
-<!-- Scripts -->
+<!-- SCRIPTS --------------------------------------------------------------- -->
 <script src="https://kit.fontawesome.com/a2d9d5c36a.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
+  /* =========================================================================
+      CARGA DE PLANES DESDE LA API
+     ========================================================================= */
+
   let plansCache = [];
+
+  // Obtiene los planes disponibles para asignar al alumno
   async function cargarPlanes(){
     plansCache = await Admin.apiGet('/plans');
+
+    // Llenado del select de planes
     const sel = document.getElementById('planId');
-    sel.innerHTML = `<option value="">— Sin plan —</option>` + (plansCache||[]).map(p=>`<option value="${p.id}">${p.name} ($${p.price})</option>`).join('');
+    sel.innerHTML =
+      `<option value="">— Sin plan —</option>` +
+      (plansCache||[])
+        .map(p => `<option value="${p.id}">${p.name} ($${p.price})</option>`)
+        .join('');
   }
+
+
+  /* =========================================================================
+      RENDER DE FILA DE TABLA
+     ========================================================================= */
+
+  // Genera el HTML de una fila de alumno
   function rowAlumno(a){
     const plan = a.plan?.name || a.planName || '-';
-    const estado = (a.status||a.active?'Activo':'Inactivo');
+    const estado = (a.status||a.active ? 'Activo' : 'Inactivo');
+
     return `<tr>
       <td>${a.firstName||''} ${a.lastName||''}</td>
       <td>${a.email||'-'}</td>
@@ -146,44 +234,98 @@
       <td>${plan}</td>
       <td><span class="badge ${estado==='Activo'?'bg-success':'bg-secondary'}">${estado}</span></td>
       <td class="text-end">
-        <button class="btn btn-sm btn-outline-light" onclick='editar(${JSON.stringify(a).replaceAll("'","&#39;")})'>Editar</button>
-        <button class="btn btn-sm btn-outline-danger" onclick="borrar(${a.id})">Eliminar</button>
+
+        <!-- Botón editar -->
+        <button class="btn btn-sm btn-outline-light"
+                onclick='editar(${JSON.stringify(a).replaceAll("'","&#39;")})'>
+          Editar
+        </button>
+
+        <!-- Botón eliminar -->
+        <button class="btn btn-sm btn-outline-danger"
+                onclick="borrar(${a.id})">
+          Eliminar
+        </button>
+
       </td>
     </tr>`;
   }
+
+
+  /* =========================================================================
+      LISTADO + FILTROS
+     ========================================================================= */
+
   async function listar(){
     const q = document.getElementById('q').value.trim();
     const status = document.getElementById('qEstado').value;
+
+    // Construcción de parámetros de búsqueda
     const params = new URLSearchParams();
     if(q) params.set('q', q);
     if(status) params.set('status', status);
-    const data = await Admin.apiGet('/students?'+params.toString());
-    document.getElementById('tbAlumnos').innerHTML = (data.items||data||[]).map(rowAlumno).join('') || `<tr><td colspan="6" class="text-center text-muted-2">Sin resultados</td></tr>`;
+
+    // Llamada a la API
+    const data = await Admin.apiGet('/students?' + params.toString());
+
+    // Render dinámico de tabla
+    document.getElementById('tbAlumnos').innerHTML =
+      (data.items||data||[])
+        .map(rowAlumno).join('') ||
+      `<tr><td colspan="6" class="text-center text-muted-2">Sin resultados</td></tr>`;
   }
+
+
+  /* =========================================================================
+      UTILIDADES DEL MODAL
+     ========================================================================= */
+
+  // Limpia todos los campos del modal
   function limpiar(){
     document.getElementById('alumnoId').value = '';
-    ['firstName','lastName','email','phone'].forEach(id=>document.getElementById(id).value='');
+    ['firstName','lastName','email','phone']
+      .forEach(id => document.getElementById(id).value = '');
     document.getElementById('planId').value = '';
     document.getElementById('status').value = 'active';
   }
+
+  // Abre modal completando datos del alumno seleccionado
   function editar(a){
-    const m = new bootstrap.Modal('#mdlAlumno'); m.show();
+    const m = new bootstrap.Modal('#mdlAlumno');
+    m.show();
+
     document.getElementById('alumnoId').value = a.id;
     document.getElementById('firstName').value = a.firstName||'';
     document.getElementById('lastName').value = a.lastName||'';
     document.getElementById('email').value = a.email||'';
     document.getElementById('phone').value = a.phone||'';
     document.getElementById('planId').value = a.planId || a.plan?.id || '';
-    document.getElementById('status').value = (a.status || (a.active?'active':'inactive'));
+    document.getElementById('status').value =
+      (a.status || (a.active ? 'active' : 'inactive'));
   }
+
+  /* =========================================================================
+      BORRAR ALUMNO
+     ========================================================================= */
+
   async function borrar(id){
     if(!confirm('¿Eliminar alumno?')) return;
-    await Admin.apiDel('/students/'+id);
+    await Admin.apiDel('/students/' + id);
     listar();
   }
+
+  /* =========================================================================
+      EVENTOS GENERALES
+     ========================================================================= */
+
+  // Botón Filtrar
   document.getElementById('btnFiltrar').onclick = listar;
+
+  // Guardar alumno (crear o editar)
   document.getElementById('frmAlumno').addEventListener('submit', async (e)=>{
     e.preventDefault();
+
+    // Construcción del payload
     const payload = {
       firstName: firstName.value.trim(),
       lastName: lastName.value.trim(),
@@ -192,15 +334,24 @@
       planId: planId.value ? +planId.value : null,
       status: status.value
     };
+
     const id = document.getElementById('alumnoId').value;
-    if(id) await Admin.apiPut('/students/'+id, payload);
+
+    // Crear o editar según exista ID
+    if(id) await Admin.apiPut('/students/' + id, payload);
     else   await Admin.apiPost('/students', payload);
+
+    // Cerrar modal + refrescar tabla
     bootstrap.Modal.getInstance(document.getElementById('mdlAlumno')).hide();
     limpiar(); listar();
   });
+
+  // Al cargar la página → cargar planes y alumnos
   document.addEventListener('DOMContentLoaded', async ()=>{
-    await cargarPlanes(); await listar();
+    await cargarPlanes();
+    await listar();
   });
+
 </script>
 </body>
 </html>

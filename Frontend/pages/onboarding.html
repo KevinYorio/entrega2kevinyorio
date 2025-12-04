@@ -353,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (msg) msg.textContent = '';
     try {
+      // Crear orden
       const r = await fetch(`${API}/orders`, {
         method: 'POST',
         headers: {
@@ -361,24 +362,34 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify({ planId, payNow: !payLater })
       });
+
       const j = await r.json().catch(() => ({}));
       dbg('create order:', j);
       if (!r.ok) throw new Error(j.error || `Error creando orden (${r.status})`);
 
+      // Ir al paso final
       document.getElementById('step2').classList.add('d-none');
       document.getElementById('step3').classList.remove('d-none');
 
       const msgFinal = document.getElementById('finalMsg');
-      const go = document.getElementById('goCheckout');
+      const go       = document.getElementById('goCheckout');
 
-      if (j.init_point) {
-        msgFinal.textContent = 'Redirigite al checkout para completar el pago:';
-        go.href = j.init_point;
-        go.classList.remove('d-none');
-      } else {
-        msgFinal.textContent = 'Orden creada para pagar más tarde / en ventanilla.';
+      if (payLater) {
+        // Usuario eligió NO pagar ahora
+        msgFinal.textContent = 'Tu inscripción fue creada. Podés pasar por ventanilla a abonar cuando quieras.';
         go.classList.add('d-none');
+      } else {
+        // Usuario paga ahora → Mercado Pago
+        if (j.init_point) {
+          msgFinal.textContent = 'Tu orden fue creada. Hacé clic para pagar ahora con Mercado Pago.';
+          go.href = j.init_point;
+          go.classList.remove('d-none');
+        } else {
+          msgFinal.textContent = 'Tu orden fue creada, pero no se recibió URL de pago. Contactanos.';
+          go.classList.add('d-none');
+        }
       }
+
     } catch (e) {
       if (msg) msg.textContent = e.message;
     }
